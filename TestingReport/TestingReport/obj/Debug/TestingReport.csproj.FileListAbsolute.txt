@@ -1,6 +1,5 @@
-c:\users\zhangpa\documents\visual studio 2013\Projects\TestingReport\TestingReport\bin\TestingReport.dll.config
-c:\users\zhangpa\documents\visual studio 2013\Projects\TestingReport\TestingReport\bin\TestingReport.dll
-c:\users\zhangpa\documents\visual studio 2013\Projects\TestingReport\TestingReport\bin\TestingReport.pdb
-c:\users\zhangpa\documents\visual studio 2013\Projects\TestingReport\TestingReport\obj\Debug\TestingReport.csprojResolveAssemblyReference.cache
-c:\users\zhangpa\documents\visual studio 2013\Projects\TestingReport\TestingReport\obj\Debug\TestingReport.dll
-c:\users\zhangpa\documents\visual studio 2013\Projects\TestingReport\TestingReport\obj\Debug\TestingReport.pdb
+c:\users\patrick\documents\visual studio 2010\Projects\TestingReport\TestingReport\bin\TestingReport.dll
+c:\users\patrick\documents\visual studio 2010\Projects\TestingReport\TestingReport\bin\TestingReport.pdb
+c:\users\patrick\documents\visual studio 2010\Projects\TestingReport\TestingReport\obj\Debug\ResolveAssemblyReference.cache
+c:\users\patrick\documents\visual studio 2010\Projects\TestingReport\TestingReport\obj\Debug\TestingReport.dll
+c:\users\patrick\documents\visual studio 2010\Projects\TestingReport\TestingReport\obj\Debug\TestingReport.pdb

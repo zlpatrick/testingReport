@@ -12,10 +12,7 @@ namespace TestingReport
     public class DBUtil
     {
         string type = "oledb";
-        public DBUtil(string type)
-        {
-            this.type = type;
-        }
+        
         public OleDbConnection createOleDbConnection()
         {
             OleDbConnection conn = new OleDbConnection();
@@ -24,7 +21,7 @@ namespace TestingReport
 
         public SqlConnection createSqlConnection()
         {
-            SqlConnection conn = new SqlConnection();
+            SqlConnection conn = new SqlConnection("Data Source=.;Database=ceping;User ID=sa;Password=19841024");
             return conn;
         }
 
