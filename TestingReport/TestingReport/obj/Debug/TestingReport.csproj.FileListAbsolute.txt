@@ -3,3 +3,7 @@ c:\users\patrick\documents\visual studio 2010\Projects\TestingReport\TestingRepo
 c:\users\patrick\documents\visual studio 2010\Projects\TestingReport\TestingReport\obj\Debug\ResolveAssemblyReference.cache
 c:\users\patrick\documents\visual studio 2010\Projects\TestingReport\TestingReport\obj\Debug\TestingReport.dll
 c:\users\patrick\documents\visual studio 2010\Projects\TestingReport\TestingReport\obj\Debug\TestingReport.pdb
+C:\Users\Patrick\git\testingReport\TestingReport\TestingReport\bin\TestingReport.dll
+C:\Users\Patrick\git\testingReport\TestingReport\TestingReport\bin\TestingReport.pdb
+C:\Users\Patrick\git\testingReport\TestingReport\TestingReport\obj\Debug\TestingReport.dll
+C:\Users\Patrick\git\testingReport\TestingReport\TestingReport\obj\Debug\TestingReport.pdb

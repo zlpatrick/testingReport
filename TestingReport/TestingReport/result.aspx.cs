@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Web.UI.DataVisualization.Charting;
+using System.Web.UI.DataVisualization;
 
 namespace TestingReport
 {
@@ -41,13 +43,21 @@ namespace TestingReport
                             totalScore += scores[choosePosition];
                             choosePositionMap.Add(optionId, choosePosition);
                         }
+                        Panel totalScorePanel = new Panel();
                         Label label = new Label();
                         label.Text = "您的总分是" + totalScore;
-                        this.form1.Controls.Add(label);
+                        totalScorePanel.Controls.Add(label);
+                        this.form1.Controls.Add(totalScorePanel);
 
                         ds = db.executeSqlQuery("select * from Dimensions where TopicId=" + topicId);
                         if (ds.Tables[0].Rows.Count > 0)
                         {
+                            Panel chartPanel = new Panel();
+                            Chart chart = new Chart();
+                            chart.Titles.Add(new Title("维度分析"));
+                            Series series = new Series();
+                            series.Name = "dimensions";
+                            series["PointWidth"] = "0.5";
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                             {
                                 string dimensionName = ds.Tables[0].Rows[i]["DimensionName"].ToString();
@@ -63,10 +73,20 @@ namespace TestingReport
                                     dimensionScore += scores[choosePositionMap[optionIDInt[j]]];
                                 }
 
-                                Label dimension = new Label();
-                                dimension.Text = dimensionName + "的总分" + dimensionScore; ;
-                                this.form1.Controls.Add(dimension);
-                            }
+                                DataPoint point = new DataPoint(i, dimensionScore);
+                                point.AxisLabel = dimensionName;
+                                series.Points.Add(point);
+                            }      
+                            chart.Series.Add(series);
+                        
+                            ChartArea chartArea = new ChartArea("result");
+                            chartArea.AxisX = new Axis();
+                            chartArea.AxisX.Name = "X";
+                            chartArea.AxisY = new Axis();
+                            chartArea.AxisY.Name = "Y";
+                            chart.ChartAreas.Add(chartArea);
+                            chartPanel.Controls.Add(chart);
+                            this.form1.Controls.Add(chartPanel);
                         }
                     }
                 }
