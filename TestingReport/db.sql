@@ -117,6 +117,9 @@ CREATE TABLE [dbo].[Users](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[UserName] [nvarchar](50) NULL,
 	[RegDateTime] [datetime] NULL,
+	[age] [int] NULL,
+	[gender] [nvarchar](50) NULL,
+	[industry] [nvarchar](50) NULL,
  CONSTRAINT [PK_Users] PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC

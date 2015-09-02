@@ -21,7 +21,7 @@ namespace TestingReport
 
         public SqlConnection createSqlConnection()
         {
-            SqlConnection conn = new SqlConnection("Data Source=.;Database=ceping;User ID=sa;Password=19841024");
+            SqlConnection conn = new SqlConnection("Data Source=114.80.193.50;Database=xinli;User ID=xinli;Password=xinli12345");
             return conn;
         }
 
