@@ -50,7 +50,7 @@ namespace TestingReport
                         this.form1.Controls.Add(totalScorePanel);
 
                         ds = db.executeSqlQuery("select * from Dimensions where TopicId=" + topicId);
-                        if (ds.Tables[0].Rows.Count > 0)
+                        if (ds.Tables[0].Rows.Count > 1)
                         {
                             Panel chartPanel = new Panel();
                             Chart chart = new Chart();
@@ -58,6 +58,12 @@ namespace TestingReport
                             Series series = new Series();
                             series.Name = "dimensions";
                             series["PointWidth"] = "0.5";
+
+                            int dimensionCount = ds.Tables[0].Rows.Count;
+                            if (dimensionCount >= 5)
+                            {
+                                series.ChartType = SeriesChartType.Radar;
+                            }
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                             {
                                 string dimensionName = ds.Tables[0].Rows[i]["DimensionName"].ToString();
@@ -86,7 +92,7 @@ namespace TestingReport
                             chartArea.AxisY.Name = "Y";
                             chart.ChartAreas.Add(chartArea);
                             chartPanel.Controls.Add(chart);
-                            this.form1.Controls.Add(chartPanel);
+                            this.form1.Controls.Add(chartPanel);    
                         }
                     }
                 }
