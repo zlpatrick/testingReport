@@ -49,6 +49,17 @@ namespace TestingReport
                         totalScorePanel.Controls.Add(label);
                         this.form1.Controls.Add(totalScorePanel);
 
+                        ds = db.executeSqlQuery("select * from TopicScores where TopicId=" + topicId + " and minScore<=" + totalScore + " and maxScore>=" + totalScore);
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            Panel totalScoreDescPanel = new Panel();
+                            Label totalScoreDesc = new Label();
+                            totalScoreDesc.Text = ds.Tables[0].Rows[0]["ScoreDesc"].ToString();
+                            totalScoreDescPanel.Controls.Add(totalScoreDesc);
+                            this.form1.Controls.Add(totalScoreDescPanel);
+                        }
+
+
                         ds = db.executeSqlQuery("select * from Dimensions where TopicId=" + topicId);
                         if (ds.Tables[0].Rows.Count > 1)
                         {
@@ -64,8 +75,13 @@ namespace TestingReport
                             {
                                 series.ChartType = SeriesChartType.Radar;
                             }
+
+                            Dictionary<int, int> dimensionScores = new Dictionary<int, int>();
+                            Dictionary<int, string> dimensionNames = new Dictionary<int, string>();
+                            Dictionary<int, string> dimensionDescs = new Dictionary<int, string>();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                             {
+                                int dimensionId = Convert.ToInt32(ds.Tables[0].Rows[i]["id"]);
                                 string dimensionName = ds.Tables[0].Rows[i]["DimensionName"].ToString();
                                 string dimensionDesc = ds.Tables[0].Rows[i]["DimensionDesc"].ToString();
                                 string optionIdList = ds.Tables[0].Rows[i]["OptionIdList"].ToString();
@@ -82,6 +98,7 @@ namespace TestingReport
                                 DataPoint point = new DataPoint(i, dimensionScore);
                                 point.AxisLabel = dimensionName;
                                 series.Points.Add(point);
+                                dimensionScores.Add(dimensionId, dimensionScore);
                             }      
                             chart.Series.Add(series);
                         
@@ -92,7 +109,43 @@ namespace TestingReport
                             chartArea.AxisY.Name = "Y";
                             chart.ChartAreas.Add(chartArea);
                             chartPanel.Controls.Add(chart);
-                            this.form1.Controls.Add(chartPanel);    
+                            this.form1.Controls.Add(chartPanel);
+
+                            foreach(KeyValuePair<int,int> pair in dimensionScores)
+                            {
+                                int dimensionId = pair.Key;
+                                int dimensionScore = pair.Value;
+                                ds = db.executeSqlQuery("select * from TopicDimensionScores where dimensionId=" + dimensionId + " and TopicId=" + topicId + " and minScore<=" + dimensionScore + " and maxScore>=" + dimensionScore);
+                                if (ds.Tables[0].Rows.Count > 0)
+                                {
+                                    string dimensionName = dimensionNames[dimensionId];
+                                    string dimensionDesc = dimensionDescs[dimensionId];
+                                    string dimensionScoreDesc = ds.Tables[0].Rows[0]["ScoreDesc"].ToString();
+
+                                    Panel dimensionScorePanel = new Panel();
+                                    dimensionScorePanel.CssClass = "dimension-score-panel";
+
+                                    Panel dimensionNamePanel = new Panel();
+                                    Label temp = new Label();
+                                    temp.Text = dimensionName;
+                                    dimensionNamePanel.Controls.Add(temp);
+                                    dimensionScorePanel.Controls.Add(dimensionNamePanel);
+
+                                    Panel dimensionDescPanel = new Panel();
+                                    temp = new Label();
+                                    temp.Text = dimensionDesc;
+                                    dimensionDescPanel.Controls.Add(temp);
+                                    dimensionScorePanel.Controls.Add(dimensionDescPanel);
+
+                                    Panel dimensionScoreDescPanel = new Panel();
+                                    temp = new Label();
+                                    temp.Text = dimensionScoreDesc;
+                                    dimensionScoreDescPanel.Controls.Add(temp);
+                                    dimensionScorePanel.Controls.Add(dimensionScoreDescPanel);
+
+                                    this.form1.Controls.Add(dimensionScorePanel);
+                                }
+                            }             
                         }
                     }
                 }
