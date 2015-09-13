@@ -14,7 +14,7 @@ namespace TestingReport
         {
 
             DBUtil db = new DBUtil();
-            DataSet ds = db.executeSqlQuery("select * from Topics");
+            DataSet ds = db.executeSqlQuery("select * from Topics where Id="+Request["id"]);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 string id = ds.Tables[0].Rows[0]["Id"].ToString();

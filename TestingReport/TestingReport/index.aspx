@@ -13,7 +13,7 @@
     <p><a href="background.aspx?id=1">大5人格量表</a></p>
     <p>工作满意度量表</p>
     <p>情绪测试量表</p>
-    <p>生活满意度量表</p>
+    <p><a href="background.aspx?id=2">生活满意度量表</a></p>
     <p>生活状态测试（Panic, Strech, Comfort）</p>
     <p>幸福维度量表</p>
     <p>总体幸福感量表</p>

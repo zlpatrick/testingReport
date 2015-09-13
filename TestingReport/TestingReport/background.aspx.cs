@@ -36,7 +36,7 @@ namespace TestingReport
                     age, gender, industry);
                 db.executeSqlNonQuery(sql);
             }
-            Response.Redirect("vote.aspx?id=1");
+            Response.Redirect("vote.aspx?id="+Request["id"]);
         }
     }
 }
