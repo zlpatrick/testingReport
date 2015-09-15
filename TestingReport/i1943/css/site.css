@@ -1,0 +1,136 @@
+﻿body
+{
+    font-family:Microsoft Yahei;
+    padding:0 150px;
+    margin:0
+}
+
+a
+{
+    color:White;
+    text-decoration:none;
+}
+
+
+
+.footer
+{
+    color:rgba(0, 0, 0, 0.8);
+    
+    margin:auto;
+    font-size:13px;
+    height:32px;
+    line-height:32px;
+    background-image:url(../image/top.gif);
+}
+
+.footer span
+{
+    margin-right:20px;
+    
+}
+.banner-top
+{
+    overflow:hidden;
+}
+.banner-top-left
+{
+    float:left;  
+}
+
+.banner-top-left div
+{
+    width:50px;
+    height:50px;
+    float:left;
+    line-height:50px;
+    text-align:center;
+    margin-right:10px;
+    border:2px dashed #7F0019;  
+    font-family: fantasy;
+    font-size:24px;
+    color:#444;
+}
+
+.banner-top-right
+{
+    float:right;
+}
+
+.banner-top-right a
+{
+    margin-left:10px;
+}
+
+.banner-top-right div
+{
+    background-color:#7F0019;
+    padding:20px;
+}
+
+.first-img-left
+{
+    width:60%;
+    float:left;
+}
+
+.first-img-right 
+{
+    float:right;
+    width:40%;
+    padding-top:60px;
+    position:relative;
+}
+
+.first-img-text
+{
+    padding-left:80px;
+    padding-right:40px;
+    bottom:20px;
+}
+
+.first-img-text hr
+{
+    border-top:1px solid #7F0019;
+}
+.first-img-right p
+{
+   
+  
+    color:#444;
+}
+
+
+.first-img-left img
+{
+    width:100%;
+    margin:20px 80px 40px 0px;
+}
+
+.extra-part
+{
+    border-top:1px solid #7F0019; 
+    padding-top:40px;
+    padding-bottom:40px;
+    overflow:hidden;
+}
+
+.extra-part-left
+{
+    width:35%;
+    float:left;
+    
+}
+
+.extra-part-right 
+{
+    width:64%;
+    float:right;
+    border-left:1px solid #7F0019; 
+}
+
+.extra-part-right img
+{
+    width:100%;
+  
+}
