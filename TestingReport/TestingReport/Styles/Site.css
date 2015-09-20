@@ -1,6 +1,29 @@
 ﻿body
 {
     font-family:'Microsoft Yahei';
+    font-size:50px !important;
+}
+
+label 
+{
+    font-size:48px !important;
+    margin-left:15px;
+    cursor:pointer;
+}
+
+input
+{
+    font-size:44px !important;
+    height:40px;
+    width:60px;
+    cursor:pointer;
+}
+
+select
+{
+    font-size:44px !important;
+    width:100%;
+    height:100px;
 }
 
 .content
@@ -11,17 +34,16 @@
 .test-title
 {
     text-align:center;
-    color:Grey;
+    color:#333;
     margin-top:15px;
     margin-bottom:15px;
+    font-size:56px;
 }
 
 .test-introduction
 {
-    
     padding-left:10px;
     padding-right:10px;
-    line-height:25px;
     margin-top:15px;
     margin-bottom:15px;
 }
@@ -32,36 +54,45 @@
     margin-bottom:20px;
 }
 
-
 .test-img img
 {
     margin:auto;
-    max-width:500px;
     width:100%;
 }
 
-
 .test-button
 {
-    height:30px;
+    height:120px;
     border:none;
-    background-color:Orange;
+    background-color:red;
     cursor:pointer;
     color:White;
     outline:0;
-    width:100px;
-    margin-left:calc((100% - 100px)/2);
+    width:100%;
+    margin-top:30px;
+    
 }
 
 .test-choose-item
 {
     margin-top:15px;
     margin-bottom:15px;
+    border:1px solid lightgrey;
+    padding-left:30px;
+    padding-right:30px;
+    line-height:90px;
+    color:grey;
 }
 
 .test-choose-item div
 {
-    margin-top:10px;
-    margin-bottom:10px;
-    font-size:14px;
+    margin-top:30px;
+    margin-bottom:30px;
+    
+}
+
+.result-img
+{
+    width:100% !important;
+    height:auto !important;
 }

@@ -15,7 +15,7 @@ namespace TestingReport
         protected void Page_Load(object sender, EventArgs e)
         {
             string topicId = Request["id"].ToString();
-            string userId = Request["userId"].ToString();
+            string userId = Request["userid"].ToString();
             string type = Request["type"].ToString();
             DBUtil db = new DBUtil();
             if (type.Equals("1"))
@@ -31,7 +31,7 @@ namespace TestingReport
                         scores.Add(position, score);
                     }
 
-                    ds = db.executeSqlQuery("select * from Votes where userId=" + userId + " and TopicId=" + topicId);
+                    ds = db.executeSqlQuery("select * from Votes where userId='" + userId + "' and TopicId=" + topicId);
                     if (ds.Tables[0].Rows.Count > 0)
                     {
                         int totalScore = 0;
@@ -65,6 +65,7 @@ namespace TestingReport
                         {
                             Panel chartPanel = new Panel();
                             Chart chart = new Chart();
+                            chart.CssClass = "result-img";
                             chart.Titles.Add(new Title("维度分析"));
                             Series series = new Series();
                             series.Name = "dimensions";
@@ -99,6 +100,8 @@ namespace TestingReport
                                 point.AxisLabel = dimensionName;
                                 series.Points.Add(point);
                                 dimensionScores.Add(dimensionId, dimensionScore);
+                                dimensionNames.Add(dimensionId, dimensionName);
+                                dimensionDescs.Add(dimensionId, dimensionDesc);
                             }      
                             chart.Series.Add(series);
                         
@@ -142,6 +145,27 @@ namespace TestingReport
                                     temp.Text = dimensionScoreDesc;
                                     dimensionScoreDescPanel.Controls.Add(temp);
                                     dimensionScorePanel.Controls.Add(dimensionScoreDescPanel);
+
+                                    this.form1.Controls.Add(dimensionScorePanel);
+                                }
+                                else
+                                {
+                                    string dimensionName = dimensionNames[dimensionId];
+                                    string dimensionDesc = dimensionDescs[dimensionId];
+                                    Panel dimensionScorePanel = new Panel();
+                                    dimensionScorePanel.CssClass = "dimension-score-panel";
+
+                                    Panel dimensionNamePanel = new Panel();
+                                    Label temp = new Label();
+                                    temp.Text = dimensionName + "的得分:" + dimensionScore;
+                                    dimensionNamePanel.Controls.Add(temp);
+                                    dimensionScorePanel.Controls.Add(dimensionNamePanel);
+
+                                    Panel dimensionDescPanel = new Panel();
+                                    temp = new Label();
+                                    temp.Text = dimensionDesc;
+                                    dimensionDescPanel.Controls.Add(temp);
+                                    dimensionScorePanel.Controls.Add(dimensionDescPanel);
 
                                     this.form1.Controls.Add(dimensionScorePanel);
                                 }

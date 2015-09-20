@@ -6,8 +6,16 @@
 <head runat="server">
     <title></title>
      <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
+     <style>
+      a
+      {
+        color:grey;
+        text-decoration:none;
+      }
+     </style>
 </head>
 <body>
+    <a href="index.aspx">回到首页</a>
     <form id="form1" runat="server">
     <div>
    

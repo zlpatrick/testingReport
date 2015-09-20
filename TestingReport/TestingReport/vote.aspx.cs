@@ -12,7 +12,7 @@ namespace TestingReport
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.userId.Text = Request["userid"].ToString();
             DBUtil db = new DBUtil();
             DataSet ds = db.executeSqlQuery("select * from Topics where Id="+Request["id"]);
             if (ds.Tables[0].Rows.Count > 0)
@@ -68,7 +68,7 @@ namespace TestingReport
         protected void startTest(object sender, EventArgs e)
         {
             string id = this.topicId.Text.ToString();
-            Response.Redirect("test.aspx?id="+id+"&type="+this.topicType.Text.ToString()+"&totalChooseItem="+this.totalChooseItems.Text+"&totalOptions="+this.totalOptions.Text+"&userId="+this.userId.Text);
+            Response.Redirect("test.aspx?id="+id+"&type="+this.topicType.Text.ToString()+"&totalChooseItem="+this.totalChooseItems.Text+"&totalOptions="+this.totalOptions.Text+"&userId="+Request["userid"].ToString());
         }
 
     }

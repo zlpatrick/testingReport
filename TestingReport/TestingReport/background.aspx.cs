@@ -17,7 +17,7 @@ namespace TestingReport
 
         protected void start_Click(object sender, EventArgs e)
         {
-            string userid = "1";
+            string userid = Request["userid"].ToString();
             string age = this.age.SelectedValue;
             string gender = this.gender.SelectedValue;
             string industry = this.industry.SelectedValue;
@@ -36,7 +36,7 @@ namespace TestingReport
                     age, gender, industry);
                 db.executeSqlNonQuery(sql);
             }
-            Response.Redirect("vote.aspx?id="+Request["id"]);
+            Response.Redirect("vote.aspx?id="+Request["id"]+"&userid="+userid);
         }
     }
 }

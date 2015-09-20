@@ -68,6 +68,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="weixin.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="background.aspx.cs">
@@ -109,6 +110,13 @@
     </Compile>
     <Compile Include="vote.aspx.designer.cs">
       <DependentUpon>vote.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="weixin.aspx.cs">
+      <DependentUpon>weixin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="weixin.aspx.designer.cs">
+      <DependentUpon>weixin.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

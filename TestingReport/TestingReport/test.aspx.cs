@@ -32,7 +32,7 @@ namespace TestingReport
 
                     Panel titlePanel = new Panel();
                     Label titleLabel = new Label();
-                    titleLabel.Text = "第"+order+"题: "+optionText;
+                    titleLabel.Text = "第"+order+"题: "+optionText + " ("+order+"/"+ds.Tables[0].Rows.Count+")";
                     titlePanel.CssClass = "test-title";
                     titlePanel.Controls.Add(titleLabel);
 
@@ -125,12 +125,12 @@ namespace TestingReport
             {
                 string userid=Request["userId"].ToString();
                 DBUtil db = new DBUtil();
-                db.executeSqlNonQuery("delete from Votes where userId=" + userid + " and TopicId=" + Request["id"].ToString());
+                db.executeSqlNonQuery("delete from Votes where userId='" + userid + "' and TopicId=" + Request["id"].ToString());
                 for (int i = 1; i <= totalOptions; i++)
                 {
                     int chooseItem = Convert.ToInt32(ViewState[i.ToString()]);
 
-                    db.executeSqlQuery("insert into Votes(userId,TopicId,OptionId,ChooseItemPosition) values('" + userid +
+                    db.executeSqlNonQuery("insert into Votes(userId,TopicId,OptionId,ChooseItemPosition) values('" + userid +
                         "'," + Request["id"].ToString() + "," + i+","+chooseItem+")");
                 }
                 Response.Redirect("result.aspx?id=" + Request["id"].ToString() + "&userid=" + userid+"&type="+Request["type"].ToString());

@@ -19,7 +19,7 @@
     <asp:Label ID="topicType" runat="server" Visible="false" />
     <asp:Label ID="totalOptions" runat="server" Visible="false" />
     <asp:Label ID="totalChooseItems" runat="server" Visible="false" />
-    <asp:Label ID="userId" runat="server" Visible="false" Text="1" />
+    <asp:Label ID="userId" runat="server" Visible="false"  />
     </form>
 </body>
 </html>
