@@ -55,18 +55,21 @@ namespace TestingReport
                         Panel chooseItemRadioPanel = new Panel();
                         RadioButton bt = new RadioButton();
                         bt.GroupName = "RadioGroup" + order;
+                        
                         bt.ID = "RadioGroup" + order+"_RadioOption" + itemDs.Tables[0].Rows[j]["ItemPosition"].ToString();
                         bt.Text = itemDs.Tables[0].Rows[j]["ItemText"].ToString();
                         
-                        if (j == 0)
+                        /*if (j == 0)
                         {
                             bt.Checked = true;
-                        }
+                        }*/
+                        bt.AutoPostBack = true;
+                        bt.CheckedChanged += new EventHandler(startTest);
                         chooseItemRadioPanel.Controls.Add(bt);
                         chooseItemPanel.Controls.Add(chooseItemRadioPanel);
                     }
 
-                    
+                    /*
 
                     Panel buttonPanel = new Panel();
                     Button button = new Button();
@@ -82,11 +85,11 @@ namespace TestingReport
 
                     button.CssClass = "test-button";
                     button.Click += new EventHandler(startTest);
-                    buttonPanel.Controls.Add(button);
+                    buttonPanel.Controls.Add(button);*/
 
                     panel.Controls.Add(titlePanel);
                     panel.Controls.Add(chooseItemPanel);
-                    panel.Controls.Add(buttonPanel);
+                   // panel.Controls.Add(buttonPanel);
 
                     if (i == 0)
                     {
@@ -103,18 +106,20 @@ namespace TestingReport
 
         protected void startTest(object sender, EventArgs e)
         {
-            Button button = (Button)sender;
-            int id = Convert.ToInt32(button.ID.Replace("button", ""));
+            RadioButton button = (RadioButton)sender;
+            string[] ids = button.ID.Split('_');
+            int id = Convert.ToInt32(ids[0].Replace("RadioGroup", ""));
+            int checkedindex = Convert.ToInt32(ids[1].Replace("RadioOption", ""));
             int totalChooseItem = Convert.ToInt32(Request["totalChooseItem"].ToString());
             int totalOptions = Convert.ToInt32(Request["totalOptions"].ToString());
-
-            for (int i = 1; i <= totalChooseItem; i++)
+            ViewState.Add(id.ToString(), checkedindex);
+            /*for (int i = 1; i <= totalChooseItem; i++)
             {
                 if (((RadioButton)form1.FindControl("RadioGroup" + id + "_RadioOption" + i)).Checked)
                 {
                     ViewState.Add(id.ToString(), i);
                 }
-            }
+            }*/
 
             form1.FindControl("OptionOrder" + id).Visible = false;
             if (id< totalOptions)

@@ -40,7 +40,7 @@ namespace TestingReport
                 "<FromUserName><![CDATA[" + toUser + "]]></FromUserName>" +
                 "<CreateTime>12345678</CreateTime><MsgType><![CDATA[news]]></MsgType><ArticleCount>1</ArticleCount>" +
                 "<Articles><item><Title><![CDATA[幸福ABC热门测试]]></Title><Description><![CDATA[幸福ABC热门测试]]></Description>" +
-                "<PicUrl><![CDATA[http://jeffery.w77.goodnic.net/img/test.png]]></PicUrl>" +
+                "<PicUrl><![CDATA[http://jeffery.w77.goodnic.net/img/weixin.png]]></PicUrl>" +
                 "<Url><![CDATA[http://jeffery.w77.goodnic.net/index.aspx?userid=" + fromUser + "]]></Url></item></Articles></xml>";
 
                 Response.ContentType = "text/xml";
