@@ -45,9 +45,40 @@ namespace TestingReport
                         }
                         Panel totalScorePanel = new Panel();
                         Label label = new Label();
-                        label.Text = "您的总分是" + totalScore;
+                        label.Text = "您的总分是:" + totalScore+"分";
                         totalScorePanel.Controls.Add(label);
                         this.form1.Controls.Add(totalScorePanel);
+
+                        ds = db.executeSqlQuery("select * from UserTopicScore where userId='" + userId + "' and topicId=" + topicId);
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            db.executeSqlNonQuery("update UserTopicScore set score=" + totalScore + " where userId='" + userId + "' and topicId=" + topicId);
+                        }
+                        else
+                        {
+                            db.executeSqlNonQuery("insert into UserTopicScore(userId,topicId,Score) values('" + userId + "'," + topicId + ","+totalScore+")");
+                        }
+
+                        ds = db.executeSqlQuery("select count(Id) as totalCount from UserTopicScore where topicId=" + topicId);
+                        if (ds.Tables[0].Rows.Count > 0)
+                        {
+                            int totalPersons = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+
+                            ds = db.executeSqlQuery("select count(Id) as totalCount from UserTopicScore where topicId=" + topicId + " and Score<"+totalScore);
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                int lessScorePersons = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+                                int beat = lessScorePersons * 100 / (totalPersons);
+
+                                if (totalPersons == 1)
+                                    beat = 100;
+                                Panel totalScoreBeatPanel = new Panel();
+                                Label temp = new Label();
+                                label.Text = "您的总分打败了全国:" + beat + "%的选手!";
+                                totalScorePanel.Controls.Add(label);
+                                this.form1.Controls.Add(totalScoreBeatPanel);
+                            }
+                        }
 
                         ds = db.executeSqlQuery("select * from TopicScores where TopicId=" + topicId + " and minScore<=" + totalScore + " and maxScore>=" + totalScore);
                         if (ds.Tables[0].Rows.Count > 0)
@@ -66,7 +97,7 @@ namespace TestingReport
                             Panel chartPanel = new Panel();
                             Chart chart = new Chart();
                             chart.CssClass = "result-img";
-                            chart.Titles.Add(new Title("维度分析"));
+                            chart.Titles.Add(new Title("维度分析图"));
                             Series series = new Series();
                             series.Name = "dimensions";
                             series["PointWidth"] = "0.5";
