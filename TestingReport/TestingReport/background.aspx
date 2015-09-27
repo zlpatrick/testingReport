@@ -10,7 +10,9 @@
 <body>
     <form id="form1" runat="server">
     <div>
-    <p>请选择您的个人信息，以便分析结果更加准确。</p>
+    <p style="background-color:#0097d4;margin:0;padding:30px 5px;text-align:center;color:White">请选择您的个人信息<br /></p>
+    </div>
+    <div style="padding:0px 50px">
     <p>年龄</p>
     <p>
         <asp:DropDownList ID="age" runat="server">

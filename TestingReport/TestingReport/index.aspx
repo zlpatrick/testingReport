@@ -22,12 +22,13 @@
     <p>幸福ABC - 热门测试</p>
     <form id="form1" runat="server">
     <div>
+    <p><a href="background.aspx?id=3&userid=<%=Request["userid"] %>">生活状态测试（Panic, Strech, Comfort）</a></p>
+    <p><a href="background.aspx?id=2&userid=<%=Request["userid"] %>">幸福维度量表</a></p>
+    <p>&nbsp;</p>
     <p><a href="background.aspx?id=1&userid=<%=Request["userid"] %>">大5人格量表</a></p>
     <p><a href="background.aspx?id=5&userid=<%=Request["userid"] %>">工作满意度量表</a></p>
     <p><a href="background.aspx?id=4&userid=<%=Request["userid"] %>">情绪测试量表</a></p>
     <p><a href="background.aspx?id=6&userid=<%=Request["userid"] %>">生活满意度量表</a></p>
-    <p><a href="background.aspx?id=3&userid=<%=Request["userid"] %>">生活状态测试（Panic, Strech, Comfort）</a></p>
-    <p><a href="background.aspx?id=2&userid=<%=Request["userid"] %>">幸福维度量表</a></p>
     <p><a href="background.aspx?id=7&userid=<%=Request["userid"] %>">总体幸福感量表</a></p>
     </div>
     </form>

@@ -2,21 +2,50 @@
 {
     font-family:'Microsoft Yahei';
     font-size:50px !important;
+    padding:0;
+    margin:0;
 }
 
 label 
 {
     font-size:48px !important;
-    margin-left:15px;
+    margin-left:50px;
     cursor:pointer;
+    padding-left: 60px;
+    padding-right: 50%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+.test-option-button
+{
+    width:100%;
+    height:100%;
+    border:none;
+    background-color:White;
+    text-align:left;
+    padding-left:50px;
+    background-image:url(../img/whiteback.png);
+}
+
+.test-option-button-click
+{
+    background-image:url(../img/button.png) !important;
+    color:White !important;
 }
 
 input
 {
     font-size:44px !important;
-    height:40px;
+    height:50px;
     width:60px;
     cursor:pointer;
+}
+
+input[type="radio"]
+{
+    position:relative;
+    top:5px;
+    display:none;
 }
 
 select
@@ -34,42 +63,66 @@ select
 .test-title
 {
     text-align:center;
-    color:#333;
-    margin-top:15px;
-    margin-bottom:15px;
+    color:white;
+    background-color:#0097d4;
     font-size:56px;
+    padding:30px 20px;
+}
+
+.test-title-total
+{
+    text-align:right;
+    padding:50px;
+    font-size: 44px;
+    color:grey;
 }
 
 .test-introduction
 {
-    padding-left:10px;
-    padding-right:10px;
-    margin-top:15px;
-    margin-bottom:15px;
+    padding-left:30px;
+    padding-right:30px;
+    margin-top:25px;
+    margin-bottom:25px;
+    color:#333;
+    line-height:80px;
 }
 
 .test-img
 {
-    margin-top:20px;
-    margin-bottom:20px;
+    margin-top:30px;
+    margin-bottom:30px;
+    padding:0px 30px;
 }
 
 .test-img img
 {
     margin:auto;
     width:100%;
+    box-shadow:5px 5px 5px #999;
+}
+
+.result-img-panel
+{
+    padding:50px 50px;
+}
+
+.test-button-div
+{
+    padding:30px;
+    
 }
 
 .test-button
 {
     height:120px;
     border:none;
-    background-color:red;
+    background-image:url(../img/button.png);
     cursor:pointer;
     color:White;
     outline:0;
     width:100%;
-    margin-top:30px;
+    
+    font-size:50px;
     
 }
 
@@ -77,17 +130,20 @@ select
 {
     margin-top:15px;
     margin-bottom:15px;
-    border:1px solid lightgrey;
-    padding-left:30px;
-    padding-right:30px;
+    
+    margin-left:50px;
+    margin-right:50px;
     line-height:90px;
-    color:grey;
+    color:#444;
+    border-bottom: 2px solid #888;
 }
 
 .test-choose-item div
-{
-    margin-top:30px;
-    margin-bottom:30px;
+{  
+    border:2px solid #888;
+    height:150px;
+    line-height:150px;
+    border-bottom:none;
     
 }
 
@@ -95,4 +151,75 @@ select
 {
     width:100% !important;
     height:auto !important;
+    border: 2px solid #888 !important;
+    box-shadow:8px 8px 8px #999;
+}
+
+.dimension-score-panel
+{
+    padding:0px 50px 40px 50px;
+}
+
+.dimension-score-panel-title
+{
+    background-color:#ffba57;
+    padding:20px;
+    color:White;
+}
+
+.dimension-head-panel
+{
+    padding:20px 50px;
+    margin-bottom:50px;
+    border-bottom:2px solid lightgrey;
+    border-top:2px solid lightgrey;
+    color:#444;
+    background-color:#eee;
+}
+
+.dimension-score-panel-desc
+{
+    color:#666;
+    margin-top:10px;
+    padding:30px;
+    
+}
+
+.dimension-score-panel-score
+{
+    color:#666;
+    
+    padding:30px 30px 10px 30px;
+}
+
+.dimension-total-desc
+{
+    padding-left:50px;
+    padding-right:50px;
+    color:#7F0019;
+    margin-bottom:50px;
+}
+
+.result-total-score-panel
+{
+    padding:10px 50px;
+}
+
+.result-total-score-beat-panel
+{
+    padding:10px 50px;
+    color:#7F0019;
+}
+
+.result-total-score-desc-panel
+{
+    padding:10px 50px;
+    color:#0097d4;
+}
+
+.result-dimension-score-beat-panel
+{
+     padding:10px 30px;
+     color:#7F0019;
+   
 }

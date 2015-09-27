@@ -35,9 +35,10 @@ namespace TestingReport
 
                 Panel introductionPanel = new Panel();
                 Label introduction = new Label();
-                introduction.Text = contentText;
+                introduction.Text = "测试说明：本测试一共有" + totalOptions+"个测试题目。"+contentText;
                 introductionPanel.CssClass = "test-introduction";
                 introductionPanel.Controls.Add(introduction);
+
 
                 Panel imgPanel = new Panel();
                 Image image = new Image();
@@ -46,6 +47,7 @@ namespace TestingReport
                 imgPanel.Controls.Add(image);
 
                 Panel buttonPanel = new Panel();
+                buttonPanel.CssClass = "test-button-div";
                 Button button = new Button();
                 button.Text = "开始测试";
                 button.CssClass = "test-button";
