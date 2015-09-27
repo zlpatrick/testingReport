@@ -49,9 +49,15 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin-index.aspx" />
+    <Content Include="admin-login.aspx" />
     <Content Include="background.aspx" />
     <Content Include="header.htm" />
+    <Content Include="img\button.png" />
+    <Content Include="img\happy.jpg" />
+    <Content Include="img\test-life.jpg" />
     <Content Include="img\test.png" />
+    <Content Include="img\whiteback.png" />
     <Content Include="index.aspx" />
     <Content Include="result.aspx" />
     <Content Include="Styles\Site.css" />
@@ -71,6 +77,20 @@
     <Content Include="weixin.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="admin-index.aspx.cs">
+      <DependentUpon>admin-index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin-index.aspx.designer.cs">
+      <DependentUpon>admin-index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin-login.aspx.cs">
+      <DependentUpon>admin-login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin-login.aspx.designer.cs">
+      <DependentUpon>admin-login.aspx</DependentUpon>
+    </Compile>
     <Compile Include="background.aspx.cs">
       <DependentUpon>background.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
