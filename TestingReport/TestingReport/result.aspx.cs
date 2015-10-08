@@ -23,7 +23,7 @@ namespace TestingReport
             titleLabel.Text = "测试结果";
             titlePanel.CssClass = "test-title";
             titlePanel.Controls.Add(titleLabel);
-            this.form1.Controls.Add(titlePanel);
+            this.titleDiv.Controls.Add(titlePanel);
 
             int resultType = 1;
             DataSet dst = db.executeSqlQuery("select * from Topics where Id=" + topicId);
