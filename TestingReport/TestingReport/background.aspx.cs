@@ -10,17 +10,24 @@ namespace TestingReport
 {
     public partial class background : System.Web.UI.Page
     {
+        public string infoTitleImage;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            string sql = "select * from Topics where ID=" + Request["id"];
+            DBUtil db = new DBUtil();
+            DataSet ds = db.executeSqlQuery(sql);
+            if(ds.Tables[0].Rows.Count > 0 )
+            {
+                infoTitleImage = ds.Tables[0].Rows[0]["infoTitleImage"].ToString();
+            }
         }
 
         protected void start_Click(object sender, EventArgs e)
         {
             string userid = Request["userid"].ToString();
-            string age = this.age.SelectedValue;
-            string gender = this.gender.SelectedValue;
-            string industry = this.industry.SelectedValue;
+            string age = this.age.Value;
+            string gender = this.gender.Value;
+            string industry = this.industry.Value;
 
             string sql = "select * from Users where userName='"+userid+"'";
             DBUtil db = new DBUtil();

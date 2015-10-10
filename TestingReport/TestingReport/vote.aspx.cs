@@ -24,14 +24,15 @@ namespace TestingReport
                 string topicType = ds.Tables[0].Rows[0]["topictype"].ToString();
                 string totalChooseItems = ds.Tables[0].Rows[0]["totalChooseItem"].ToString().Trim();
                 string totalOptions = ds.Tables[0].Rows[0]["totalOptions"].ToString();
+                string introductionTitle = ds.Tables[0].Rows[0]["introductionTitleImage"].ToString();
                 Panel panel = new Panel();
                 panel.CssClass = "content";
 
                 Panel titlePanel = new Panel();
-                Label titleLabel = new Label();
-                titleLabel.Text = title;
-                titlePanel.CssClass = "test-title";
-                titlePanel.Controls.Add(titleLabel);
+                Image titleImage = new Image();
+                titleImage.ImageUrl = "assets/" + introductionTitle;
+                titlePanel.CssClass = "test-option-page-title-img";
+                titlePanel.Controls.Add(titleImage);
 
                 Panel introductionPanel = new Panel();
                 Label introduction = new Label();
@@ -42,21 +43,22 @@ namespace TestingReport
 
                 Panel imgPanel = new Panel();
                 Image image = new Image();
-                image.ImageUrl = "img/" + introductionImg;
+                image.ImageUrl = "assets/" + introductionImg;
                 imgPanel.CssClass = "test-img";
                 imgPanel.Controls.Add(image);
 
                 Panel buttonPanel = new Panel();
                 buttonPanel.CssClass = "test-button-div";
                 Button button = new Button();
-                button.Text = "开始测试";
+               
                 button.CssClass = "test-button";
                 button.Click += new EventHandler(startTest);
                 buttonPanel.Controls.Add(button);
 
                 panel.Controls.Add(titlePanel);
-                panel.Controls.Add(introductionPanel);
+                
                 panel.Controls.Add(imgPanel);
+                panel.Controls.Add(introductionPanel);
                 panel.Controls.Add(buttonPanel);
 
                 this.topicId.Text = id;

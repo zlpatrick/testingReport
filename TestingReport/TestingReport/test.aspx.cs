@@ -17,7 +17,20 @@ namespace TestingReport
             string sql = "select * from Options where topicId=" + id + " order by OptionOrder asc";
 
             DBUtil db = new DBUtil();
-            DataSet ds = db.executeSqlQuery(sql);
+
+            string TopicSql = "select * from Topics where Id=" + id;
+            DataSet ds = db.executeSqlQuery(TopicSql);
+            if(ds.Tables[0].Rows.Count>0)
+            {
+                string introductionTitle = ds.Tables[0].Rows[0]["introductionTitleImage"].ToString();
+                Panel titlePanel = new Panel();
+                Image titleImage = new Image();
+                titleImage.ImageUrl = "assets/" + introductionTitle;
+                titlePanel.CssClass = "test-option-page-title-img";
+                titlePanel.Controls.Add(titleImage);
+                this.form1.Controls.Add(titlePanel);
+            }
+            ds = db.executeSqlQuery(sql);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -32,15 +45,22 @@ namespace TestingReport
 
                     Panel titlePanel = new Panel();
                     Label titleLabel = new Label();
-                    titleLabel.Text = "第"+order+"题: "+optionText ;
-                    titlePanel.CssClass = "test-title";
+                    titleLabel.Text = order+": "+optionText ;
+                    titlePanel.CssClass = "test-title-sub";
                     titlePanel.Controls.Add(titleLabel);
 
                     Panel titleTotalPanel = new Panel();
                     Label titleTotalLabel = new Label();
-                    titleTotalLabel.Text = "本测试共"+ds.Tables[0].Rows.Count+"题";
+                    titleTotalLabel.Text = "本测试共 ";
+                    Label temp1 = new Label();
+                    temp1.Text = ds.Tables[0].Rows.Count.ToString();
+                    temp1.CssClass = "test-title-total-span";
+                    Label temp2 = new Label();
+                    temp2.Text = " 题";
                     titleTotalPanel.CssClass = "test-title-total";
                     titleTotalPanel.Controls.Add(titleTotalLabel);
+                    titleTotalPanel.Controls.Add(temp1);
+                    titleTotalPanel.Controls.Add(temp2);
 
                     Panel chooseItemPanel = new Panel();
                     
@@ -82,9 +102,10 @@ namespace TestingReport
                         chooseItemPanel.Controls.Add(chooseItemRadioPanel);
                     }
 
-                    panel.Controls.Add(titlePanel);
                     panel.Controls.Add(titleTotalPanel);
+                    panel.Controls.Add(titlePanel);         
                     panel.Controls.Add(chooseItemPanel);
+                    
 
                     if (i == 0)
                     {
@@ -92,11 +113,25 @@ namespace TestingReport
                     }
                     else
                     {
+                        Button last = new Button();
+                        last.ID = order.ToString();
+                        last.CssClass = "last-option-button";
+                        last.Click += new EventHandler(lastButtonClick);
+                        panel.Controls.Add(last);
                         panel.Visible = false;
                     }
                     this.form1.Controls.Add(panel);
                 }
             }
+        }
+
+        protected void lastButtonClick(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            int id = Convert.ToInt32(button.ID);
+            form1.FindControl("OptionOrder" + id).Visible = false;
+            id--;
+            form1.FindControl("OptionOrder" + id).Visible = true ;
         }
 
         protected void startTest(object sender, EventArgs e)
@@ -107,7 +142,14 @@ namespace TestingReport
             int checkedindex = Convert.ToInt32(ids[1].Replace("RadioOption", ""));
             int totalChooseItem = Convert.ToInt32(Request["totalChooseItem"].ToString());
             int totalOptions = Convert.ToInt32(Request["totalOptions"].ToString());
-            ViewState.Add(id.ToString(), checkedindex);
+            if (ViewState[id.ToString()] == null)
+            {
+                ViewState.Add(id.ToString(), checkedindex);
+            }
+            else
+            {
+                ViewState[id.ToString()] = checkedindex;
+            }
             /*for (int i = 1; i <= totalChooseItem; i++)
             {
                 if (((RadioButton)form1.FindControl("RadioGroup" + id + "_RadioOption" + i)).Checked)

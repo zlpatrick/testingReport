@@ -17,9 +17,9 @@
 </head>
 <body>
     <asp:Panel id="titleDiv" runat="server"></asp:Panel>
-        <div style="width:90%;margin:auto">
+        <!--<div style="width:90%;margin:auto">
 			<canvas id="canvas"  width="100%"></canvas>
-		</div>
+		</div>-->
 
     <form id="form1" runat="server">
     <div>

@@ -18,18 +18,28 @@ namespace TestingReport
             string userId = Request["userid"].ToString();
             string type = Request["type"].ToString();
             DBUtil db = new DBUtil();
-            Panel titlePanel = new Panel();
-            Label titleLabel = new Label();
-            titleLabel.Text = "测试结果";
-            titlePanel.CssClass = "test-title";
-            titlePanel.Controls.Add(titleLabel);
-            this.titleDiv.Controls.Add(titlePanel);
-
+          
             int resultType = 1;
             DataSet dst = db.executeSqlQuery("select * from Topics where Id=" + topicId);
             if (dst.Tables[0].Rows.Count > 0)
             {
                 resultType = Convert.ToInt32(dst.Tables[0].Rows[0]["resulttype"].ToString());
+                string introductionTitle = dst.Tables[0].Rows[0]["introductionTitleImage"].ToString();
+                string resultImage = dst.Tables[0].Rows[0]["resultPageImage"].ToString();
+
+                Panel titlePanel = new Panel();
+                Image titleImage = new Image();
+                titleImage.ImageUrl = "assets/" + introductionTitle;
+                titlePanel.CssClass = "test-option-page-title-img";
+                titlePanel.Controls.Add(titleImage);
+                this.titleDiv.Controls.Add(titlePanel);
+
+                Panel imgPanel = new Panel();
+                Image image = new Image();
+                image.ImageUrl = "assets/" + resultImage;
+                imgPanel.CssClass = "test-img";
+                imgPanel.Controls.Add(image);
+                this.titleDiv.Controls.Add(imgPanel);
             }
 
             if (type.Equals("1"))
@@ -90,12 +100,14 @@ namespace TestingReport
                             Dictionary<int, int> dimensionScores = new Dictionary<int, int>();
                             Dictionary<int, string> dimensionNames = new Dictionary<int, string>();
                             Dictionary<int, string> dimensionDescs = new Dictionary<int, string>();
+                            Dictionary<int, string> dimensionImages = new Dictionary<int, string>();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                             {
                                 int dimensionId = Convert.ToInt32(ds.Tables[0].Rows[i]["id"]);
                                 string dimensionName = ds.Tables[0].Rows[i]["DimensionName"].ToString();
                                 string dimensionDesc = ds.Tables[0].Rows[i]["DimensionDesc"].ToString();
                                 string optionIdList = ds.Tables[0].Rows[i]["OptionIdList"].ToString();
+                                string dimensionImage = ds.Tables[0].Rows[i]["DimensionImage"].ToString();
                                 string[] options = optionIdList.Split(',');
                                 int[] optionIDInt = new int[options.Length];
                                 int dimensionScore = 0;
@@ -113,6 +125,7 @@ namespace TestingReport
                                 dimensionScores.Add(dimensionId, dimensionScore);
                                 dimensionNames.Add(dimensionId, dimensionName);
                                 dimensionDescs.Add(dimensionId, dimensionDesc);
+                                dimensionImages.Add(dimensionId, dimensionImage);
                             }      
                             chart.Series.Add(series);
                         
@@ -135,13 +148,13 @@ namespace TestingReport
                             this.form1.Controls.Add(chartPanel);
 
 
-                            Panel dimentionHeadPanel = new Panel();
+                            /*Panel dimentionHeadPanel = new Panel();
                             dimentionHeadPanel.CssClass = "dimension-head-panel";
                             Label dimentionHeadLabel = new Label();
                             dimentionHeadLabel.Text = "维度说明";
                             
                             dimentionHeadPanel.Controls.Add(dimentionHeadLabel);
-                            this.form1.Controls.Add(dimentionHeadPanel);
+                            this.form1.Controls.Add(dimentionHeadPanel);*/
 
                             List<string> maxScoresDimensions = new List<string>();
                             int maxScore = -9999;
@@ -163,15 +176,15 @@ namespace TestingReport
                                     Panel dimensionScorePanel = new Panel();
                                     dimensionScorePanel.CssClass = "dimension-score-panel";
 
-                                    Panel dimensionNamePanel = new Panel();
-                                    Label temp = new Label();
-                                    temp.Text = dimensionName;
-                                    dimensionNamePanel.CssClass = "dimension-score-panel-title";
-                                    dimensionNamePanel.Controls.Add(temp);
-                                    dimensionScorePanel.Controls.Add(dimensionNamePanel);
+                                    Panel dimensionImagePanel = new Panel();
+                                    Image tempImg = new Image();
+                                    tempImg.ImageUrl = "assets/"+dimensionImages[dimensionId];
+                                    dimensionImagePanel.CssClass = "dimension-Image-panel";
+                                    dimensionImagePanel.Controls.Add(tempImg);
+                                    dimensionScorePanel.Controls.Add(dimensionImagePanel);
 
                                     Panel dimensionDescPanel = new Panel();
-                                    temp = new Label();
+                                    Label temp = new Label();
                                     temp.Text = dimensionDesc;
                                     dimensionDescPanel.CssClass = "dimension-score-panel-desc";
                                     dimensionDescPanel.Controls.Add(temp);
@@ -193,17 +206,21 @@ namespace TestingReport
                                     Panel dimensionScorePanel = new Panel();
                                     dimensionScorePanel.CssClass = "dimension-score-panel";
 
-                                    Panel dimensionNamePanel = new Panel();
-                                    dimensionNamePanel.CssClass = "dimension-score-panel-title";
-                                    Label temp = new Label();
-                                    temp.Text = dimensionName;
-                                    dimensionNamePanel.Controls.Add(temp);
-                                    dimensionScorePanel.Controls.Add(dimensionNamePanel);
+                                    Panel dimensionImagePanel = new Panel();
+                                    Image tempImg = new Image();
+                                    tempImg.ImageUrl = "assets/" + dimensionImages[dimensionId];
+                                    dimensionImagePanel.CssClass = "dimension-Image-panel";
+                                    dimensionImagePanel.Controls.Add(tempImg);
+                                    dimensionScorePanel.Controls.Add(dimensionImagePanel);
 
                                     Panel dimensionScoreTempPanel = new Panel();
                                     dimensionScoreTempPanel.CssClass = "dimension-score-panel-score";
-                                    temp = new Label();
-                                    temp.Text = "本维度的得分为" + dimensionScores[dimensionId] +"分";
+                                    Label weightTitle = new Label();
+                                    weightTitle.Text = "得分：";
+                                    weightTitle.CssClass = "bold-text";
+                                    Label temp = new Label();
+                                    temp.Text = dimensionScores[dimensionId] +"分";
+                                    dimensionScoreTempPanel.Controls.Add(weightTitle);
                                     dimensionScoreTempPanel.Controls.Add(temp);
                                     dimensionScorePanel.Controls.Add(dimensionScoreTempPanel);
 
@@ -238,6 +255,10 @@ namespace TestingReport
                                                 totalScoreBeatPanel.CssClass = "result-dimension-score-beat-panel";
                                                 temp = new Label();
                                                 temp.Text = "本维度得分打败了全国" + beat + "%的选手!";
+                                                weightTitle = new Label();
+                                                weightTitle.Text = "比较：";
+                                                weightTitle.CssClass = "bold-text";
+                                                totalScoreBeatPanel.Controls.Add(weightTitle);
                                                 totalScoreBeatPanel.Controls.Add(temp);
                                                 dimensionScorePanel.Controls.Add(totalScoreBeatPanel);
                                             }
@@ -250,6 +271,10 @@ namespace TestingReport
                                         dimensionDescPanel.CssClass = "dimension-score-panel-desc";
                                         temp = new Label();
                                         temp.Text = dimensionDesc;
+                                        weightTitle = new Label();
+                                        weightTitle.Text = "解释：";
+                                        weightTitle.CssClass = "bold-text";
+                                        dimensionDescPanel.Controls.Add(weightTitle);
                                         dimensionDescPanel.Controls.Add(temp);
                                         dimensionScorePanel.Controls.Add(dimensionDescPanel);
                                        
@@ -261,7 +286,7 @@ namespace TestingReport
 
                             
 
-                            if (resultType == 2)
+                            /*if (resultType == 2)
                             {
                                 string maxScoreDimensions = "";
                                 foreach (KeyValuePair<int, int> pair in dimensionScores)
@@ -289,7 +314,7 @@ namespace TestingReport
                                 tempPanel.Controls.Add(totalScoreDesc);
                                 this.form1.Controls.Add(tempPanel);
                                 
-                            }
+                            }*/
                         }
 
                         if (resultType != 2)
