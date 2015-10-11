@@ -7,11 +7,13 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Web.UI.DataVisualization.Charting;
 using System.Web.UI.DataVisualization;
+using System.Text;
 
 namespace TestingReport
 {
     public partial class result : System.Web.UI.Page
     {
+        public string chartJsString;
         protected void Page_Load(object sender, EventArgs e)
         {
             string topicId = Request["id"].ToString();
@@ -21,11 +23,24 @@ namespace TestingReport
           
             int resultType = 1;
             DataSet dst = db.executeSqlQuery("select * from Topics where Id=" + topicId);
+            int maxOptionScore = -1;
+            int totalChooseItem = -1;
             if (dst.Tables[0].Rows.Count > 0)
             {
                 resultType = Convert.ToInt32(dst.Tables[0].Rows[0]["resulttype"].ToString());
                 string introductionTitle = dst.Tables[0].Rows[0]["introductionTitleImage"].ToString();
                 string resultImage = dst.Tables[0].Rows[0]["resultPageImage"].ToString();
+                totalChooseItem = Convert.ToInt32(dst.Tables[0].Rows[0]["TotalChooseItem"]);
+
+
+                try
+                {
+                    maxOptionScore = Convert.ToInt32(dst.Tables[0].Rows[0]["optionMaxScore"]);
+                }
+                catch (Exception ex)
+                {
+                    maxOptionScore = totalChooseItem;
+                }
 
                 Panel titlePanel = new Panel();
                 Image titleImage = new Image();
@@ -76,7 +91,7 @@ namespace TestingReport
                         ds = db.executeSqlQuery("select * from Dimensions where TopicId=" + topicId);
                         if (ds.Tables[0].Rows.Count > 1)
                         {
-                            Panel chartPanel = new Panel();
+                            /*Panel chartPanel = new Panel();
                             chartPanel.CssClass = "result-img-panel";
                             Chart chart = new Chart();
                             chart.CssClass = "result-img";
@@ -89,18 +104,22 @@ namespace TestingReport
                             Series series = new Series();
                             series.Name = "dimensions";
                             series["PointWidth"] = "0.5";
-                            series["DrawingStyle"] = "Cylinder";
+                            series["DrawingStyle"] = "Cylinder";*/
 
                             int dimensionCount = ds.Tables[0].Rows.Count;
-                            if (dimensionCount >= 5)
+                            /*if (dimensionCount >= 5)
                             {
                                 series.ChartType = SeriesChartType.Radar;
-                            }
+                            }*/
 
                             Dictionary<int, int> dimensionScores = new Dictionary<int, int>();
                             Dictionary<int, string> dimensionNames = new Dictionary<int, string>();
                             Dictionary<int, string> dimensionDescs = new Dictionary<int, string>();
                             Dictionary<int, string> dimensionImages = new Dictionary<int, string>();
+                            Dictionary<int, int> dimensionOptionCount = new Dictionary<int, int>();
+
+                            string chartLabelString = "";
+                            string chartScoreString = "";
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                             {
                                 int dimensionId = Convert.ToInt32(ds.Tables[0].Rows[i]["id"]);
@@ -118,16 +137,23 @@ namespace TestingReport
                                     dimensionScore += scores[choosePositionMap[optionIDInt[j]]];
                                 }
 
-                                DataPoint point = new DataPoint(i, dimensionScore);
-                                point.AxisLabel = dimensionName;
+                                //DataPoint point = new DataPoint(i, dimensionScore);
+                                //point.AxisLabel = dimensionName;
                                 
-                                series.Points.Add(point);
+                                //series.Points.Add(point);
                                 dimensionScores.Add(dimensionId, dimensionScore);
                                 dimensionNames.Add(dimensionId, dimensionName);
                                 dimensionDescs.Add(dimensionId, dimensionDesc);
                                 dimensionImages.Add(dimensionId, dimensionImage);
+                                dimensionOptionCount.Add(dimensionId, options.Length);
+
+                                int chartScore = (dimensionScore * 100) / (options.Length * maxOptionScore);
+                                chartLabelString += "\" \",\""+dimensionName+"\",";
+                                chartScoreString += "0,"+chartScore.ToString()+",";
                             }      
-                            chart.Series.Add(series);
+                            chartLabelString = chartLabelString.Substring(0,chartLabelString.Length-1);
+                            chartScoreString = chartScoreString.Substring(0,chartScoreString.Length-1);
+                            /*chart.Series.Add(series);
                         
                             ChartArea chartArea = new ChartArea("result");
                             chartArea.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -147,6 +173,34 @@ namespace TestingReport
                             chartPanel.Controls.Add(chart);
                             this.form1.Controls.Add(chartPanel);
 
+                            */
+
+
+                            StringBuilder chartJs = new StringBuilder();
+                            chartJs.Append("<script>").Append("\r\n")
+                                   .Append("var barChartData = {").Append("\r\n")
+                                   .Append("labels : [").Append(chartLabelString).Append("],").Append("\r\n")
+                                   .Append("datasets : [").Append("\r\n")
+                                   .Append("{").Append("\r\n")
+                                   .Append("barStrokeWidth : \"2\",").Append("\r\n")
+                                   .Append("fillColor : \"rgba(151,187,205,0.5)\",").Append("\r\n")
+                                   .Append("strokeColor : \"rgba(151,187,205,0.8)\",").Append("\r\n")
+                                   .Append("highlightFill: \"rgba(151,187,205,0.75)\",").Append("\r\n")
+                                   .Append("highlightStroke: \"rgba(151,187,205,1)\",").Append("\r\n")
+                                   .Append("data : [").Append(chartScoreString).Append("]").Append("\r\n")
+                                   .Append("}").Append("\r\n")
+                                   .Append("]").Append("\r\n")
+                                   .Append("}").Append("\r\n")
+                                   .Append("window.onload = function(){").Append("\r\n")
+                                   .Append("var ctx = document.getElementById(\"canvas\").getContext(\"2d\");").Append("\r\n")
+                                   .Append("window.myBar = new Chart(ctx).Bar(barChartData, {").Append("\r\n")
+                                   .Append("responsive : true").Append("\r\n")
+                                   .Append("});").Append("\r\n")
+                                   .Append("}").Append("\r\n")
+                                   .Append("</script>").Append("\r\n");
+
+
+                            chartJsString = chartJs.ToString();
 
                             /*Panel dimentionHeadPanel = new Panel();
                             dimentionHeadPanel.CssClass = "dimension-head-panel";
@@ -219,7 +273,7 @@ namespace TestingReport
                                     weightTitle.Text = "得分：";
                                     weightTitle.CssClass = "bold-text";
                                     Label temp = new Label();
-                                    temp.Text = dimensionScores[dimensionId] +"分";
+                                    temp.Text = (dimensionScores[dimensionId]*100) / (dimensionOptionCount[dimensionId]*maxOptionScore) +"分";
                                     dimensionScoreTempPanel.Controls.Add(weightTitle);
                                     dimensionScoreTempPanel.Controls.Add(temp);
                                     dimensionScorePanel.Controls.Add(dimensionScoreTempPanel);
