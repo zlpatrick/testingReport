@@ -15,11 +15,11 @@
     <form id="form1" runat="server">
     <div>
         <p style="text-align:center;color:White">
-            <img src="assets/<%=infoTitleImage %>" />
+            <img src="assets/<%=infoTitleImage %>" style="width:80%"/>
         </p>
     </div>
     <p style="text-align:center">
-        <img src="assets/info-tip.jpg" style="width:95%;"/>
+        <img src="assets/info-tip.jpg" style="width:100%;"/>
     </p>
     <div ID="errorMsg" style="display:none">
         <p style="color:red;padding:0px 50px">

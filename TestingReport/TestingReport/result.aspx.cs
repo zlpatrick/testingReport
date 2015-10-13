@@ -210,6 +210,13 @@ namespace TestingReport
                             dimentionHeadPanel.Controls.Add(dimentionHeadLabel);
                             this.form1.Controls.Add(dimentionHeadPanel);*/
 
+                            Panel dimensionTipImagePanel = new Panel();
+                            Image dimensionTipImage = new Image();
+                            dimensionTipImage.ImageUrl = "assets/result-tip.jpg";
+                            dimensionTipImagePanel.CssClass = "result-tip-Image-panel";
+                            dimensionTipImagePanel.Controls.Add(dimensionTipImage);
+                            this.form1.Controls.Add(dimensionTipImagePanel);
+
                             List<string> maxScoresDimensions = new List<string>();
                             int maxScore = -9999;
                             foreach(KeyValuePair<int,int> pair in dimensionScores)

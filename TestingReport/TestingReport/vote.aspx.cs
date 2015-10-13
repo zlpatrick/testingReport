@@ -25,6 +25,7 @@ namespace TestingReport
                 string totalChooseItems = ds.Tables[0].Rows[0]["totalChooseItem"].ToString().Trim();
                 string totalOptions = ds.Tables[0].Rows[0]["totalOptions"].ToString();
                 string introductionTitle = ds.Tables[0].Rows[0]["introductionTitleImage"].ToString();
+                string introductionContent =ds.Tables[0].Rows[0]["introductionContentImage"].ToString();
                 Panel panel = new Panel();
                 panel.CssClass = "content";
 
@@ -35,9 +36,9 @@ namespace TestingReport
                 titlePanel.Controls.Add(titleImage);
 
                 Panel introductionPanel = new Panel();
-                Label introduction = new Label();
-                introduction.Text = "测试说明：本测试一共有" + totalOptions+"个测试题目。"+contentText;
-                introductionPanel.CssClass = "test-introduction";
+                Image introduction = new Image();
+                introduction.ImageUrl = "assets/" + introductionContent;
+                introductionPanel.CssClass = "test-option-page-title-img";
                 introductionPanel.Controls.Add(introduction);
 
 
