@@ -26,6 +26,8 @@
         <div style="float:left;width:33.333%">工具</div>
     </div>
     <p><img src="assets/index.jpg" style="width:100%" /></p>
+    <p style="line-height:100px;margin:60px">专注于研究如何更积极地投入生活、更幸福地享受生活，并提供相关的知识、方法和工具。</p>
+
     <form id="form1" runat="server">
     <div>
     <p><a href="background.aspx?id=3&userid=<%=Request["userid"] %>">生活状态测试（Panic, Strech, Comfort）</a></p>
