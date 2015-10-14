@@ -25,6 +25,19 @@ namespace TestingReport
 
         protected void start_Click(object sender, EventArgs e)
         {
+            string marriage = this.marriage.Value;
+            string income = this.income.Value;
+            string degree = this.degree.Value;
+
+            string userid = Request["userid"].ToString();
+            string type = Request["type"].ToString();
+            string id = Request["id"].ToString();
+
+            DBUtil db = new DBUtil();
+            string sql = "update Users set marriage='" + marriage + "',income='" + income + "',degree='" + degree + "' where userName='" + userid + "'";
+            db.executeSqlNonQuery(sql);
+
+            Response.Redirect("result.aspx?id=" + id + "&userid=" + userid + "&type=" + type);
 
         }
     }

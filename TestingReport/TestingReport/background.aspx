@@ -29,16 +29,17 @@
 
     <div class="dropdown" style="padding:20px 50px 0px 50px;width:100%">
         <button class="btn btn-info dropdown-toggle" type="button" id="ageDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%">
-            请选择年龄:
+            请选择出生年代:
           
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left:50px;font-size:50px;width:80%">
-            <li><a href="#" onclick="setAge(this)">20岁以下</a></li>
-            <li><a href="#" onclick="setAge(this)">26-30岁</a></li>
-            <li><a href="#" onclick="setAge(this)">31-35岁</a></li>
-            <li><a href="#" onclick="setAge(this)">36-40岁</a></li>
-            <li><a href="# onclick="setAge(this)">41-50岁</a></li>
-            <li style="border-bottom:none"><a href="#" onclick="setAge(this)">50岁以上</a></li>
+            <li><a href="#" onclick="setAge(this)">1950年之前</a></li>
+            <li><a href="#" onclick="setAge(this)">50-59年</a></li>
+            <li><a href="#" onclick="setAge(this)">60-69年</a></li>
+            <li><a href="#" onclick="setAge(this)">70-79年</a></li>
+            <li><a href="# onclick="setAge(this)">80-89年</a></li>
+            <li><a href="# onclick="setAge(this)">90-00年</a></li>
+            <li style="border-bottom:none"><a href="#" onclick="setAge(this)">2000年以后</a></li>
         </ul>
     </div>
 

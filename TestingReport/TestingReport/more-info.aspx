@@ -28,55 +28,48 @@
     </div>
 
     <div class="dropdown" style="padding:20px 50px 0px 50px;width:100%">
-        <button class="btn btn-info dropdown-toggle" type="button" id="ageDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%">
+        <button class="btn btn-info dropdown-toggle" type="button" id="marriageDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%">
             请选择婚姻状况:
           
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left:50px;font-size:50px;width:80%">
-            <li><a href="#" onclick="setAge(this)">20岁以下</a></li>
-            <li><a href="#" onclick="setAge(this)">26-30岁</a></li>
-            <li><a href="#" onclick="setAge(this)">31-35岁</a></li>
-            <li><a href="#" onclick="setAge(this)">36-40岁</a></li>
-            <li><a href="# onclick="setAge(this)">41-50岁</a></li>
-            <li style="border-bottom:none"><a href="#" onclick="setAge(this)">50岁以上</a></li>
+            <li><a href="#" onclick="setMarriage(this)">已婚</a></li>
+            <li><a href="#" onclick="setMarriage(this)">未婚有固定伴侣</a></li>
+            <li style="border-bottom:none"><a href="#" onclick="setMarriage(this)">单身</a></li>
         </ul>
     </div>
 
     <div class="dropdown" style="padding:60px 50px 0px 50px;width:100%">
-        <button class="btn btn-info dropdown-toggle" type="button" id="genderDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%">
+        <button class="btn btn-info dropdown-toggle" type="button" id="incomeDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%">
             请选择年收入:
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left:50px;font-size:50px;width:80%">
-            <li><a href="#" onclick="setGender(this)">男</a></li>
-            <li style="border-bottom:none"><a href="#" onclick="setGender(this)">女</a></li>
+            <li><a href="#" onclick="setIncome(this)">5万以下</a></li>
+            <li><a href="#" onclick="setIncome(this)">5到10万</a></li>
+            <li><a href="#" onclick="setIncome(this)">10到20万</a></li>
+            <li><a href="#" onclick="setIncome(this)">20到40万</a></li>
+            <li><a href="#" onclick="setIncome(this)">40到100万</a></li>
+            <li style="border-bottom:none"><a href="#" onclick="setIncome(this)">100万以上</a></li>
         </ul>
     </div>
 
     <div class="dropdown" style="padding:60px 50px 0px 50px;width:100%">
-        <button class="btn btn-info dropdown-toggle" type="button" id="industryDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%">
+        <button class="btn btn-info dropdown-toggle" type="button" id="degreeDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%">
             请选择学历:
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="left:50px;font-size:50px;width:80%">
-            <li><a href="#" onclick="setIndustry(this)">互联网-游戏-软件</a></li>
-            <li><a href="#" onclick="setIndustry(this)">电子-通信-硬件</a></li>
-            <li><a href="#" onclick="setIndustry(this)">房地产-建筑-物业</a></li>
-            <li><a href="#" onclick="setIndustry(this)">金融</a></li>
-            <li><a href="#" onclick="setIndustry(this)">消费品</a></li>
-            <li><a href="#" onclick="setIndustry(this)">汽车-机械-制造</a></li>
-            <li><a href="#" onclick="setIndustry(this)">服务-外包-中介</a></li>
-            <li><a href="#" onclick="setIndustry(this)">广告-传媒-教育-文化</a></li>
-            <li><a href="#" onclick="setIndustry(this)">交通-贸易-物流</a></li>
-            <li><a href="#" onclick="setIndustry(this)">医疗-制药</a></li>
-            <li><a href="#" onclick="setIndustry(this)">能源-化工-环保</a></li>
-            <li><a href="#" onclick="setIndustry(this)">政府</a></li>
-            <li style="border-bottom:none"><a href="#" onclick="setIndustry(this)">农林牧渔</a></li>
+            <li><a href="#" onclick="setDegree(this)">中学</a></li>
+            <li><a href="#" onclick="setDegree(this)">大专</a></li>
+            <li><a href="#" onclick="setDegree(this)">本科</a></li>
+            <li><a href="#" onclick="setDegree(this)">硕士研究生</a></li>
+            <li style="border-bottom:none"><a href="#" onclick="setDegree(this)">博士/博士后</a></li>
         </ul>
     </div>
 
 
-        <asp:HiddenField runat="server" ID="age" />
-        <asp:HiddenField runat="server" ID="gender" />
-        <asp:HiddenField runat="server" ID="industry" />
+        <asp:HiddenField runat="server" ID="marriage" />
+        <asp:HiddenField runat="server" ID="degree" />
+        <asp:HiddenField runat="server" ID="income" />
     <p style="text-align:center;margin-top:50px">
         <asp:Button ID="start" runat="server"  onclick="start_Click" CssClass="moreinfo-button" OnClientClick="return onMysubmit();"/>
     </p>
@@ -85,31 +78,31 @@
 </body>
     
     <script>
-        function setAge(hyper) {
-            $("#ageDropDown").text(" " + hyper.innerText);
-            $("#age").val(hyper.innerText);
+        function setMarriage(hyper) {
+            $("#marriageDropDown").text(" " + hyper.innerText);
+            $("#marriage").val(hyper.innerText);
         }
 
-        function setGender(hyper) {
-            $("#genderDropDown").text(" " + hyper.innerText);
-            $("#gender").val(hyper.innerText);
+        function setDegree(hyper) {
+            $("#degreeDropDown").text(" " + hyper.innerText);
+            $("#degree").val(hyper.innerText);
         }
 
-        function setIndustry(hyper) {
-            $("#industryDropDown").text(" " + hyper.innerText);
-            $("#industry").val(hyper.innerText);
+        function setIncome(hyper) {
+            $("#incomeDropDown").text(" " + hyper.innerText);
+            $("#income").val(hyper.innerText);
         }
 
         function onMysubmit() {
-            if ($("#ageDropDown").text().indexOf("请选择") >= 0) {
+            if ($("#incomeDropDown").text().indexOf("请选择") >= 0) {
                 $("#errorMsg").css("display", "block");
                 return false;
             }
-            if ($("#genderDropDown").text().indexOf("请选择") >= 0) {
+            if ($("#degreeDropDown").text().indexOf("请选择") >= 0) {
                 $("#errorMsg").css("display", "block");
                 return false;
             }
-            if ($("#industryDropDown").text().indexOf("请选择") >= 0) {
+            if ($("#marriageDropDown").text().indexOf("请选择") >= 0) {
                 $("#errorMsg").css("display", "block");
                 return false;
             }

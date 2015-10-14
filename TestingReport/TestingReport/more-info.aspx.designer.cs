@@ -22,31 +22,31 @@ namespace TestingReport {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// age control.
+        /// marriage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField age;
+        protected global::System.Web.UI.WebControls.HiddenField marriage;
         
         /// <summary>
-        /// gender control.
+        /// degree control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField gender;
+        protected global::System.Web.UI.WebControls.HiddenField degree;
         
         /// <summary>
-        /// industry control.
+        /// income control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField industry;
+        protected global::System.Web.UI.WebControls.HiddenField income;
         
         /// <summary>
         /// start control.
