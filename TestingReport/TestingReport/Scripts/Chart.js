@@ -81,8 +81,11 @@
 			// String - Colour of the scale line
 			scaleLineColor: "rgba(0,0,0,.1)",
 
+			scaleGridLineColor: "red",
+			scaleGridLineWidth: 3,
+
 			// Number - Pixel width of the scale line
-			scaleLineWidth: 1,
+			scaleLineWidth: 2,
 
 			// Boolean - Whether to show labels on the scale
 			scaleShowLabels: true,
@@ -97,7 +100,7 @@
 			scaleBeginAtZero: false,
 
 			// String - Scale label font declaration for the scale label
-			scaleFontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+			scaleFontFamily: "'Microsoft Yahei','Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
 
 			// Number - Scale label font size in pixels
 			scaleFontSize: 50,
@@ -151,10 +154,10 @@
 			tooltipTitleFontColor: "#fff",
 
 			// Number - pixel width of padding around tooltip text
-			tooltipYPadding: 6,
+			tooltipYPadding: 10,
 
 			// Number - pixel width of padding around tooltip text
-			tooltipXPadding: 6,
+			tooltipXPadding: 10,
 
 			// Number - Size of the caret on the tooltip
 			tooltipCaretSize: 8,
@@ -308,7 +311,7 @@
 			return !isNaN(parseFloat(n)) && isFinite(n);
 		},
 		max = helpers.max = function(array){
-			return Math.max.apply( Math, array );
+		    return 100;//Math.max.apply( Math, array );
 		},
 		min = helpers.min = function(array){
 			return Math.min.apply( Math, array );
@@ -2079,7 +2082,7 @@
 					//Reusable method for calculating the xPosition of a given bar based on datasetIndex & width of the bar
 					var xWidth = this.calculateBaseWidth(),
 						xAbsolute = this.calculateX(barIndex) - (xWidth/2),
-						barWidth = this.calculateBarWidth(datasetCount);
+						barWidth = this.calculateActualBarWidth(datasetCount);
 
 					return xAbsolute + (barWidth * datasetIndex) + (datasetIndex * options.barDatasetSpacing) + barWidth/2;
 				},
@@ -2090,8 +2093,16 @@
 					//The padding between datasets is to the right of each bar, providing that there are more than 1 dataset
 					var baseWidth = this.calculateBaseWidth() - ((datasetCount - 1) * options.barDatasetSpacing);
 
-					return (baseWidth / datasetCount);
+					return 100;///(baseWidth / datasetCount);
+				},
+
+				calculateActualBarWidth : function(datasetCount){
+				    //The padding between datasets is to the right of each bar, providing that there are more than 1 dataset
+				    var baseWidth = this.calculateBaseWidth() - ((datasetCount - 1) * options.barDatasetSpacing);
+
+				    return (baseWidth / datasetCount);
 				}
+
 			});
 
 			this.datasets = [];

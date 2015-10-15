@@ -17,8 +17,8 @@
 </head>
 <body>
     <asp:Panel id="titleDiv" runat="server"></asp:Panel>
-        <div style="width:90%;margin:auto">
-			<canvas id="canvas"  width="100%"></canvas>
+        <div style="width:80%;margin:auto">
+			<canvas id="canvas" height="250"></canvas>
 		</div>
 
     <form id="form1" runat="server">
@@ -26,7 +26,25 @@
    
     </div>
     </form>
-
+    <input 
     <%=chartJsString %>
+
+
+    <script>
+        function onBridgeReady() {
+            WeixinJSBridge.call('hideOptionMenu');
+        }
+
+        if (typeof WeixinJSBridge == "undefined") {
+            if (document.addEventListener) {
+                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+            } else if (document.attachEvent) {
+                document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+            }
+        } else {
+            onBridgeReady();
+        }
+</script>
 </body>
 </html>

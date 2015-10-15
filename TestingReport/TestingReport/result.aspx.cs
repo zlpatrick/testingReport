@@ -25,13 +25,14 @@ namespace TestingReport
             DataSet dst = db.executeSqlQuery("select * from Topics where Id=" + topicId);
             int maxOptionScore = -1;
             int totalChooseItem = -1;
+            string resultChart = "";
             if (dst.Tables[0].Rows.Count > 0)
             {
                 resultType = Convert.ToInt32(dst.Tables[0].Rows[0]["resulttype"].ToString());
                 string introductionTitle = dst.Tables[0].Rows[0]["introductionTitleImage"].ToString();
                 string resultImage = dst.Tables[0].Rows[0]["resultPageImage"].ToString();
                 totalChooseItem = Convert.ToInt32(dst.Tables[0].Rows[0]["TotalChooseItem"]);
-
+                resultChart = dst.Tables[0].Rows[0]["resultChartIntroductionImage"].ToString();
 
                 try
                 {
@@ -118,8 +119,9 @@ namespace TestingReport
                             Dictionary<int, string> dimensionImages = new Dictionary<int, string>();
                             Dictionary<int, int> dimensionOptionCount = new Dictionary<int, int>();
 
-                            string chartLabelString = "";
-                            string chartScoreString = "";
+                            string chartLabelString = "" ;
+                            List<string> chartScoreString = new List<string>();
+                            StringBuilder strBuilder = new StringBuilder();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                             {
                                 int dimensionId = Convert.ToInt32(ds.Tables[0].Rows[i]["id"]);
@@ -148,11 +150,39 @@ namespace TestingReport
                                 dimensionOptionCount.Add(dimensionId, options.Length);
 
                                 int chartScore = (dimensionScore * 100) / (options.Length * maxOptionScore);
-                                chartLabelString += "\" \",\""+dimensionName+"\",";
-                                chartScoreString += "0,"+chartScore.ToString()+",";
-                            }      
-                            chartLabelString = chartLabelString.Substring(0,chartLabelString.Length-1);
-                            chartScoreString = chartScoreString.Substring(0,chartScoreString.Length-1);
+                                if (ds.Tables[0].Rows.Count == 3)
+                                {
+                                    if (i % 3 == 0)
+                                    {
+                                     
+                                       // strBuilder.Append("\"").Append(dimensionName).Append("\",");//,\" \",\" \",");
+                                        //chartScoreString.Add(chartScore.ToString() + ",0,0");
+
+                                        strBuilder.Append("\"").Append(dimensionName).Append(" ");//,\" \",\" \",");
+                                        chartScoreString.Add(chartScore.ToString());
+                                    }
+                                    else if ( i % 3 == 1 ) 
+                                    {
+
+                                       // strBuilder.Append("\"").Append(dimensionName).Append("\",");
+                                       // chartScoreString.Add("0," + chartScore.ToString() + ",0");
+
+                                        strBuilder.Append(dimensionName).Append(" ");//,\" \",\" \",");
+                                        chartScoreString.Add(chartScore.ToString());
+                                    }
+                                    else
+                                    {
+
+                                       // strBuilder.Append("\"").Append(dimensionName).Append("\"");
+                                       // chartScoreString.Add("0,0," + chartScore.ToString() );
+
+                                       strBuilder.Append(dimensionName).Append("\"");//,\" \",\" \",");
+                                        chartScoreString.Add(chartScore.ToString());
+                                    }
+                                }
+                            }
+
+                            chartLabelString = strBuilder.ToString();
                             /*chart.Series.Add(series);
                         
                             ChartArea chartArea = new ChartArea("result");
@@ -179,22 +209,41 @@ namespace TestingReport
                             StringBuilder chartJs = new StringBuilder();
                             chartJs.Append("<script>").Append("\r\n")
                                    .Append("var barChartData = {").Append("\r\n")
-                                   .Append("labels : [").Append(chartLabelString).Append("],").Append("\r\n")
-                                   .Append("datasets : [").Append("\r\n")
-                                   .Append("{").Append("\r\n")
-                                   .Append("barStrokeWidth : \"2\",").Append("\r\n")
-                                   .Append("fillColor : \"rgba(151,187,205,0.5)\",").Append("\r\n")
-                                   .Append("strokeColor : \"rgba(151,187,205,0.8)\",").Append("\r\n")
-                                   .Append("highlightFill: \"rgba(151,187,205,0.75)\",").Append("\r\n")
-                                   .Append("highlightStroke: \"rgba(151,187,205,1)\",").Append("\r\n")
-                                   .Append("data : [").Append(chartScoreString).Append("]").Append("\r\n")
-                                   .Append("}").Append("\r\n")
-                                   .Append("]").Append("\r\n")
+                           
+                                   .Append("labels : [").Append("\"得分\"").Append("],").Append("\r\n")
+                                   .Append("datasets : [").Append("\r\n");
+                            if (dimensionNames.Keys.Count == 3)
+                            {
+                                chartJs.Append("{").Append("\r\n")                                      
+                                       .Append("fillColor : \"rgba(217,179,242,0.5)\",").Append("\r\n")
+                                       .Append("strokeColor : \"rgba(217,179,242,0.8)\",").Append("\r\n")
+                                       .Append("highlightFill: \"rgba(217,179,242,0.75)\",").Append("\r\n")
+                                       .Append("highlightStroke: \"rgba(217,179,242,,1)\",").Append("\r\n")
+                                       .Append("data : [").Append(chartScoreString[0]).Append("]").Append("\r\n")
+                                       .Append("},").Append("\r\n");
+                                chartJs.Append("{").Append("\r\n")                             
+                                       .Append("fillColor : \"rgba(108,198,232,0.5)\",").Append("\r\n")
+                                       .Append("strokeColor : \"rgba(108,198,232,0.8)\",").Append("\r\n")
+                                       .Append("highlightFill: \"rgba(108,198,232,0.75)\",").Append("\r\n")
+                                       .Append("highlightStroke: \"rgba(108,198,232,1)\",").Append("\r\n")
+                                       .Append("data : [").Append(chartScoreString[1]).Append("]").Append("\r\n")
+                                       .Append("},").Append("\r\n");
+                                chartJs.Append("{").Append("\r\n")          
+                                       .Append("fillColor : \"rgba(238,159,102,0.5)\",").Append("\r\n")
+                                       .Append("strokeColor : \"rgba(238,159,102,0.8)\",").Append("\r\n")
+                                       .Append("highlightFill: \"rgba(238,159,102,0.75)\",").Append("\r\n")
+                                       .Append("highlightStroke: \"rgba(238,159,102,1)\",").Append("\r\n")
+                                       .Append("data : [").Append(chartScoreString[2]).Append("]").Append("\r\n")
+                                       .Append("}").Append("\r\n");
+                            }
+                            chartJs.Append("]").Append("\r\n")
                                    .Append("}").Append("\r\n")
                                    .Append("window.onload = function(){").Append("\r\n")
                                    .Append("var ctx = document.getElementById(\"canvas\").getContext(\"2d\");").Append("\r\n")
                                    .Append("window.myBar = new Chart(ctx).Bar(barChartData, {").Append("\r\n")
-                                   .Append("responsive : true").Append("\r\n")
+                                   .Append("responsive : true,").Append("\r\n")
+                                   .Append("scaleGridLineColor : \"lightgrey\",").Append("\r\n")
+                                   .Append("scaleGridLineWidth : 1").Append("\r\n")
                                    .Append("});").Append("\r\n")
                                    .Append("}").Append("\r\n")
                                    .Append("</script>").Append("\r\n");
@@ -209,6 +258,13 @@ namespace TestingReport
                             
                             dimentionHeadPanel.Controls.Add(dimentionHeadLabel);
                             this.form1.Controls.Add(dimentionHeadPanel);*/
+
+                            Panel resultChartTipImagePanel = new Panel();
+                            Image resultChartTipImage = new Image();
+                            resultChartTipImage.ImageUrl = "assets/"+resultChart;
+                            resultChartTipImagePanel.CssClass = "result-chart-tip-Image-panel";
+                            resultChartTipImagePanel.Controls.Add(resultChartTipImage);
+                            this.titleDiv.Controls.Add(resultChartTipImagePanel);
 
                             Panel dimensionTipImagePanel = new Panel();
                             Image dimensionTipImage = new Image();

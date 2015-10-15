@@ -37,8 +37,8 @@
             <li><a href="#" onclick="setAge(this)">50-59年</a></li>
             <li><a href="#" onclick="setAge(this)">60-69年</a></li>
             <li><a href="#" onclick="setAge(this)">70-79年</a></li>
-            <li><a href="# onclick="setAge(this)">80-89年</a></li>
-            <li><a href="# onclick="setAge(this)">90-00年</a></li>
+            <li><a href="#" onclick="setAge(this)">80-89年</a></li>
+            <li><a href="#" onclick="setAge(this)">90-00年</a></li>
             <li style="border-bottom:none"><a href="#" onclick="setAge(this)">2000年以后</a></li>
         </ul>
     </div>
@@ -70,7 +70,8 @@
             <li><a href="#" onclick="setIndustry(this)">医疗-制药</a></li>
             <li><a href="#" onclick="setIndustry(this)">能源-化工-环保</a></li>
             <li><a href="#" onclick="setIndustry(this)">政府</a></li>
-            <li style="border-bottom:none"><a href="#" onclick="setIndustry(this)">农林牧渔</a></li>
+            <li><a href="#" onclick="setIndustry(this)">农林牧渔</a></li>
+            <li style="border-bottom:none"><a href="#" onclick="setIndustry(this)">其他</a></li>
         </ul>
     </div>
 
@@ -119,5 +120,22 @@
             }
         }
     </script>
+
+    <script>
+        function onBridgeReady() {
+            WeixinJSBridge.call('hideOptionMenu');
+        }
+
+        if (typeof WeixinJSBridge == "undefined") {
+            if (document.addEventListener) {
+                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+            } else if (document.attachEvent) {
+                document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+            }
+        } else {
+            onBridgeReady();
+        }
+</script>
 </html>
 

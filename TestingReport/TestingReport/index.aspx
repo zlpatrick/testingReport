@@ -7,6 +7,7 @@
     <title></title>
     <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
     <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <style>
     p
     {
@@ -14,8 +15,9 @@
     }
     a
     {
-        color:grey;
+        color:orange;
         text-decoration:none;
+        
     }
     </style>
 </head>
@@ -25,12 +27,17 @@
         <div style="float:left;width:33.333%">方法</div>
         <div style="float:left;width:33.333%">工具</div>
     </div>
-    <p><img src="assets/index.jpg" style="width:100%" /></p>
-    <p style="line-height:100px;margin:60px">专注于研究如何更积极地投入生活、更幸福地享受生活，并提供相关的知识、方法和工具。</p>
+    
+        
+        
+        <p style="margin-top:30px;line-height:90px;color:grey;padding-left:50px;padding-right:50px;text-align:left">专注于研究如何更积极地投入生活、更幸福地享受生活，并提供相关的知识、方法和工具。</p>
+    <p>
+        <img src="assets/index.jpg" style="width:100%" />
+    </p>
 
     <form id="form1" runat="server">
     <div>
-    <p><a href="background.aspx?id=3&userid=<%=Request["userid"] %>">生活状态测试（Panic, Strech, Comfort）</a></p>
+    <p style="margin-top:50px;"><span style="color:orangered">Hot!&nbsp;</span><a href="background.aspx?id=3&userid=<%=Request["userid"] %>">生活状态测试(Panic,Strech,Comfort)</a></p>
     <!--<p><a href="background.aspx?id=2&userid=<%=Request["userid"] %>">幸福维度量表</a></p>
     <p>&nbsp;</p>
     <p><a href="background.aspx?id=1&userid=<%=Request["userid"] %>">大5人格量表</a></p>
@@ -39,6 +46,43 @@
     <p><a href="background.aspx?id=6&userid=<%=Request["userid"] %>">生活满意度量表</a></p>
     <p><a href="background.aspx?id=7&userid=<%=Request["userid"] %>">总体幸福感量表</a></p>-->
     </div>
+        <a href="#" onclick="onfriend()">ssss</a>
+        <script>
+            function onBridgeReady() {
+                WeixinJSBridge.call('hideOptionMenu');
+            }
+
+            if (typeof WeixinJSBridge == "undefined") {
+                if (document.addEventListener) {
+                    document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+                } else if (document.attachEvent) {
+                    document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+                    document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+                }
+            } else {
+                onBridgeReady();
+            }
+
+            function onfriend() {
+                wx.onMenuShareTimeline({
+                    title: '互联网之子 方倍工作室',
+                    link: 'http://movie.douban.com/subject/25785114/',
+                    imgUrl: 'http://img3.douban.com/view/movie_poster_cover/spst/public/p2166127561.jpg',
+                    trigger: function (res) {
+                        alert('用户点击分享到朋友圈');
+                    },
+                    success: function (res) {
+                        alert('已分享');
+                    },
+                    cancel: function (res) {
+                        alert('已取消');
+                    },
+                    fail: function (res) {
+                        alert(JSON.stringify(res));
+                    }
+                });
+            }
+</script>
     </form>
 </body>
 </html>
