@@ -4,7 +4,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>幸福ABC热门测试 - <%=topicTitle%></title>
+    <link rel="shortcut icon" href="assets/favicon.ico">
      <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
      <script src="Scripts/Chart.js"></script>
      <style>
@@ -13,6 +14,25 @@
         color:grey;
         text-decoration:none;
       }
+
+      #mcover {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: none;
+        z-index: 20000;
+     }
+     #mcover img {
+        position: fixed;
+        right: 18px;
+        top: 5px;
+        width: 530px!important;
+        height: auto !important;
+        z-index: 20001;
+     }
      </style>
 </head>
 <body>
@@ -26,13 +46,30 @@
    
     </div>
     </form>
-    <input 
+    <div style="margin-bottom:80px;margin-top:40px">
+        <a href="#" onclick="document.getElementById('mcover').style.display='block';"><img src="assets/share.jpg" style="width:40%;margin-left:5%;margin-right:2.5%"/></a>
+        <a href="#" onclick="document.getElementById('mcover').style.display='block';"><img src="assets/invite.jpg" style="width:40%;margin-left:2.5%;margin-right:5%"/></a>
+    </div>
+    <%
+        if( ( fromSource != null ) && (fromSource.Equals("timeline")||fromSource.Equals("singlemessage")))
+        { 
+        %>
+    <div style="text-align:center;margin-top:30px;margin-bottom:40px"><a href="tip.aspx"><img src="assets/try.jpg" style="width:100%"/></a></div>
+    <%
+    } %>
+
+
+
     <%=chartJsString %>
 
 
+    <div id="mcover" onclick="document.getElementById('mcover').style.display='';" style="display:none;">
+                    <img src="assets/guide.png"/>
+    </div>
+
     <script>
         function onBridgeReady() {
-            WeixinJSBridge.call('hideOptionMenu');
+            WeixinJSBridge.call('showOptionMenu');
         }
 
         if (typeof WeixinJSBridge == "undefined") {
@@ -45,6 +82,7 @@
         } else {
             onBridgeReady();
         }
-</script>
+    </script>
+   
 </body>
 </html>

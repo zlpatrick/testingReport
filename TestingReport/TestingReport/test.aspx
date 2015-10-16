@@ -6,6 +6,7 @@
 <head runat="server">
     <title></title>
     <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
+    
     <script src="Scripts/jquery-1.4.1.min.js" ></script>
     <script>
         function ontest(id) {
@@ -35,6 +36,6 @@
         } else {
             onBridgeReady();
         }
-</script>
+    </script>
 </body>
 </html>

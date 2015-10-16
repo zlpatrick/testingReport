@@ -14,11 +14,14 @@ namespace TestingReport
     public partial class result : System.Web.UI.Page
     {
         public string chartJsString;
+        public string topicTitle;
+        public string fromSource;
         protected void Page_Load(object sender, EventArgs e)
         {
             string topicId = Request["id"].ToString();
             string userId = Request["userid"].ToString();
             string type = Request["type"].ToString();
+            fromSource = Request["from"];
             DBUtil db = new DBUtil();
           
             int resultType = 1;
@@ -33,6 +36,7 @@ namespace TestingReport
                 string resultImage = dst.Tables[0].Rows[0]["resultPageImage"].ToString();
                 totalChooseItem = Convert.ToInt32(dst.Tables[0].Rows[0]["TotalChooseItem"]);
                 resultChart = dst.Tables[0].Rows[0]["resultChartIntroductionImage"].ToString();
+                topicTitle = dst.Tables[0].Rows[0]["title"].ToString();
 
                 try
                 {
