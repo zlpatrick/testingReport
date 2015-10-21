@@ -55,15 +55,17 @@
     {
         float:left;
         width:75%;
-        padding-top:40px;
+        padding:30px;
     }
     .mylist-img img
     {
         width:100%;
+        height:100%;
     }
     .mylist-title
     {
         text-align:left;
+        font-size:40px;
     }
 
     .mylist-title a
@@ -75,6 +77,8 @@
     .mylist-subtitle
     {
         color:grey;
+        text-align:left;
+        font-size:40px;
     }
     </style>
     <script>
@@ -105,14 +109,15 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="row" style="background-color:#EEE;color:#444;height:135px;text-align:center;line-height:135px;overflow:auto;font-family:'Microsoft Yahei' " id="topbannerDiv">
+    <div style="overflow:hidden">
+    <div class="row" style="background-color:#EEE;color:#444;height:135px;text-align:center;line-height:135px;font-family:'Microsoft Yahei' " id="topbannerDiv">
         <div class="<%=knowledgeClass %>" style="float:left;width:25%" onclick="changeActive('knowledge')" id="knowledge">知识</div>
         <div class="<%=wayClass %>" style="float:left;width:25%" onclick="changeActive('way')" id="way">方法</div>
         <div class="<%=toolClass %>" style="float:left;width:25%" onclick="changeActive('tool')" id="tool">工具</div>
         <div class="<%=personalClass %>" style="float:left;width:25%" onclick="changeActive('person')" id="person">个人中心</div>
     </div>
+    </div>
     
-        
     <div id="knowledgePane" class="<%=knowledgePaneClass %>">
         <div class="mylist">
             <div class="mylist-img"><img src="assets/knowledge-1.jpg" /></div>
@@ -138,14 +143,20 @@
          <div class="mylist">
             <div class="mylist-img"><img src="assets/knowledge-4.jpg" /></div>
             <div class="mylist-intro">
-                <p class="mylist-title"><a href="http://mp.weixin.qq.com/s?__biz=MzA4MDMwOTY1OQ==&mid=210656210&idx=1&sn=4e9b5f38975b923625771f4da2c62f74#rd">为什么我们离幸福越来越远</a></p>
-                <p class="mylist-subtitle">我们的物质生活越来越丰富，为什么反而感觉离幸福越来越远？ </p>
+                <p class="mylist-title"><a href="http://mp.weixin.qq.com/s?__biz=MzA4MDMwOTY1OQ==&mid=210772157&idx=1&sn=54233f661a7562a4d50a753f9b9a4bcc#rd">幸福“跑步机”</a></p>
+                <p class="mylist-subtitle">“幸福跑步机”虽然看不见摸不着，但是它却一直在影响着我们的幸福</p>
             </div>
         </div>
     </div>    
     
     <div id="wayPane" class="<%=wayPaneClass %>">
-        2
+        <div class="mylist">
+            <div class="mylist-img"><img src="assets/way-1.jpg" /></div>
+            <div class="mylist-intro">
+                <p class="mylist-title"><a href="http://mp.weixin.qq.com/s?__biz=MzA4MDMwOTY1OQ==&mid=210725268&idx=1&sn=f888046adfb765806c819289c8d8fe17#rd">如何养成感恩的习惯？</a></p>
+                <p class="mylist-subtitle">为什么我们总是抱怨，忘记感恩 ；如何养成感恩的好习惯。</p>
+            </div>
+        </div>
     </div>  
 
     <div id="toolPane" class="<%=toolPaneClass %>">

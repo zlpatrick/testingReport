@@ -37,11 +37,30 @@ namespace TestingReport
             if (eventName.ToLower().Equals("click"))
             {
                 string key = xml.GetElementsByTagName("EventKey")[0].FirstChild.InnerText;
+                string title = "";
+                string desc = "";
+
+                if (key.Equals("knowledge"))
+                {
+                    title = "幸福ABC - 知识";
+                    desc = "这里是知识的海洋";
+                }
+                else if (key.Equals("way"))
+                {
+                    title = "幸福ABC - 方法";
+                    desc = "这里有获得幸福的方法";
+                }
+                else if (key.Equals("tool"))
+                {
+                    title = "幸福ABC - 工具";
+                    desc = "来测测你的幸福程度";
+                }
+
                 string reply = "<xml><ToUserName><![CDATA[" + fromUser + "]]></ToUserName>" +
                 "<FromUserName><![CDATA[" + toUser + "]]></FromUserName>" +
                 "<CreateTime>12345678</CreateTime><MsgType><![CDATA[news]]></MsgType><ArticleCount>1</ArticleCount>" +
-                "<Articles><item><Title><![CDATA[幸福ABC热门测试]]></Title><Description><![CDATA[幸福ABC热门测试]]></Description>" +
-                "<PicUrl><![CDATA[http://jeffery.w77.goodnic.net/img/weixin.png]]></PicUrl>" +
+                "<Articles><item><Title><![CDATA["+title+"]]></Title><Description><![CDATA["+desc+"]]></Description>" +
+                "<PicUrl><![CDATA[http://jeffery.w77.goodnic.net/img/weixin-bg.jpg]]></PicUrl>" +
                 "<Url><![CDATA[http://jeffery.w77.goodnic.net/index.aspx?userid=" + fromUser + "&key="+key+"]]></Url></item></Articles></xml>";
 
                 Response.ContentType = "text/xml";
