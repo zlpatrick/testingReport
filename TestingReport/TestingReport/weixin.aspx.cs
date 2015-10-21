@@ -36,12 +36,22 @@ namespace TestingReport
 
             if (eventName.ToLower().Equals("click"))
             {
+                string key = xml.GetElementsByTagName("EventKey")[0].FirstChild.InnerText;
                 string reply = "<xml><ToUserName><![CDATA[" + fromUser + "]]></ToUserName>" +
                 "<FromUserName><![CDATA[" + toUser + "]]></FromUserName>" +
                 "<CreateTime>12345678</CreateTime><MsgType><![CDATA[news]]></MsgType><ArticleCount>1</ArticleCount>" +
                 "<Articles><item><Title><![CDATA[幸福ABC热门测试]]></Title><Description><![CDATA[幸福ABC热门测试]]></Description>" +
                 "<PicUrl><![CDATA[http://jeffery.w77.goodnic.net/img/weixin.png]]></PicUrl>" +
-                "<Url><![CDATA[http://jeffery.w77.goodnic.net/index.aspx?userid=" + fromUser + "]]></Url></item></Articles></xml>";
+                "<Url><![CDATA[http://jeffery.w77.goodnic.net/index.aspx?userid=" + fromUser + "&key="+key+"]]></Url></item></Articles></xml>";
+
+                Response.ContentType = "text/xml";
+                Response.Write(reply);
+            }
+            else if(eventName.ToLower().Equals("subscribe"))
+            {
+                string reply = "<xml><ToUserName><![CDATA[" + fromUser + "]]></ToUserName>" +
+                "<FromUserName><![CDATA[" + toUser + "]]></FromUserName>" +
+                "<CreateTime>12345678</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[感谢关注!“幸福ABC”专注于研究如何更积极地投入生活、更幸福地享受生活，并提供相关的知识、方法和工具。]]></Content></xml>";
 
                 Response.ContentType = "text/xml";
                 Response.Write(reply);

@@ -5,7 +5,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>幸福ABC热门测试 - <%=topicTitle%></title>
-    <link rel="shortcut icon" href="assets/favicon.ico">
+    <link rel="shortcut icon" href="assets/favicon.ico">
+
      <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
      <script src="Scripts/Chart.js"></script>
      <style>
