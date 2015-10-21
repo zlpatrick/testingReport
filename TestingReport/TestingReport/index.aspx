@@ -48,16 +48,33 @@
     .mylist-img
     {
         float:left;
-        width:240px;
+        width:25%;
         padding:20px;
     }
     .mylist-intro
     {
         float:left;
+        width:75%;
+        padding-top:40px;
     }
     .mylist-img img
     {
-        width:200px;
+        width:100%;
+    }
+    .mylist-title
+    {
+        text-align:left;
+    }
+
+    .mylist-title a
+    {
+        color:#333;
+        font-weight:bold;
+    }
+
+    .mylist-subtitle
+    {
+        color:grey;
     }
     </style>
     <script>
@@ -88,7 +105,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div class="row" style="background-color:#EEE;color:#444;height:135px;text-align:center;line-height:135px;overflow:hidden;font-family:'Microsoft Yahei' " id="topbannerDiv">
+    <div class="row" style="background-color:#EEE;color:#444;height:135px;text-align:center;line-height:135px;overflow:auto;font-family:'Microsoft Yahei' " id="topbannerDiv">
         <div class="<%=knowledgeClass %>" style="float:left;width:25%" onclick="changeActive('knowledge')" id="knowledge">知识</div>
         <div class="<%=wayClass %>" style="float:left;width:25%" onclick="changeActive('way')" id="way">方法</div>
         <div class="<%=toolClass %>" style="float:left;width:25%" onclick="changeActive('tool')" id="tool">工具</div>
@@ -99,19 +116,31 @@
     <div id="knowledgePane" class="<%=knowledgePaneClass %>">
         <div class="mylist">
             <div class="mylist-img"><img src="assets/knowledge-1.jpg" /></div>
-            <div class="mylist-intro"></div>
+            <div class="mylist-intro">
+                <p class="mylist-title"><a href="http://mp.weixin.qq.com/s?__biz=MzA4MDMwOTY1OQ==&mid=210521445&idx=1&sn=e8b8312cbd73a97df22ca44f32abcfcf#rd">幸福ABC介绍</a></p>
+                <p class="mylist-subtitle">关于“幸福ABC”微信公众号的内容介绍。</p>
+            </div>
         </div>
         <div class="mylist">
             <div class="mylist-img"><img src="assets/knowledge-2.jpg" /></div>
-            <div class="mylist-intro"></div>
+            <div class="mylist-intro">
+                <p class="mylist-title"><a href="http://mp.weixin.qq.com/s?__biz=MzA4MDMwOTY1OQ==&mid=210538870&idx=1&sn=89537e9cd8c42bf8dce8b1d809d3cb6d#rd">关于幸福的科学</a></p>
+                <p class="mylist-subtitle">为什么学习积极心理学可以让我们变得更加乐观，更加幸福。</p>
+            </div>
         </div>
          <div class="mylist">
             <div class="mylist-img"><img src="assets/knowledge-3.jpg" /></div>
-            <div class="mylist-intro"></div>
+            <div class="mylist-intro">
+                <p class="mylist-title"><a href="http://mp.weixin.qq.com/s?__biz=MzA4MDMwOTY1OQ==&mid=210656210&idx=1&sn=4e9b5f38975b923625771f4da2c62f74#rd">为什么我们离幸福越来越远</a></p>
+                <p class="mylist-subtitle">我们的物质生活越来越丰富，为什么反而感觉离幸福越来越远？ </p>
+            </div>
         </div>
          <div class="mylist">
             <div class="mylist-img"><img src="assets/knowledge-4.jpg" /></div>
-            <div class="mylist-intro"></div>
+            <div class="mylist-intro">
+                <p class="mylist-title"><a href="http://mp.weixin.qq.com/s?__biz=MzA4MDMwOTY1OQ==&mid=210656210&idx=1&sn=4e9b5f38975b923625771f4da2c62f74#rd">为什么我们离幸福越来越远</a></p>
+                <p class="mylist-subtitle">我们的物质生活越来越丰富，为什么反而感觉离幸福越来越远？ </p>
+            </div>
         </div>
     </div>    
     
