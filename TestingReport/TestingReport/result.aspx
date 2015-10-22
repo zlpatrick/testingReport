@@ -47,20 +47,24 @@
    
     </div>
     </form>
+    
+    <%
+        if ((fromSource != null) && (fromSource.Equals("timeline") || fromSource.Equals("singlemessage") || fromSource.Equals("groupmessage")))
+        { 
+        %>
+    <div style="text-align:center;margin-top:30px;margin-bottom:40px"><img src="assets/trymore.jpg" style="width:100%"/></div>
+    <%
+    } else {%>
+
     <div style="margin-bottom:80px;margin-top:40px">
         <a href="#" onclick="document.getElementById('mcover').style.display='block';"><img src="assets/share.jpg" style="width:40%;margin-left:5%;margin-right:2.5%"/></a>
         <a href="#" onclick="document.getElementById('mcover').style.display='block';"><img src="assets/invite.jpg" style="width:40%;margin-left:2.5%;margin-right:5%"/></a>
     </div>
-    <%
-        if( ( fromSource != null ) && (fromSource.Equals("timeline")||fromSource.Equals("singlemessage")))
-        { 
-        %>
-    <div style="text-align:center;margin-top:30px;margin-bottom:40px"><a href="tip.aspx"><img src="assets/try.jpg" style="width:100%"/></a></div>
+
+    
     <%
     } %>
-
-
-
+    <div style="text-align:center;margin-top:30px;margin-bottom:40px"><img src="assets/try.jpg" style="width:100%"/></div>
     <%=chartJsString %>
 
 

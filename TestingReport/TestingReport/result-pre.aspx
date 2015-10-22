@@ -18,7 +18,7 @@
 
     <div>
         <p style="text-align:center;color:White">
-            <img src="assets/result-pre-tip.jpg" style="width:100%"/>
+            <img src="assets/result-pre-tip.png" style="width:100%"/>
         </p>
     </div>
 

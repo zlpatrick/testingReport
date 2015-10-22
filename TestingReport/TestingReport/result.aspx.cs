@@ -214,7 +214,7 @@ namespace TestingReport
                             chartJs.Append("<script>").Append("\r\n")
                                    .Append("var barChartData = {").Append("\r\n")
                            
-                                   .Append("labels : [").Append("\"得分\"").Append("],").Append("\r\n")
+                                   .Append("labels : [").Append("\" \"").Append("],").Append("\r\n")
                                    .Append("datasets : [").Append("\r\n");
                             if (dimensionNames.Keys.Count == 3)
                             {
@@ -375,7 +375,7 @@ namespace TestingReport
                                                 Panel totalScoreBeatPanel = new Panel();
                                                 totalScoreBeatPanel.CssClass = "result-dimension-score-beat-panel";
                                                 temp = new Label();
-                                                temp.Text = "本维度得分打败了全国" + beat + "%的选手!";
+                                                temp.Text = "击败了全国" + beat + "%的选手!";
                                                 weightTitle = new Label();
                                                 weightTitle.Text = "比较：";
                                                 weightTitle.CssClass = "bold-text";

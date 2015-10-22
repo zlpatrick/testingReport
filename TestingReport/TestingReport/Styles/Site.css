@@ -213,8 +213,8 @@ select
 .test-choose-item div
 {  
     
-    height:150px;
-    line-height:150px;
+    height:135px;
+    line-height:135px;
     border:none;
     
     margin-bottom:40px;
@@ -259,8 +259,7 @@ select
 .dimension-score-panel-desc
 {
     color:#666;
-    margin-top:10px;
-    padding:30px;
+    padding:10px 30px;
     
 }
 
@@ -287,7 +286,7 @@ select
 .result-total-score-beat-panel
 {
     padding:10px 50px;
-    color:#7F0019;
+    color:#666;   
 }
 
 .result-total-score-desc-panel
@@ -299,8 +298,7 @@ select
 .result-dimension-score-beat-panel
 {
      padding:10px 30px;
-     color:#7F0019;
-   
+     color:#666;   
 }
 
 button 

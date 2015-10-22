@@ -147,6 +147,10 @@
                 <p class="mylist-subtitle">“幸福跑步机”虽然看不见摸不着，但是它却一直在影响着我们的幸福</p>
             </div>
         </div>
+
+        <p style="font-size:44px;color:gray;margin-top:50px;">
+            更多内容，Coming Soon!
+        </p>
     </div>    
     
     <div id="wayPane" class="<%=wayPaneClass %>">
@@ -157,10 +161,20 @@
                 <p class="mylist-subtitle">为什么我们总是抱怨，忘记感恩 ；如何养成感恩的好习惯。</p>
             </div>
         </div>
+        <p style="font-size:44px;color:gray;margin-top:50px;">
+            更多内容，Coming Soon!
+        </p>
     </div>  
 
     <div id="toolPane" class="<%=toolPaneClass %>">
-        <p style="margin-top:50px;"><span style="color:orangered">Hot!&nbsp;</span><a href="background.aspx?id=3&userid=<%=Request["userid"] %>">生活状态测试(Panic,Strech,Comfort)</a></p>
+        <div class="mylist">
+            <div class="mylist-img"><img src="assets/test-1.jpg" /></div>
+            <div class="mylist-intro">
+                <p class="mylist-title"><a href="background.aspx?id=3&userid=<%=Request["userid"] %>">生活状态测试</a></p>
+                <p class="mylist-subtitle">从舒适指数、学习指数、焦虑指数，测试你的生活属于哪种状态？</p>
+            </div>
+        </div>
+   
         <!--<p><a href="background.aspx?id=2&userid=<%=Request["userid"] %>">幸福维度量表</a></p>
         <p>&nbsp;</p>
         <p><a href="background.aspx?id=1&userid=<%=Request["userid"] %>">大5人格量表</a></p>
@@ -168,10 +182,14 @@
         <p><a href="background.aspx?id=4&userid=<%=Request["userid"] %>">情绪测试量表</a></p>
         <p><a href="background.aspx?id=6&userid=<%=Request["userid"] %>">生活满意度量表</a></p>
         <p><a href="background.aspx?id=7&userid=<%=Request["userid"] %>">总体幸福感量表</a></p>-->
+
+        <p style="font-size:44px;color:gray;margin-top:50px;">
+            更多内容，Coming Soon!
+        </p>
     </div>
         
     <div id="personPane" class="<%=personalPaneClass %>">
-        3
+        
     </div>
 
         
