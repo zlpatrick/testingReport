@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>幸福ABC</title>
     <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
     <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
     <script src="Scripts/jquery.1.11.js"></script>
@@ -172,6 +172,14 @@
             <div class="mylist-intro">
                 <p class="mylist-title"><a href="background.aspx?id=3&userid=<%=Request["userid"] %>">生活状态测试</a></p>
                 <p class="mylist-subtitle">从舒适指数、学习指数、焦虑指数，测试你的生活属于哪种状态？</p>
+            </div>
+        </div>
+
+         <div class="mylist">
+            <div class="mylist-img"><img src="assets/test-2.jpg" /></div>
+            <div class="mylist-intro">
+                <p class="mylist-title"><a href="background.aspx?id=2&userid=<%=Request["userid"] %>">幸福测试</a></p>
+                <p class="mylist-subtitle">从积极情绪、身心投入、人际关系、生活成就、人生意义五个维度，测一测你到底有多幸福？</p>
             </div>
         </div>
    

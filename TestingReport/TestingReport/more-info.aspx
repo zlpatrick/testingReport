@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title></title>
+    <title>幸福ABC</title>
     <script src="Scripts/jquery.1.11.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
  

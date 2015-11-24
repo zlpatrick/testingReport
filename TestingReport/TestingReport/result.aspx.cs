@@ -124,8 +124,10 @@ namespace TestingReport
                             Dictionary<int, int> dimensionOptionCount = new Dictionary<int, int>();
 
                             string chartLabelString = "" ;
+                            string chartScoreRaderString = "";
                             List<string> chartScoreString = new List<string>();
                             StringBuilder strBuilder = new StringBuilder();
+                            StringBuilder strBuilder2 = new StringBuilder();
                             for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                             {
                                 int dimensionId = Convert.ToInt32(ds.Tables[0].Rows[i]["id"]);
@@ -184,9 +186,16 @@ namespace TestingReport
                                         chartScoreString.Add(chartScore.ToString());
                                     }
                                 }
+
+                                if (ds.Tables[0].Rows.Count > 4)
+                                {
+                                    strBuilder.Append("\"").Append(dimensionName).Append("\",");
+                                    strBuilder2.Append(chartScore).Append(",");
+                                }
                             }
 
                             chartLabelString = strBuilder.ToString();
+                            chartScoreRaderString = strBuilder2.ToString();
                             /*chart.Series.Add(series);
                         
                             ChartArea chartArea = new ChartArea("result");
@@ -209,66 +218,93 @@ namespace TestingReport
 
                             */
 
-
-                            StringBuilder chartJs = new StringBuilder();
-                            chartJs.Append("<script>").Append("\r\n")
-                                   .Append("var barChartData = {").Append("\r\n")
+                            if(resultType == 2)
+                            { 
+                                StringBuilder chartJs = new StringBuilder();
+                                chartJs.Append("<script>").Append("\r\n")
+                                       .Append("var barChartData = {").Append("\r\n")
                            
-                                   .Append("labels : [").Append("\" \"").Append("],").Append("\r\n")
-                                   .Append("datasets : [").Append("\r\n");
-                            if (dimensionNames.Keys.Count == 3)
-                            {
-                                chartJs.Append("{").Append("\r\n")                                      
-                                       .Append("fillColor : \"rgba(217,179,242,0.5)\",").Append("\r\n")
-                                       .Append("strokeColor : \"rgba(217,179,242,0.8)\",").Append("\r\n")
-                                       .Append("highlightFill: \"rgba(217,179,242,0.75)\",").Append("\r\n")
-                                       .Append("highlightStroke: \"rgba(217,179,242,,1)\",").Append("\r\n")
-                                       .Append("data : [").Append(chartScoreString[0]).Append("]").Append("\r\n")
-                                       .Append("},").Append("\r\n");
-                                chartJs.Append("{").Append("\r\n")                             
-                                       .Append("fillColor : \"rgba(108,198,232,0.5)\",").Append("\r\n")
-                                       .Append("strokeColor : \"rgba(108,198,232,0.8)\",").Append("\r\n")
-                                       .Append("highlightFill: \"rgba(108,198,232,0.75)\",").Append("\r\n")
-                                       .Append("highlightStroke: \"rgba(108,198,232,1)\",").Append("\r\n")
-                                       .Append("data : [").Append(chartScoreString[1]).Append("]").Append("\r\n")
-                                       .Append("},").Append("\r\n");
-                                chartJs.Append("{").Append("\r\n")          
-                                       .Append("fillColor : \"rgba(238,159,102,0.5)\",").Append("\r\n")
-                                       .Append("strokeColor : \"rgba(238,159,102,0.8)\",").Append("\r\n")
-                                       .Append("highlightFill: \"rgba(238,159,102,0.75)\",").Append("\r\n")
-                                       .Append("highlightStroke: \"rgba(238,159,102,1)\",").Append("\r\n")
-                                       .Append("data : [").Append(chartScoreString[2]).Append("]").Append("\r\n")
-                                       .Append("}").Append("\r\n");
+                                       .Append("labels : [").Append("\" \"").Append("],").Append("\r\n")
+                                       .Append("datasets : [").Append("\r\n");
+                                if (dimensionNames.Keys.Count == 3)
+                                {
+                                    chartJs.Append("{").Append("\r\n")                                      
+                                           .Append("fillColor : \"rgba(217,179,242,0.5)\",").Append("\r\n")
+                                           .Append("strokeColor : \"rgba(217,179,242,0.8)\",").Append("\r\n")
+                                           .Append("highlightFill: \"rgba(217,179,242,0.75)\",").Append("\r\n")
+                                           .Append("highlightStroke: \"rgba(217,179,242,,1)\",").Append("\r\n")
+                                           .Append("data : [").Append(chartScoreString[0]).Append("]").Append("\r\n")
+                                           .Append("},").Append("\r\n");
+                                    chartJs.Append("{").Append("\r\n")                             
+                                           .Append("fillColor : \"rgba(108,198,232,0.5)\",").Append("\r\n")
+                                           .Append("strokeColor : \"rgba(108,198,232,0.8)\",").Append("\r\n")
+                                           .Append("highlightFill: \"rgba(108,198,232,0.75)\",").Append("\r\n")
+                                           .Append("highlightStroke: \"rgba(108,198,232,1)\",").Append("\r\n")
+                                           .Append("data : [").Append(chartScoreString[1]).Append("]").Append("\r\n")
+                                           .Append("},").Append("\r\n");
+                                    chartJs.Append("{").Append("\r\n")          
+                                           .Append("fillColor : \"rgba(238,159,102,0.5)\",").Append("\r\n")
+                                           .Append("strokeColor : \"rgba(238,159,102,0.8)\",").Append("\r\n")
+                                           .Append("highlightFill: \"rgba(238,159,102,0.75)\",").Append("\r\n")
+                                           .Append("highlightStroke: \"rgba(238,159,102,1)\",").Append("\r\n")
+                                           .Append("data : [").Append(chartScoreString[2]).Append("]").Append("\r\n")
+                                           .Append("}").Append("\r\n");
+                                }
+                                chartJs.Append("]").Append("\r\n")
+                                       .Append("}").Append("\r\n")
+                                       .Append("window.onload = function(){").Append("\r\n")
+                                       .Append("var ctx = document.getElementById(\"canvas\").getContext(\"2d\");").Append("\r\n")
+                                       .Append("window.myBar = new Chart(ctx).Bar(barChartData, {").Append("\r\n")
+                                       .Append("responsive : true,").Append("\r\n")
+                                       .Append("scaleGridLineColor : \"lightgrey\",").Append("\r\n")
+                                       .Append("scaleGridLineWidth : 1").Append("\r\n")
+                                       .Append("});").Append("\r\n")
+                                       .Append("}").Append("\r\n")
+                                       .Append("</script>").Append("\r\n");
+
+
+                                chartJsString = chartJs.ToString();
                             }
-                            chartJs.Append("]").Append("\r\n")
-                                   .Append("}").Append("\r\n")
-                                   .Append("window.onload = function(){").Append("\r\n")
-                                   .Append("var ctx = document.getElementById(\"canvas\").getContext(\"2d\");").Append("\r\n")
-                                   .Append("window.myBar = new Chart(ctx).Bar(barChartData, {").Append("\r\n")
-                                   .Append("responsive : true,").Append("\r\n")
-                                   .Append("scaleGridLineColor : \"lightgrey\",").Append("\r\n")
-                                   .Append("scaleGridLineWidth : 1").Append("\r\n")
-                                   .Append("});").Append("\r\n")
-                                   .Append("}").Append("\r\n")
-                                   .Append("</script>").Append("\r\n");
+                            else if(resultType == 3)
+                            {
+                                StringBuilder chartJs = new StringBuilder();
 
+                                chartJs.Append("<script>").Append("\r\n")
+                                        .Append("var radarChartData = {").Append("\r\n")
+                                        .Append("labels: [").Append(chartLabelString.Substring(0, chartLabelString.Length - 1)).Append("],").Append("\r\n")
+                                        .Append("datasets: [").Append("\r\n")
+                                        .Append("{").Append("\r\n")
+                                        .Append("label: \"My First dataset\",").Append("\r\n")
+                                        .Append("fillColor: \"rgba(217,179,242,0.5)\",").Append("\r\n")
+                                        .Append("strokeColor: \"rgba(217,179,242,0.8)\",").Append("\r\n")
+                                        .Append("pointColor: \"rgba(217,179,242,1)\",").Append("\r\n")
+                                        .Append("pointStrokeColor: \"#fff\",").Append("\r\n")
+                                        .Append("pointHighlightFill: \"#fff\",").Append("\r\n")
+                                        .Append("pointHighlightStroke: \"rgba(220,220,220,1)\",").Append("\r\n")
+                                        .Append("data: [").Append(chartScoreRaderString.Substring(0, chartScoreRaderString.Length - 1)).Append("]").Append("\r\n")
+                                        .Append("}").Append("\r\n")
+                                        .Append("]").Append("\r\n")
+                                        .Append("};").Append("\r\n")
 
-                            chartJsString = chartJs.ToString();
+                                        .Append("window.onload = function(){")
+                                            .Append("window.myRadar = new Chart(document.getElementById(\"canvas\").getContext(\"2d\")).Radar(radarChartData, {").Append("\r\n")
+                                                .Append("responsive: true").Append("\r\n")
+                                            .Append("});").Append("\r\n")
+                                        .Append("}").Append("\r\n")
+                                .Append("</script>").Append("\r\n");
 
-                            /*Panel dimentionHeadPanel = new Panel();
-                            dimentionHeadPanel.CssClass = "dimension-head-panel";
-                            Label dimentionHeadLabel = new Label();
-                            dimentionHeadLabel.Text = "维度说明";
-                            
-                            dimentionHeadPanel.Controls.Add(dimentionHeadLabel);
-                            this.form1.Controls.Add(dimentionHeadPanel);*/
+                                chartJsString = chartJs.ToString();
+                            }
 
-                            Panel resultChartTipImagePanel = new Panel();
-                            Image resultChartTipImage = new Image();
-                            resultChartTipImage.ImageUrl = "assets/"+resultChart;
-                            resultChartTipImagePanel.CssClass = "result-chart-tip-Image-panel";
-                            resultChartTipImagePanel.Controls.Add(resultChartTipImage);
-                            this.titleDiv.Controls.Add(resultChartTipImagePanel);
+                            if (resultType == 2)
+                            {
+                                Panel resultChartTipImagePanel = new Panel();
+                                Image resultChartTipImage = new Image();
+                                resultChartTipImage.ImageUrl = "assets/" + resultChart;
+                                resultChartTipImagePanel.CssClass = "result-chart-tip-Image-panel";
+                                resultChartTipImagePanel.Controls.Add(resultChartTipImage);
+                                this.titleDiv.Controls.Add(resultChartTipImagePanel);
+                            }
 
                             Panel dimensionTipImagePanel = new Panel();
                             Image dimensionTipImage = new Image();
@@ -276,6 +312,82 @@ namespace TestingReport
                             dimensionTipImagePanel.CssClass = "result-tip-Image-panel";
                             dimensionTipImagePanel.Controls.Add(dimensionTipImage);
                             this.form1.Controls.Add(dimensionTipImagePanel);
+
+
+
+                            if (resultType == 3)
+                            {
+                                Panel dimensionScorePanel = new Panel();
+                                dimensionScorePanel.CssClass = "dimension-score-panel";
+
+                                Panel dimensionImagePanel = new Panel();
+                                Image tempImg = new Image();
+                                tempImg.ImageUrl = "assets/totalScore.jpg";
+                                dimensionImagePanel.CssClass = "dimension-Image-panel";
+                                dimensionImagePanel.Controls.Add(tempImg);
+                                dimensionScorePanel.Controls.Add(dimensionImagePanel);
+                               
+
+                                Panel totalScorePanel = new Panel();
+                                totalScorePanel.CssClass = "dimension-score-panel-score";
+                                Label weightTitle = new Label();
+                                weightTitle.Text = "得分：";
+                                weightTitle.CssClass = "bold-text";
+                                Label label = new Label();
+                                label.Text = totalScore + "分";
+                                totalScorePanel.Controls.Add(weightTitle);
+                                totalScorePanel.Controls.Add(label);
+                                if (resultType != 2)
+                                {
+                                    dimensionScorePanel.Controls.Add(totalScorePanel);
+                                }
+                                /*总分板块*/
+
+                                ds = db.executeSqlQuery("select * from UserTopicScore where userId='" + userId + "' and topicId=" + topicId);
+                                if (ds.Tables[0].Rows.Count > 0)
+                                {
+                                    db.executeSqlNonQuery("update UserTopicScore set score=" + totalScore + " where userId='" + userId + "' and topicId=" + topicId);
+                                }
+                                else
+                                {
+                                    db.executeSqlNonQuery("insert into UserTopicScore(userId,topicId,Score) values('" + userId + "'," + topicId + "," + totalScore + ")");
+                                }
+
+
+                                ds = db.executeSqlQuery("select count(Id) as totalCount from UserTopicScore where topicId=" + topicId);
+                                if (ds.Tables[0].Rows.Count > 0)
+                                {
+                                    int totalPersons = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+
+                                    ds = db.executeSqlQuery("select count(Id) as totalCount from UserTopicScore where topicId=" + topicId + " and Score<" + totalScore);
+                                    if (ds.Tables[0].Rows.Count > 0)
+                                    {
+                                        int lessScorePersons = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+                                        int beat = lessScorePersons * 100 / (totalPersons);
+
+                                        if (totalPersons == 1)
+                                            beat = 100;
+                                        Panel totalScoreBeatPanel = new Panel();
+                                        totalScoreBeatPanel.CssClass = "result-dimension-score-beat-panel";
+                                        weightTitle = new Label();
+                                        weightTitle.Text = "比较：";
+                                        weightTitle.CssClass = "bold-text";
+                                        Label temp = new Label();
+                                        temp.Text = "击败了全国" + beat + "%的选手!";
+                                        totalScoreBeatPanel.Controls.Add(weightTitle);
+                                        totalScoreBeatPanel.Controls.Add(temp);
+                                        if (resultType != 2)
+                                        {
+                                            dimensionScorePanel.Controls.Add(totalScoreBeatPanel);
+                                        }
+                                    }
+                                }
+
+                                this.form1.Controls.Add(dimensionScorePanel);
+                            }
+
+
+
 
                             List<string> maxScoresDimensions = new List<string>();
                             int maxScore = -9999;
@@ -438,7 +550,7 @@ namespace TestingReport
                             }*/
                         }
 
-                        if (resultType != 2)
+                        /*if (resultType != 2)
                         {
                             Panel totalHeaderPanel = new Panel();
                             totalHeaderPanel.CssClass = "dimension-head-panel";
@@ -446,71 +558,78 @@ namespace TestingReport
                             totalHeaderLabel.Text = "总体说明";
                             totalHeaderPanel.Controls.Add(totalHeaderLabel);
                             this.form1.Controls.Add(totalHeaderPanel);
-                        }
+                        }*/
 
-                        Panel totalScorePanel = new Panel();
-                        totalScorePanel.CssClass = "result-total-score-panel";
-                        Label label = new Label();
-                        label.Text = "您的总分是：" + totalScore + "分";
-                        totalScorePanel.Controls.Add(label);
-                        if (resultType != 2 )
+
+                        if (resultType != 3)
                         {
-                            this.form1.Controls.Add(totalScorePanel);
-                        }
-                        /*总分板块*/
+                            Panel totalScorePanel = new Panel();
+                            totalScorePanel.CssClass = "result-total-score-panel";
+                            Label label = new Label();
+                            label.Text = "您的总分是：" + totalScore + "分";
+                            totalScorePanel.Controls.Add(label);
+                            if (resultType != 2)
+                            {
+                                this.form1.Controls.Add(totalScorePanel);
+                            }
+                            /*总分板块*/
 
-                        ds = db.executeSqlQuery("select * from UserTopicScore where userId='" + userId + "' and topicId=" + topicId);
-                        if (ds.Tables[0].Rows.Count > 0)
-                        {
-                            db.executeSqlNonQuery("update UserTopicScore set score=" + totalScore + " where userId='" + userId + "' and topicId=" + topicId);
-                        }
-                        else
-                        {
-                            db.executeSqlNonQuery("insert into UserTopicScore(userId,topicId,Score) values('" + userId + "'," + topicId + "," + totalScore + ")");
-                        }
-
-
-                        ds = db.executeSqlQuery("select count(Id) as totalCount from UserTopicScore where topicId=" + topicId);
-                        if (ds.Tables[0].Rows.Count > 0)
-                        {
-                            int totalPersons = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
-
-                            ds = db.executeSqlQuery("select count(Id) as totalCount from UserTopicScore where topicId=" + topicId + " and Score<" + totalScore);
+                            ds = db.executeSqlQuery("select * from UserTopicScore where userId='" + userId + "' and topicId=" + topicId);
                             if (ds.Tables[0].Rows.Count > 0)
                             {
-                                int lessScorePersons = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
-                                int beat = lessScorePersons * 100 / (totalPersons);
+                                db.executeSqlNonQuery("update UserTopicScore set score=" + totalScore + " where userId='" + userId + "' and topicId=" + topicId);
+                            }
+                            else
+                            {
+                                db.executeSqlNonQuery("insert into UserTopicScore(userId,topicId,Score) values('" + userId + "'," + topicId + "," + totalScore + ")");
+                            }
 
-                                if (totalPersons == 1)
-                                    beat = 100;
-                                Panel totalScoreBeatPanel = new Panel();
-                                totalScoreBeatPanel.CssClass = "result-total-score-beat-panel";
-                                Label temp = new Label();
-                                temp.Text = "您的总分打败了全国" + beat + "%的选手!";
-                                totalScoreBeatPanel.Controls.Add(temp);
-                                if (resultType != 2 )
+
+                            ds = db.executeSqlQuery("select count(Id) as totalCount from UserTopicScore where topicId=" + topicId);
+                            if (ds.Tables[0].Rows.Count > 0)
+                            {
+                                int totalPersons = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+
+                                ds = db.executeSqlQuery("select count(Id) as totalCount from UserTopicScore where topicId=" + topicId + " and Score<" + totalScore);
+                                if (ds.Tables[0].Rows.Count > 0)
                                 {
-                                    this.form1.Controls.Add(totalScoreBeatPanel);
+                                    int lessScorePersons = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+                                    int beat = lessScorePersons * 100 / (totalPersons);
+
+                                    if (totalPersons == 1)
+                                        beat = 100;
+                                    Panel totalScoreBeatPanel = new Panel();
+                                    totalScoreBeatPanel.CssClass = "result-total-score-beat-panel";
+                                    Label temp = new Label();
+                                    temp.Text = "您的总分打败了全国" + beat + "%的选手!";
+                                    totalScoreBeatPanel.Controls.Add(temp);
+                                    if (resultType != 2)
+                                    {
+                                        this.form1.Controls.Add(totalScoreBeatPanel);
+                                    }
                                 }
                             }
                         }
 
-                        ds = db.executeSqlQuery("select * from TopicScores where TopicId=" + topicId + " and minScore<=" + totalScore + " and maxScore>=" + totalScore);
-                        if (ds.Tables[0].Rows.Count > 0)
+                        if (resultType != 3)
                         {
-                            Panel totalScoreDescPanel = new Panel();
-                            totalScoreDescPanel.CssClass = "result-total-score-desc-panel";
-                            Label totalScoreDesc = new Label();
-                            if (resultType == 3)
+                            ds = db.executeSqlQuery("select * from TopicScores where TopicId=" + topicId + " and minScore<=" + totalScore + " and maxScore>=" + totalScore);
+                            if (ds.Tables[0].Rows.Count > 0)
                             {
-                                totalScoreDesc.Text = "您的生活满意度为：" + ds.Tables[0].Rows[0]["ScoreDesc"].ToString();
+                                Panel totalScoreDescPanel = new Panel();
+                                totalScoreDescPanel.CssClass = "result-total-score-desc-panel";
+                                Label totalScoreDesc = new Label();
+                                if (resultType == 3)
+                                {
+                                    totalScoreDesc.Text = "您的生活满意度为：" + ds.Tables[0].Rows[0]["ScoreDesc"].ToString();
+                                }
+                                else
+                                {
+                                    totalScoreDesc.Text = ds.Tables[0].Rows[0]["ScoreDesc"].ToString();
+                                }
+                                totalScoreDescPanel.Controls.Add(totalScoreDesc);
+                                this.form1.Controls.Add(totalScoreDescPanel);
                             }
-                            else
-                            {
-                                totalScoreDesc.Text = ds.Tables[0].Rows[0]["ScoreDesc"].ToString();
-                            }
-                            totalScoreDescPanel.Controls.Add(totalScoreDesc);
-                            this.form1.Controls.Add(totalScoreDescPanel);
                         }
                     }
                 }

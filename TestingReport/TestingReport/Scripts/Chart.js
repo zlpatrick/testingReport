@@ -3168,7 +3168,7 @@
 			scaleBeginAtZero : true,
 
 			//String - Colour of the angle line
-			angleLineColor : "rgba(0,0,0,.1)",
+			angleLineColor : "rgba(0,0,0,.3)",
 
 			//Number - Pixel width of the angle line
 			angleLineWidth : 1,
@@ -3180,16 +3180,16 @@
 			pointLabelFontStyle : "normal",
 
 			//Number - Point label font size in pixels
-			pointLabelFontSize : 10,
+			pointLabelFontSize : 50,
 
 			//String - Point label font colour
-			pointLabelFontColor : "#666",
+			pointLabelFontColor: "#666",
 
 			//Boolean - Whether to show a dot for each point
 			pointDot : true,
 
 			//Number - Radius of each point dot in pixels
-			pointDotRadius : 3,
+			pointDotRadius : 10,
 
 			//Number - Pixel width of point dot stroke
 			pointDotStrokeWidth : 1,

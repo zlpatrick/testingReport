@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -63,11 +67,20 @@
     <Content Include="admin-index.aspx" />
     <Content Include="admin-login.aspx" />
     <Content Include="assets\dimension-10.png" />
+    <Content Include="assets\dimension-15.jpg" />
+    <Content Include="assets\dimension-4.jpg" />
+    <Content Include="assets\dimension-5.jpg" />
+    <Content Include="assets\dimension-6.jpg" />
+    <Content Include="assets\dimension-7.jpg" />
     <Content Include="assets\dimension-8.png" />
     <Content Include="assets\dimension-9.png" />
     <Content Include="assets\favicon.ico" />
     <Content Include="assets\guide.png" />
     <Content Include="assets\index.jpg" />
+    <Content Include="assets\info-2.jpg" />
+    <Content Include="assets\introduction-2-content.jpg" />
+    <Content Include="assets\introduction-2-title.jpg" />
+    <Content Include="assets\introduction-2.jpg" />
     <Content Include="assets\invite.jpg" />
     <Content Include="assets\knowledge-1.jpg" />
     <Content Include="assets\knowledge-2.jpg" />
@@ -93,7 +106,10 @@
     <Content Include="assets\result-tip.jpg" />
     <Content Include="assets\share.jpg" />
     <Content Include="assets\test-1.jpg" />
+    <Content Include="assets\test-2.jpg" />
+    <Content Include="assets\totalScore.jpg" />
     <Content Include="assets\try.jpg" />
+    <Content Include="assets\trymore.jpg" />
     <Content Include="assets\way-1.jpg" />
     <Content Include="background.aspx" />
     <Content Include="header.htm" />
@@ -107,6 +123,8 @@
     <Content Include="img\whiteback.png" />
     <Content Include="index.aspx" />
     <Content Include="more-info.aspx" />
+    <Content Include="Newtonsoft.Json.dll" />
+    <Content Include="person.aspx" />
     <Content Include="result-pre.aspx" />
     <Content Include="result.aspx" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -170,6 +188,13 @@
     <Compile Include="more-info.aspx.designer.cs">
       <DependentUpon>more-info.aspx</DependentUpon>
     </Compile>
+    <Compile Include="person.aspx.cs">
+      <DependentUpon>person.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="person.aspx.designer.cs">
+      <DependentUpon>person.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="result-pre.aspx.cs">
       <DependentUpon>result-pre.aspx</DependentUpon>
@@ -213,6 +238,7 @@
     <Compile Include="weixin.aspx.designer.cs">
       <DependentUpon>weixin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="WeixinUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\App_Data\" />
