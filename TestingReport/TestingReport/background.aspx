@@ -137,6 +137,6 @@
         } else {
             onBridgeReady();
         }
-</script>
+    </script>
 </html>
 

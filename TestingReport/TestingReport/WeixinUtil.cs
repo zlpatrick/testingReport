@@ -14,6 +14,7 @@ namespace TestingReport
         public static DateTime lastUpdate;
         public static string access_token = null;
 
+        private static string GET_USER_INFO = "https://api.weixin.qq.com/cgi-bin/user/info?access_token={0}&openid={1}&lang=zh_CN";
         public static string getAccessToken()
         {
             DateTime newTime = DateTime.Now;
@@ -43,6 +44,16 @@ namespace TestingReport
             }
 
             return access_token;
+        }
+
+        public static JObject getUserInfo(string openid)
+        {
+            HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(string.Format(GET_USER_INFO,getAccessToken(),openid));
+            System.IO.StreamReader reader = new System.IO.StreamReader(request.GetResponse().GetResponseStream(), Encoding.UTF8);
+            string token = reader.ReadToEnd();
+
+            JObject obj = (JObject)JsonConvert.DeserializeObject<JObject>(token);
+            return obj;
         }
     }
 }
