@@ -14,9 +14,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-        <div><img src="<%=userImageUrl %>" /></div>
-        <div>昵称: <%=userNickName %></div>
+    <div style="overflow:hidden;padding:50px;">
+        <div style="float:left;width:20%"><img src="<%=userImageUrl %>" style="width:100%"/></div>
+        <div style="float:left;padding:50px;">昵称: <%=userNickName %></div>
     </div>
 
     <div ID="errorMsg" style="display:none">
@@ -25,7 +25,7 @@
         </p>
     </div>
 
-    <div class="dropdown" style="padding:60px 50px 0px 50px;width:100%">
+    <div class="dropdown" style="padding:0px 50px 0px 50px;width:100%">
         <button class="btn btn-info dropdown-toggle" type="button" id="genderDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%">
             请选择地区:
         </button>
@@ -85,7 +85,7 @@
     </div>
 
 
-    <div class="dropdown" style="padding:60px 50px 0px 50px;width:100%">
+    <div class="dropdown" style="padding:20px 50px 0px 50px;width:100%">
         <button class="btn btn-info dropdown-toggle" type="button" id="industryDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%">
             请选择行业:
         </button>
@@ -106,6 +106,12 @@
             <li style="border-bottom:none"><a href="#" onclick="setIndustry(this)">其他</a></li>
         </ul>
     </div>
+      <asp:HiddenField runat="server" ID="age" />
+        <asp:HiddenField runat="server" ID="gender" />
+        <asp:HiddenField runat="server" ID="industry" />
+     <p style="text-align:center;margin-top:50px">
+        <asp:Button ID="start" Text="保存" runat="server"  onclick="start_Click" cssClass="buttonBack" OnClientClick="return onMysubmit();"/>
+    </p>
     </form>
 </body>
 

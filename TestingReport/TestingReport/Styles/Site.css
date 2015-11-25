@@ -27,6 +27,18 @@ label
     background-image:url(../img/whiteback.png) !important;
 }
 
+.buttonBack
+{
+    background-color:#5bc0de;
+    border:none;
+    height:120px;
+    line-height:120px;
+    width:auto;
+    padding-left:50px;
+    padding-right:50px;
+    color:White;
+}
+
 .test-option-button-click
 {
     background-image:url(../img/button.png) !important;
@@ -194,8 +206,7 @@ select
     outline:0;
     width:333px;
     
-    font-size:50px;
-    
+    font-size:50px;i
 }
 
 .test-choose-item
