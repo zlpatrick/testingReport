@@ -39,29 +39,33 @@ namespace TestingReport
                 string key = xml.GetElementsByTagName("EventKey")[0].FirstChild.InnerText;
                 string title = "";
                 string desc = "";
+                string page = "";
 
-                if (key.Equals("knowledge"))
+                if (key.Equals("worklife"))
                 {
-                    title = "幸福ABC - 知识";
-                    desc = "这里是知识的海洋";
+                    title = "幸福ABC - 工作 & 生活";
+                    desc = "工作 & 生活";
+                    page = "work-life.aspx";
                 }
-                else if (key.Equals("way"))
+                else if (key.Equals("waytool"))
                 {
-                    title = "幸福ABC - 方法";
-                    desc = "这里有获得幸福的方法";
+                    title = "幸福ABC - 方法 & 工具";
+                    desc = "方法 & 工具";
+                    page = "way-tool.aspx";
                 }
-                else if (key.Equals("tool"))
+                else if (key.Equals("personal"))
                 {
-                    title = "幸福ABC - 工具";
-                    desc = "来测测你的幸福程度";
+                    title = "幸福ABC - 个人中心";
+                    desc = "个人中心";
+                    page = "person-self.aspx";
                 }
 
                 string reply = "<xml><ToUserName><![CDATA[" + fromUser + "]]></ToUserName>" +
                 "<FromUserName><![CDATA[" + toUser + "]]></FromUserName>" +
                 "<CreateTime>12345678</CreateTime><MsgType><![CDATA[news]]></MsgType><ArticleCount>1</ArticleCount>" +
                 "<Articles><item><Title><![CDATA["+title+"]]></Title><Description><![CDATA["+desc+"]]></Description>" +
-                "<PicUrl><![CDATA[http://jeffery.w77.goodnic.net/img/weixin-bg.jpg]]></PicUrl>" +
-                "<Url><![CDATA[http://jeffery.w77.goodnic.net/index.aspx?userid=" + fromUser + "&key="+key+"]]></Url></item></Articles></xml>";
+                "<PicUrl><![CDATA[http://www.ihappyabc.com/img/weixin-bg.jpg]]></PicUrl>" +
+                "<Url><![CDATA[http://www.ihappyabc.com/"+page+"?userid=" + fromUser +"]]></Url></item></Articles></xml>";
 
                 Response.ContentType = "text/xml";
                 Response.Write(reply);

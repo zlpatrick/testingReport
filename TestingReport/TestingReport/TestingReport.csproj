@@ -114,6 +114,7 @@
     <Content Include="background.aspx" />
     <Content Include="header.htm" />
     <Content Include="img\button.png" />
+    <Content Include="img\corner.png" />
     <Content Include="img\happy.jpg" />
     <Content Include="img\invite.jpg" />
     <Content Include="img\last-option-button.jpg" />
@@ -124,6 +125,7 @@
     <Content Include="index.aspx" />
     <Content Include="more-info.aspx" />
     <Content Include="Newtonsoft.Json.dll" />
+    <Content Include="person-self.aspx" />
     <Content Include="person.aspx" />
     <Content Include="result-pre.aspx" />
     <Content Include="result.aspx" />
@@ -187,6 +189,13 @@
     </Compile>
     <Compile Include="more-info.aspx.designer.cs">
       <DependentUpon>more-info.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="person-self.aspx.cs">
+      <DependentUpon>person-self.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="person-self.aspx.designer.cs">
+      <DependentUpon>person-self.aspx</DependentUpon>
     </Compile>
     <Compile Include="person.aspx.cs">
       <DependentUpon>person.aspx</DependentUpon>
