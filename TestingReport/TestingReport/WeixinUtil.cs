@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Text;
 
+
 namespace TestingReport
 {
     public class WeixinUtil
@@ -53,6 +54,11 @@ namespace TestingReport
             string token = reader.ReadToEnd();
 
             JObject obj = (JObject)JsonConvert.DeserializeObject<JObject>(token);
+            if(obj == null )
+            {
+                access_token = null;
+                return getUserInfo(openid);
+            }
             return obj;
         }
     }

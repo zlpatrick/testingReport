@@ -112,12 +112,15 @@
     <Content Include="assets\trymore.jpg" />
     <Content Include="assets\way-1.jpg" />
     <Content Include="background.aspx" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="header.htm" />
+    <Content Include="img\big5.png" />
     <Content Include="img\button.png" />
     <Content Include="img\corner.png" />
     <Content Include="img\happy.jpg" />
     <Content Include="img\invite.jpg" />
     <Content Include="img\last-option-button.jpg" />
+    <Content Include="img\mbti.gif" />
     <Content Include="img\share.jpg" />
     <Content Include="img\test-life.jpg" />
     <Content Include="img\test.png" />
@@ -141,6 +144,7 @@
     <Content Include="test.aspx" />
     <Content Include="tip.aspx" />
     <Content Include="vote.aspx" />
+    <Content Include="way-tool.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -240,6 +244,13 @@
     <Compile Include="vote.aspx.designer.cs">
       <DependentUpon>vote.aspx</DependentUpon>
     </Compile>
+    <Compile Include="way-tool.aspx.cs">
+      <DependentUpon>way-tool.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="way-tool.aspx.designer.cs">
+      <DependentUpon>way-tool.aspx</DependentUpon>
+    </Compile>
     <Compile Include="weixin.aspx.cs">
       <DependentUpon>weixin.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -251,6 +262,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

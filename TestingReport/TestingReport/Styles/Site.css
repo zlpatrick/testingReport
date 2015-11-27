@@ -29,14 +29,14 @@ label
 
 .buttonBack
 {
-    background-color:#5bc0de;
-    border:none;
+    background-color:white;
+    border:1px solid #eee;
     height:120px;
     line-height:120px;
-    width:auto;
-    padding-left:50px;
-    padding-right:50px;
-    color:White;
+    width:100%;
+   
+    color:#555;
+
 }
 
 .test-option-button-click

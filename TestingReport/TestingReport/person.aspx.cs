@@ -68,7 +68,7 @@ namespace TestingReport
                     age, region, industry,income,degree,marriage);
                 db.executeSqlNonQuery(sql);
             }
-           
+            Response.Redirect("person-self.aspx?userid=" + userid);
         }
     }
 }
