@@ -54,10 +54,20 @@ namespace TestingReport
             string token = reader.ReadToEnd();
 
             JObject obj = (JObject)JsonConvert.DeserializeObject<JObject>(token);
-            if(obj == null )
+            if (obj == null)
             {
                 access_token = null;
                 return getUserInfo(openid);
+            }
+            else
+            {
+                JToken temp = null;
+                obj.TryGetValue("errorcode", out temp);
+                if (temp != null)
+                {
+                    access_token = null;
+                    return getUserInfo(openid);
+                }
             }
             return obj;
         }

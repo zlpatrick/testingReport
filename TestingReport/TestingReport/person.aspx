@@ -259,6 +259,21 @@
             {
                 $("#genderDropDown").text(" " + $("#gender").val());
             }
+            if ($("#age").val() != '') {
+                $("#ageDropDown").text(" " + $("#age").val());
+            }
+            if ($("#industry").val() != '') {
+                $("#industryDropDown").text(" " + $("#industry").val());
+            }
+            if ($("#income").val() != '') {
+                $("#incomeDropDown").text(" " + $("#income").val());
+            }
+            if ($("#degree").val() != '') {
+                $("#degreeDropDown").text(" " + $("#degree").val());
+            }
+            if ($("#marriage").val() != '') {
+                $("#marriageDropDown").text(" " + $("#marriage").val());
+            }
         }
         );
     </script>

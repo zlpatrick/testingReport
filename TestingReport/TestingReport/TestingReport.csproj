@@ -126,10 +126,12 @@
     <Content Include="img\test.png" />
     <Content Include="img\whiteback.png" />
     <Content Include="index.aspx" />
+    <Content Include="life-work.aspx" />
     <Content Include="more-info.aspx" />
     <Content Include="Newtonsoft.Json.dll" />
     <Content Include="person-self.aspx" />
     <Content Include="person.aspx" />
+    <Content Include="profile.aspx" />
     <Content Include="result-pre.aspx" />
     <Content Include="result.aspx" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -153,6 +155,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="weixin.aspx" />
+    <Content Include="work-life.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin-index.aspx.cs">
@@ -187,6 +190,13 @@
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
     </Compile>
+    <Compile Include="life-work.aspx.cs">
+      <DependentUpon>life-work.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="life-work.aspx.designer.cs">
+      <DependentUpon>life-work.aspx</DependentUpon>
+    </Compile>
     <Compile Include="more-info.aspx.cs">
       <DependentUpon>more-info.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -207,6 +217,13 @@
     </Compile>
     <Compile Include="person.aspx.designer.cs">
       <DependentUpon>person.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="profile.aspx.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="profile.aspx.designer.cs">
+      <DependentUpon>profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="result-pre.aspx.cs">
@@ -259,6 +276,13 @@
       <DependentUpon>weixin.aspx</DependentUpon>
     </Compile>
     <Compile Include="WeixinUtil.cs" />
+    <Compile Include="work-life.aspx.cs">
+      <DependentUpon>work-life.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="work-life.aspx.designer.cs">
+      <DependentUpon>work-life.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\App_Data\" />

@@ -20,23 +20,41 @@ namespace TestingReport
         
         protected void Page_Load(object sender, EventArgs e)
         {
-            string userid = Request["userid"];
-            if (userid == null)
+            if (!IsPostBack)
             {
-                userid = "om8uZt7fajggMH8vqjFb1afiE8y4";
-            }
-            JObject obj = WeixinUtil.getUserInfo(userid);
-            userImageUrl = obj.GetValue("headimgurl").ToString();
-            userNickName = obj.GetValue("nickname").ToString();
+                string userid = Request["userid"];
+                if (userid == null)
+                {
+                    userid = "om8uZt7fajggMH8vqjFb1afiE8y4";
+                }
+                JObject obj = WeixinUtil.getUserInfo(userid);
+                userImageUrl = obj.GetValue("headimgurl").ToString();
+                userNickName = obj.GetValue("nickname").ToString();
 
-            string sql = "select * from Users where userName='" + userid + "'";
-            DBUtil db = new DBUtil();
-            DataSet ds = db.executeSqlQuery(sql);
+                string sql = "select * from Users where userName='" + userid + "'";
+                DBUtil db = new DBUtil();
+                DataSet ds = db.executeSqlQuery(sql);
 
-            if (ds.Tables[0].Rows.Count <= 0)
-            {
-                string province = obj.GetValue("province").ToString();
-                this.gender.Value = province;
+                if (ds.Tables[0].Rows.Count <= 0)
+                {
+                    string province = obj.GetValue("province").ToString();
+                    this.gender.Value = province;
+                }
+                else
+                {
+                    string dbregion = ds.Tables[0].Rows[0]["region"].ToString();
+                    this.gender.Value = dbregion;
+                    string dbdegree = ds.Tables[0].Rows[0]["degree"].ToString();
+                    this.degree.Value = dbdegree;
+                    string dbmarriage = ds.Tables[0].Rows[0]["marriage"].ToString();
+                    this.marriage.Value = dbmarriage;
+                    string dbincome = ds.Tables[0].Rows[0]["income"].ToString();
+                    this.income.Value = dbincome;
+                    string dbage = ds.Tables[0].Rows[0]["age"].ToString();
+                    this.age.Value = dbage;
+                    string dbindustry = ds.Tables[0].Rows[0]["industry"].ToString();
+                    this.industry.Value = dbindustry;
+                }
             }
         }
 
@@ -59,7 +77,7 @@ namespace TestingReport
             DataSet ds = db.executeSqlQuery(sql);
             if (ds.Tables[0].Rows.Count > 0)
             {
-                sql = string.Format("update Users set age='{0}',region='{1}',industry='{2}',degree='{3}',income='{4}',marriage='{5}' where userName='{3}'", age, region, industry,degree,income,marriage,userid);
+                sql = string.Format("update Users set age='{0}',region='{1}',industry='{2}',degree='{3}',income='{4}',marriage='{5}' where userName='{6}'", age, region, industry,degree,income,marriage,userid);
                 db.executeSqlNonQuery(sql);
             }
             else
