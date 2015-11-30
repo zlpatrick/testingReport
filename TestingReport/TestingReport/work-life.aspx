@@ -38,6 +38,7 @@
             <div style="padding-left:50px">
                 <span class="glyphicon glyphicon-user"></span> 工作健康大数据
             </div>
+            <a href="profile.aspx?id=5&userid=<%=Request["userid"] %>">
             <div style="overflow:hidden;padding:50px;color:#bbb">
                 <div style="width:50%;float:left">
                     <div style="background-color:#efefef;font-size:40px;border:3px dashed lightblue;border-radius:20px;text-align:center;margin:80px 50px 50px 50px;padding:30px;">
@@ -60,6 +61,7 @@
                     </div>
                 </div>
             </div>
+            </a>
         </div>
         <div>
             <div style="padding-left:50px">
