@@ -132,6 +132,7 @@
     <Content Include="person-self.aspx" />
     <Content Include="person.aspx" />
     <Content Include="profile.aspx" />
+    <Content Include="result-day.aspx" />
     <Content Include="result-pre.aspx" />
     <Content Include="result.aspx" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -143,6 +144,7 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="test-day.aspx" />
     <Content Include="test.aspx" />
     <Content Include="tip.aspx" />
     <Content Include="vote.aspx" />
@@ -227,6 +229,13 @@
       <DependentUpon>profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="result-day.aspx.cs">
+      <DependentUpon>result-day.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="result-day.aspx.designer.cs">
+      <DependentUpon>result-day.aspx</DependentUpon>
+    </Compile>
     <Compile Include="result-pre.aspx.cs">
       <DependentUpon>result-pre.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -240,6 +249,13 @@
     </Compile>
     <Compile Include="result.aspx.designer.cs">
       <DependentUpon>result.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test-day.aspx.cs">
+      <DependentUpon>test-day.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test-day.aspx.designer.cs">
+      <DependentUpon>test-day.aspx</DependentUpon>
     </Compile>
     <Compile Include="test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>

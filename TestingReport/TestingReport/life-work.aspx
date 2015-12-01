@@ -69,7 +69,7 @@
             <div style="padding-left:50px">
                 <span class="glyphicon glyphicon-user"></span> 历史记录
                 <div>
-				<canvas id="canvas" height="450" width="600"></canvas>
+				<canvas id="canvas" height="450" width="600" style="margin-bottom:40px;margin-top:30px;"></canvas>
 			</div>
             </div>
         </div>
@@ -81,49 +81,49 @@
 <% if(toolBar != null && (!toolBar.Equals("")))
    { %>
 <script>
-    var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
+    
     var lineChartData = {
         labels: [<%=toolBar%>],
         datasets: [
             {
-                label: "<%=dimName%>",
+                label: "<%=dimName[0]%>",
                 fillColor: "rgba(198,220,220,0.2)",
                 strokeColor: "rgba(198,220,220,1)",
                 pointColor: "rgba(198,220,220,1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(198,220,220,1)",
-                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                data: [<%=scoreLabels[dimName[0]]%>]
             },
             {
-                label: "<%=%>",
+                label: "<%=dimName[1]%>",
                 fillColor: "rgba(220,198,220,0.2)",
                 strokeColor: "rgba(220,198,220,1)",
                 pointColor: "rgba(220,198,220,1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(220,198,220,1)",
-                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                data: [<%=scoreLabels[dimName[1]].Substring(0,scoreLabels[dimName[1]].Length-1)%>]
             },
             {
-                label: "<%=%>",
+                label: "<%=dimName[2]%>",
                 fillColor: "rgba(220,220,198,0.2)",
                 strokeColor: "rgba(220,220,198,1)",
                 pointColor: "rgba(220,220,198,1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(220,220,198,1)",
-                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                data: [<%=scoreLabels[dimName[2]].Substring(0,scoreLabels[dimName[2]].Length-1)%>]
             },
             {
-                label: "<%=%>",
+                label: "<%=dimName[3]%>",
                 fillColor: "rgba(220,220,220,0.2)",
                 strokeColor: "rgba(220,220,220,1)",
                 pointColor: "rgba(220,220,220,1)",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(220,220,220,1)",
-                data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                data: [<%=scoreLabels[dimName[3]].Substring(0,scoreLabels[dimName[3]].Length-1)%>]
             }
         ]
 

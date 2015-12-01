@@ -16,9 +16,9 @@ namespace TestingReport
         public List<string> measureNames = new List<string>();
         public List<string> measureScores = new List<string>();
         public List<string> measureBeats = new List<string>();
-        public string toolBar= "\"1\",\"2\",\"3\",\"4\",\"5\",\"6\",\"7\"";
+        public string toolBar= "";
         public List<string> dimName = new List<string>();
-        public List<string> scoreDisplay = new List<string>();
+        public Dictionary<string, string> scoreLabels = new Dictionary<string, string>();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -43,7 +43,7 @@ namespace TestingReport
                     string measureId = ds.Tables[0].Rows[i]["Id"].ToString();
                     measureNames.Add(measureName);
                     mNames.Add(Convert.ToInt32(ds.Tables[0].Rows[i]["Id"]),measureName);
-                    DataSet ds1 = db.executeSqlQuery("select * from MeasureScores where measureId=" + measureId + " and userId='" + userid + "'");
+                    DataSet ds1 = db.executeSqlQuery("select * from MeasureScores where measureId=" + measureId + " and userId='" + userid + "' order by testDateTime desc");
                     
                     if(ds1.Tables[0].Rows.Count > 0)
                     {
@@ -73,7 +73,7 @@ namespace TestingReport
                     {
                         string dt = ds.Tables[0].Rows[i]["testDateTime"].ToString();
                         DateTime datetime = DateTime.Parse(dt);
-                        string timeStr = datetime.Year + "年" + datetime.Month + "月";
+                        string timeStr = datetime.Year + "." + datetime.Month;
                         if(!measureAllScores.ContainsKey(timeStr))
                         {
                             measureAllScores.Add(timeStr, new Dictionary<string, int>());
@@ -86,7 +86,7 @@ namespace TestingReport
 
                 string labelNames = "";
 
-                Dictionary<string, string> scoreLabels = new Dictionary<string, string>();
+                
                 foreach(KeyValuePair<string,Dictionary<string,int>> pair in measureAllScores)
                 {
                     labelNames += "\"" + pair.Key + "\",";
@@ -98,13 +98,13 @@ namespace TestingReport
                         if(!dimName.Contains(dName))
                         {
                             dimName.Add(dName);
+                            scoreLabels.Add(dName,"");
                         }
-                        temp += pair2.Value + ",";
+                        scoreLabels[dName] += pair2.Value + ",";
                     }
-                    temp = temp.Substring(0, temp.Length - 1);
-
-                    scoreLabels.a
                 }
+
+                toolBar = labelNames.Substring(0, labelNames.Length - 1);
             }
         }
     }

@@ -73,7 +73,7 @@ namespace TestingReport
         protected void startTest(object sender, EventArgs e)
         {
             string id = this.topicId.Text.ToString();
-            Response.Redirect("test.aspx?id="+id+"&type="+this.topicType.Text.ToString()+"&totalChooseItem="+this.totalChooseItems.Text+"&totalOptions="+this.totalOptions.Text+"&userId="+Request["userid"].ToString());
+            Response.Redirect("test-day.aspx?id="+id+"&type="+this.topicType.Text.ToString()+"&totalChooseItem="+this.totalChooseItems.Text+"&totalOptions="+this.totalOptions.Text+"&userId="+Request["userid"].ToString());
         }
 
     }
