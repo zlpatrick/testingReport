@@ -306,6 +306,7 @@ select
     color:#666;
     
     padding:30px 30px 10px 30px;
+    line-height:80px;
 }
 
 .dimension-total-desc
@@ -335,8 +336,11 @@ select
 
 .result-dimension-score-beat-panel
 {
-     padding:10px 30px;
+     padding:50px 30px;
      color:#666;   
+     line-height:80px;
+
+     
 }
 
 button 
@@ -355,4 +359,15 @@ button
 .dropdown-menu li
 {
     border-bottom:1px solid lightgrey;
+}
+
+.title-TT 
+{
+    margin-left:40px;
+    margin-top:40px;
+}
+.result-category-score-beat-panel 
+{
+    padding:10px 30px;
+    color:#666;   
 }

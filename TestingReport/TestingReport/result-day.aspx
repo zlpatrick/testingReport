@@ -6,7 +6,7 @@
 <head runat="server">
     <title>幸福ABC - <%=topicTitle%></title>
     <link rel="shortcut icon" href="assets/favicon.ico">
-
+    <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
      <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
      <script src="Scripts/Chart.js"></script>
      <style>
@@ -37,12 +37,24 @@
      </style>
 </head>
 <body>
-    <asp:Panel id="titleDiv" runat="server"></asp:Panel>
-        <div style="width:80%;margin:auto">
-			<canvas id="canvas" height="250"></canvas>
+    <div>
+        <a href="person.aspx">
+            <div style="overflow:hidden;padding:50px;background-color:white">
+                <div style="float:left;width:20%"><img src="<%=userImageUrl %>" style="width:100%;border-radius:10px;"/></div>
+                <div style="float:left;padding:50px;color:#555">昵称: <%=userNickName %></div>
+                <div style="float:right;padding:50px 20px;color:#555"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></div>
+            </div>
+        </a>
+        <hr style="margin:0;border-bottom:1px solid #AAA"/>
+    </div>
+    <div style="background-color:#eee;height:100px;">&nbsp;</div>
+
+    <asp:Panel id="titleDiv" runat="server" style="border-top:1px solid #AAA;background-color:white"></asp:Panel>
+        <div style="width:80%;margin:auto;background-color:white">
+			<canvas id="canvas" height="250" style="background-color:white"></canvas>
 		</div>
 
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" style="background-color:white">
     <div>
    
     </div>
@@ -52,11 +64,11 @@
         if ((fromSource != null) && (fromSource.Equals("timeline") || fromSource.Equals("singlemessage") || fromSource.Equals("groupmessage")))
         { 
         %>
-    <div style="text-align:center;margin-top:30px;margin-bottom:40px"><img src="assets/trymore.jpg" style="width:100%"/></div>
+    <div style="text-align:center;margin-top:30px;margin-bottom:40px;background-color:white;border-bottom:1px solid #AAA"><img src="assets/trymore.jpg" style="width:100%"/></div>
     <%
     } else {%>
 
-    <div style="margin-bottom:80px;margin-top:40px">
+    <div style="margin-bottom:80px;margin-top:40px;background-color:white;">
         <a href="#" onclick="document.getElementById('mcover').style.display='block';"><img src="assets/share.jpg" style="width:40%;margin-left:5%;margin-right:2.5%"/></a>
         <a href="#" onclick="document.getElementById('mcover').style.display='block';"><img src="assets/invite.jpg" style="width:40%;margin-left:2.5%;margin-right:5%"/></a>
     </div>
@@ -91,4 +103,3 @@
    
 </body>
 </html>
-+
