@@ -175,7 +175,7 @@ namespace TestingReport
                     db.executeSqlNonQuery("insert into Votes(userId,TopicId,OptionId,ChooseItemPosition) values('" + userid +
                         "'," + Request["id"].ToString() + "," + i+","+chooseItem+")");
                 }
-                Response.Redirect("result-pre.aspx?id=" + Request["id"].ToString() + "&userid=" + userid+"&type="+Request["type"].ToString());
+                Response.Redirect("result.aspx?id=" + Request["id"].ToString() + "&userid=" + userid+"&type="+Request["type"].ToString());
             }            
         }
     }

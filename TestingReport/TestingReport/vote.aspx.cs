@@ -49,6 +49,17 @@ namespace TestingReport
                 imgPanel.Controls.Add(image);
 
                 Panel buttonPanel = new Panel();
+                DateTime now = DateTime.Now;
+
+                ds = db.executeSqlQuery("select * from MeasureScores where YEAR(testDateTime)=" + now.Year + " and MONTH(testDateTime)=" + now.Month + " and topicId=" + Request["id"] + " and userId='" + Request["userid"].ToString() + "'");
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    Panel temp = new Panel();
+                    Label tempLabel = new Label();
+                    tempLabel.Text = "您本月已经测试过了，每月建议只测试一次，是否还要再测一次？";
+                    temp.Controls.Add(tempLabel);
+                    buttonPanel.Controls.Add(temp);
+                }
                 buttonPanel.CssClass = "test-button-div";
                 Button button = new Button();
                
@@ -56,12 +67,14 @@ namespace TestingReport
                 button.Click += new EventHandler(startTest);
                 buttonPanel.Controls.Add(button);
 
+               
+
+
                 panel.Controls.Add(titlePanel);
-                
                 panel.Controls.Add(imgPanel);
                 panel.Controls.Add(introductionPanel);
                 panel.Controls.Add(buttonPanel);
-
+                
                 this.topicId.Text = id;
                 this.topicType.Text = topicType;
                 this.totalChooseItems.Text = totalChooseItems;
@@ -73,8 +86,14 @@ namespace TestingReport
         protected void startTest(object sender, EventArgs e)
         {
             string id = this.topicId.Text.ToString();
-            Response.Redirect("test-day.aspx?id="+id+"&type="+this.topicType.Text.ToString()+"&totalChooseItem="+this.totalChooseItems.Text+"&totalOptions="+this.totalOptions.Text+"&userId="+Request["userid"].ToString());
+            if (id.Equals("1")||id.Equals("8"))
+            {
+                Response.Redirect("test.aspx?id=" + id + "&type=" + this.topicType.Text.ToString() + "&totalChooseItem=" + this.totalChooseItems.Text + "&totalOptions=" + this.totalOptions.Text + "&userId=" + Request["userid"].ToString());
+            }
+            else
+            {
+                Response.Redirect("test-day.aspx?id=" + id + "&type=" + this.topicType.Text.ToString() + "&totalChooseItem=" + this.totalChooseItems.Text + "&totalOptions=" + this.totalOptions.Text + "&userId=" + Request["userid"].ToString());
+            }
         }
-
     }
 }

@@ -37,11 +37,14 @@
      </style>
 </head>
 <body>
+
+   
     <asp:Panel id="titleDiv" runat="server"></asp:Panel>
+     <% if(!"8".Equals(Request["id"].ToString())){ %>
         <div style="width:80%;margin:auto">
 			<canvas id="canvas" height="250"></canvas>
 		</div>
-
+        <%} %>
     <form id="form1" runat="server">
     <div>
    

@@ -396,7 +396,10 @@ namespace TestingReport
                             }
                             else if (topicId.Equals("5"))
                             {
-                                
+                                measureScores.Add(5,totalScore);
+                                measureScores.Add(6,100-totalScore);
+                                measureScores.Add(7,(dimensionScores[17] + dimensionScores[18]) / 2);
+                                measureScores.Add(8, dimensionScores[20]);
                             }
 
                             int year = DateTime.Now.Year;
@@ -472,6 +475,76 @@ namespace TestingReport
                                     measureBeats.Add(4, lessPersons * 100 / totalPersons);
                                 }
                             }
+                            else if (topicId.Equals("5"))
+                            {
+                                ds = db.executeSqlQuery("select * from MeasureScores where measureId = 5 and YEAR(testDateTime)=" + year + " and MONTH(testDateTime)=" + month + " and topicId=" + topicId);
+                                int totalPersons = ds.Tables[0].Rows.Count;
+
+                                ds = db.executeSqlQuery("select * from MeasureScores where measureId = 5 and YEAR(testDateTime)=" + year + " and MONTH(testDateTime)=" + month + " and topicId=" + topicId + " and score<" + measureScores[5]);
+
+                                int lessPersons = ds.Tables[0].Rows.Count;
+
+                                if (totalPersons == 0)
+                                {
+                                    measureBeats.Add(5, 100);
+                                }
+                                else
+                                {
+                                    measureBeats.Add(5, lessPersons * 100 / totalPersons);
+                                }
+
+
+                                ds = db.executeSqlQuery("select * from MeasureScores where measureId = 6 and YEAR(testDateTime)=" + year + " and MONTH(testDateTime)=" + month + " and topicId=" + topicId);
+                                totalPersons = ds.Tables[0].Rows.Count;
+
+                                ds = db.executeSqlQuery("select * from MeasureScores where measureId = 6 and YEAR(testDateTime)=" + year + " and MONTH(testDateTime)=" + month + " and topicId=" + topicId + " and score<" + measureScores[6]);
+
+                                lessPersons = ds.Tables[0].Rows.Count;
+
+                                if (totalPersons == 0)
+                                {
+                                    measureBeats.Add(6, 100);
+                                }
+                                else
+                                {
+                                    measureBeats.Add(6, lessPersons * 100 / totalPersons);
+                                }
+
+
+                                ds = db.executeSqlQuery("select * from MeasureScores where measureId = 7 and YEAR(testDateTime)=" + year + " and MONTH(testDateTime)=" + month + " and topicId=" + topicId);
+                                totalPersons = ds.Tables[0].Rows.Count;
+
+                                ds = db.executeSqlQuery("select * from MeasureScores where measureId = 7 and YEAR(testDateTime)=" + year + " and MONTH(testDateTime)=" + month + " and topicId=" + topicId + " and score<" + measureScores[7]);
+
+                                lessPersons = ds.Tables[0].Rows.Count;
+
+                                if (totalPersons == 0)
+                                {
+                                    measureBeats.Add(7, 100);
+                                }
+                                else
+                                {
+                                    measureBeats.Add(7, lessPersons * 100 / totalPersons);
+                                }
+
+
+                                ds = db.executeSqlQuery("select * from MeasureScores where measureId = 8 and YEAR(testDateTime)=" + year + " and MONTH(testDateTime)=" + month + " and topicId=" + topicId);
+                                totalPersons = ds.Tables[0].Rows.Count;
+
+                                ds = db.executeSqlQuery("select * from MeasureScores where measureId = 8 and YEAR(testDateTime)=" + year + " and MONTH(testDateTime)=" + month + " and topicId=" + topicId + " and score<" + measureScores[8]);
+
+                                lessPersons = ds.Tables[0].Rows.Count;
+
+                                if (totalPersons == 0)
+                                {
+                                    measureBeats.Add(8, 100);
+                                }
+                                else
+                                {
+                                    measureBeats.Add(8, lessPersons * 100 / totalPersons);
+                                }
+                            }
+                            
                             
                             ds = db.executeSqlQuery("select * from MeasureScores where YEAR(testDateTime)=" + year + " and MONTH(testDateTime)=" + month + " and userId='" + userId + "' and topicId=" + topicId);
                             if ( ds.Tables[0].Rows.Count > 0)
@@ -482,8 +555,9 @@ namespace TestingReport
 
                             foreach (KeyValuePair<int, int> pair in measureScores)
                             {
-                                string insertSql = string.Format("insert into MeasureScores(topicId,measureId,userId,score,beats,testDateTime) values({0},{1},'{2}',{3},{4},'{5}'",
+                                string insertSql = string.Format("insert into MeasureScores(topicId,measureId,userId,score,beats,testDateTime) values({0},{1},'{2}',{3},{4},'{5}')",
                                     topicId, pair.Key, userId, pair.Value,measureBeats[pair.Key],DateTime.Now.ToString());
+                                db.executeSqlNonQuery(insertSql);
                             }
 
                             /*

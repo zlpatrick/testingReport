@@ -23,7 +23,7 @@
     <asp:Label ID="userId" runat="server" Visible="false"  />
     </form>
 
-
+    <!--
     <script>
         function onBridgeReady() {
             WeixinJSBridge.call('hideOptionMenu');
@@ -39,6 +39,6 @@
         } else {
             onBridgeReady();
         }
-</script>
+</script>-->
 </body>
 </html>

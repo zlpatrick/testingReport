@@ -36,16 +36,16 @@
    
     <div style="border-top:1px solid #AAA;border-bottom:1px solid #AAA;background-color:white;padding:50px;">
         <div ><span class="glyphicon glyphicon-user"></span> 性格分析</div>
-        <div style="text-align:right"><img src="img/big5.png" style="width:70%;"/></div>
-        <div style="margin-top:40px"><a href="result.aspx">查看我的测试结果</a> <a href="test.aspx">再测一次</a></div>
-        <div><a href="test.aspx">进入测试</a></div>
+        <div style="text-align:right"><a href="profile.aspx?id=1&userid=<%=Request["userid"] %>"><img src="img/big5.png" style="width:70%;"/></a></div>
+       <!-- <div style="margin-top:40px"><a href="result.aspx">查看我的测试结果</a> <a href="test.aspx">再测一次</a></div>
+        <div><a href="test.aspx">进入测试</a></div>-->
     </div>
 
     <div style="border-top:1px solid #AAA;border-bottom:1px solid #AAA;background-color:white;padding:50px;margin-top:50px;margin-bottom:50px;">
         <div ><span class="glyphicon glyphicon-user"></span> 职业取向</div>
-        <div style="text-align:right"><img src="img/mbti.gif" style="width:70%;"/></div>
-        <div style="margin-top:40px"><a href="result.aspx">查看我的测试结果</a> <a href="test.aspx">再测一次</a></div>
-        <div><a href="test.aspx">进入测试</a></div>
+        <div style="text-align:right"><a href="profile.aspx?id=8&userid=<%=Request["userid"] %>"><img src="img/mbti.gif" style="width:70%;"/></a></div>
+        <!--<div style="margin-top:40px"><a href="result.aspx">查看我的测试结果</a> <a href="test.aspx">再测一次</a></div>
+        <div><a href="test.aspx">进入测试</a></div>-->
     </div>
 
     </div>

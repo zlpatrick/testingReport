@@ -26,14 +26,19 @@
         <hr style="margin:0;border-bottom:1px solid #AAA"/>
     </div>
     <div style="padding-top:40px;padding-bottom:40px;">
-        <div style="text-align:center">工作状态 &nbsp;&nbsp;|&nbsp;&nbsp; <a href="life-work.aspx">生活状态</a></div>
+        <div style="text-align:center">工作状态 &nbsp;&nbsp;|&nbsp;&nbsp; <a href="life-work.aspx?userid=<%=Request["userid"] %>">生活状态</a></div>
     </div>
     <div style="background-color:White;border-top:1px solid #AAA;border-bottom:1px solid #AAA">
-        <div style="padding-top:30px;padding-bottom:30px;text-align:center;color:orangered">关爱指数：<span class="glyphicon glyphicon-star"></span>
+        <div style="padding-top:30px;padding-bottom:30px;text-align:center;color:orangered">关爱指数：
+            <% for (int index = 1; index <= totalStars; index++)
+               {%>
             <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star"></span>
+            <% }
+                for (int index = 1; index <= 5-totalStars; index++){
+                 %>
+           
             <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
+            <%} %>
         </div>
         <div>
             <div style="padding-left:50px">
@@ -69,7 +74,18 @@
                 <span class="glyphicon glyphicon-user"></span> 历史记录
                 <div>
 				<canvas id="canvas" height="450" width="600" style="margin-bottom:40px;margin-top:30px;"></canvas>
-			</div>
+               <% if (toolBar != null && (!toolBar.Equals("")))
+                   { %>
+                   <div style="font-size:40px;margin-bottom:40px;">
+                        <span style="color:orangered">— <%=dimName[0]%></span>
+                        <span style="color:lightblue">— <%=dimName[1]%></span>
+                        <span style="color:green">— <%=dimName[2]%></span>
+                        <span style="color:purple">— <%=dimName[3]%></span>
+
+                   </div>
+   <%
+                    } %>
+			    </div>
             </div>
         </div>
     </div>
@@ -86,42 +102,42 @@
         datasets: [
             {
                 label: "<%=dimName[0]%>",
-                fillColor: "rgba(198,220,220,0.2)",
-                strokeColor: "rgba(198,220,220,1)",
-                pointColor: "rgba(198,220,220,1)",
+                fillColor: "transparent",
+                strokeColor: "red",
+                pointColor: "red",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(198,220,220,1)",
+                pointHighlightStroke: "red",
                 data: [<%=scoreLabels[dimName[0]]%>]
             },
             {
                 label: "<%=dimName[1]%>",
-                fillColor: "rgba(220,198,220,0.2)",
-                strokeColor: "rgba(220,198,220,1)",
-                pointColor: "rgba(220,198,220,1)",
+                fillColor: "transparent",
+                strokeColor: "lightblue",
+                pointColor: "lightblue",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,198,220,1)",
+                pointHighlightStroke: "lightblue",
                 data: [<%=scoreLabels[dimName[1]].Substring(0,scoreLabels[dimName[1]].Length-1)%>]
             },
             {
                 label: "<%=dimName[2]%>",
-                fillColor: "rgba(220,220,198,0.2)",
-                strokeColor: "rgba(220,220,198,1)",
-                pointColor: "rgba(220,220,198,1)",
+                fillColor: "transparent",
+                strokeColor: "green",
+                pointColor: "green",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,198,1)",
+                pointHighlightStroke: "green",
                 data: [<%=scoreLabels[dimName[2]].Substring(0,scoreLabels[dimName[2]].Length-1)%>]
             },
             {
                 label: "<%=dimName[3]%>",
-                fillColor: "rgba(220,220,220,0.2)",
-                strokeColor: "rgba(220,220,220,1)",
-                pointColor: "rgba(220,220,220,1)",
+                fillColor: "transparent",
+                strokeColor: "purple",
+                pointColor: "purple",
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
-                pointHighlightStroke: "rgba(220,220,220,1)",
+                pointHighlightStroke: "purple",
                 data: [<%=scoreLabels[dimName[3]].Substring(0,scoreLabels[dimName[3]].Length-1)%>]
             }
         ]

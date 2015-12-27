@@ -10,9 +10,15 @@ namespace TestingReport
 {
     public partial class testday : System.Web.UI.Page
     {
+        static List<int> randomOptionIds = new List<int>();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                randomOptionIds = new List<int>();
+            }
+            //if (!IsPostBack)
+           // {
                 string id = Request["id"].ToString();
                 string type = Request["type"].ToString();
                 string sql = "select * from Options where topicId=" + id + " order by OptionOrder asc";
@@ -36,29 +42,31 @@ namespace TestingReport
 
                 ds = db.executeSqlQuery(TopicSql);
 
-                List<int> randomOptionIds = new List<int>();
-                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                if (randomOptionIds.Count == 0)
                 {
-                    string optionList = ds.Tables[0].Rows[i]["optionIdList"].ToString();
-                    string[] list = optionList.Split(',');
-                    List<int> integerValues = new List<int>();
-                    for (int j = 0; j < list.Length; j++)
+                    for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
-                        integerValues.Add(Convert.ToInt32(list[j]));
-                    }
-                    Random ran = new Random();
-                    int first = ran.Next(1, integerValues.Count);
-                    int second = ran.Next(1, integerValues.Count);
-                    if (first == second)
-                    {
-                        if (first == integerValues.Count)
-                            second = 1;
-                        else
-                            second = first + 1;
-                    }
-                    randomOptionIds.Add(integerValues[first - 1]);
-                    randomOptionIds.Add(integerValues[second - 1]);
+                        string optionList = ds.Tables[0].Rows[i]["optionIdList"].ToString();
+                        string[] list = optionList.Split(',');
+                        List<int> integerValues = new List<int>();
+                        for (int j = 0; j < list.Length; j++)
+                        {
+                            integerValues.Add(Convert.ToInt32(list[j]));
+                        }
+                        Random ran = new Random();
+                        int first = ran.Next(1, integerValues.Count);
+                        int second = ran.Next(1, integerValues.Count);
+                        if (first == second)
+                        {
+                            if (first == integerValues.Count)
+                                second = 1;
+                            else
+                                second = first + 1;
+                        }
+                        randomOptionIds.Add(integerValues[first - 1]);
+                        randomOptionIds.Add(integerValues[second - 1]);
 
+                    }
                 }
 
                 ds = db.executeSqlQuery(sql);
@@ -116,23 +124,24 @@ namespace TestingReport
                         {
                             Panel chooseItemRadioPanel = new Panel();
                             /* RadioButton bt = new RadioButton();
-                             bt.GroupName = "RadioGroup" + order;
-                             bt.ID = "RadioGroup" + order+"_RadioOption" + itemDs.Tables[0].Rows[j]["ItemPosition"].ToString();
-                             bt.Text = itemDs.Tables[0].Rows[j]["ItemText"].ToString();
-                             bt.AutoPostBack = true;
-                             bt.CheckedChanged += new EventHandler(startTest);
-                             chooseItemRadioPanel.Controls.Add(bt);*/
+                                bt.GroupName = "RadioGroup" + order;
+                                bt.ID = "RadioGroup" + order+"_RadioOption" + itemDs.Tables[0].Rows[j]["ItemPosition"].ToString();
+                                bt.Text = itemDs.Tables[0].Rows[j]["ItemText"].ToString();
+                                bt.AutoPostBack = true;
+                                bt.CheckedChanged += new EventHandler(startTest);
+                                chooseItemRadioPanel.Controls.Add(bt);*/
 
                             //chooseItemRadioPanel.ID = "RadioGroup" + order + "_RadioOption" + itemDs.Tables[0].Rows[j]["ItemPosition"].ToString();
                             //chooseItemRadioPanel.
 
 
                             Button bt = new Button();
-                            bt.ID = "RadioGroup" + currentOrder + "_RadioOption" + itemDs.Tables[0].Rows[j]["ItemPosition"].ToString();
+                            bt.ID = "RadioGroup" + currentOrder + "_RadioOption" + itemDs.Tables[0].Rows[j]["ItemPosition"].ToString() + "_Original" + order;
                             bt.Text = itemDs.Tables[0].Rows[j]["ItemText"].ToString();
                             bt.Click += new EventHandler(startTest);
+
                             bt.CssClass = "test-option-button";
-                            bt.OnClientClick = "$('#RadioGroup" + currentOrder + "_RadioOption" + itemDs.Tables[0].Rows[j]["ItemPosition"].ToString() + "').addClass('test-option-button-click')";
+                            bt.OnClientClick = "$('#RadioGroup" + currentOrder + "_RadioOption" + itemDs.Tables[0].Rows[j]["ItemPosition"].ToString() + "_Original" + order + "').addClass('test-option-button-click')";
                             chooseItemRadioPanel.Controls.Add(bt);
 
                             chooseItemPanel.Controls.Add(chooseItemRadioPanel);
@@ -160,8 +169,8 @@ namespace TestingReport
                         currentOrder++;
                     }
                 }
-        
-        }
+          //  }
+        } 
 
         protected void lastButtonClick(object sender, EventArgs e)
         {
@@ -178,16 +187,17 @@ namespace TestingReport
             string[] ids = button.ID.Split('_');
             int id = Convert.ToInt32(ids[0].Replace("RadioGroup", ""));
             int checkedindex = Convert.ToInt32(ids[1].Replace("RadioOption", ""));
+            int originalId = Convert.ToInt32(ids[2].Replace("Original", ""));
             int totalChooseItem = Convert.ToInt32(Request["totalChooseItem"].ToString());
             int totalOptions = Convert.ToInt32(Request["totalOptions"].ToString());
-            totalOptions = 10;
-            if (ViewState[id.ToString()] == null)
+            //totalOptions = 10;
+            if (ViewState[originalId.ToString()] == null)
             {
-                ViewState.Add(id.ToString(), checkedindex);
+                ViewState.Add(originalId.ToString(), checkedindex);
             }
             else
             {
-                ViewState[id.ToString()] = checkedindex;
+                ViewState[originalId.ToString()] = checkedindex;
             }
             /*for (int i = 1; i <= totalChooseItem; i++)
             {
@@ -198,7 +208,7 @@ namespace TestingReport
             }*/
 
             form1.FindControl("OptionOrder" + id).Visible = false;
-            if (id< totalOptions)
+            if (id < 10)//totalOptions)
             {
                 form1.FindControl("OptionOrder" + (id+ 1)).Visible = true;
             }
@@ -207,12 +217,16 @@ namespace TestingReport
                 string userid=Request["userId"].ToString();
                 DBUtil db = new DBUtil();
                 db.executeSqlNonQuery("delete from Votes where userId='" + userid + "' and TopicId=" + Request["id"].ToString());
+                //foreach(KeyValuePair<string,
+                
                 for (int i = 1; i <= totalOptions; i++)
                 {
-                    int chooseItem = Convert.ToInt32(ViewState[i.ToString()]);
-
-                    db.executeSqlNonQuery("insert into Votes(userId,TopicId,OptionId,ChooseItemPosition) values('" + userid +
-                        "'," + Request["id"].ToString() + "," + i+","+chooseItem+")");
+                    if (ViewState[i.ToString()] != null)
+                    {
+                        int chooseItem = Convert.ToInt32(ViewState[i.ToString()]);
+                        db.executeSqlNonQuery("insert into Votes(userId,TopicId,OptionId,ChooseItemPosition) values('" + userid +
+                            "'," + Request["id"].ToString() + "," + i + "," + chooseItem + ")");
+                    }
                 }
                 Response.Redirect("result-day.aspx?id=" + Request["id"].ToString() + "&userid=" + userid+"&type="+Request["type"].ToString());
             }            

@@ -19,6 +19,8 @@ namespace TestingReport
         public string toolBar= "";
         public List<string> dimName = new List<string>();
         public Dictionary<string, string> scoreLabels = new Dictionary<string, string>();
+        public int totalStars = 0;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -69,9 +71,16 @@ namespace TestingReport
                 Dictionary<string, Dictionary<string, int>> measureAllScores = new Dictionary<string, Dictionary<string, int>>();
                 if( ds.Tables[0].Rows.Count > 0 )
                 {
+                    int stars = 1;
+                    string tempDate = "";
                     for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                     {
                         string dt = ds.Tables[0].Rows[i]["testDateTime"].ToString();
+                        if (!dt.Equals(tempDate))
+                        {
+                            tempDate = dt;
+                            stars++;
+                        }
                         DateTime datetime = DateTime.Parse(dt);
                         string timeStr = datetime.Year + "." + datetime.Month;
                         if(!measureAllScores.ContainsKey(timeStr))
@@ -81,6 +90,15 @@ namespace TestingReport
                         int measureId = Convert.ToInt32(ds.Tables[0].Rows[i]["measureId"]);
                         int score = Convert.ToInt32(ds.Tables[0].Rows[i]["score"].ToString());
                         measureAllScores[timeStr].Add(mNames[measureId], score);
+                    }
+
+                    if (stars > 5)
+                    {
+                        totalStars = 5;
+                    }
+                    else
+                    {
+                        totalStars = stars;
                     }
                 }
 
