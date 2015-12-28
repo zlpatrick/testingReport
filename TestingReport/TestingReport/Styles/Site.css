@@ -371,3 +371,18 @@ button
     padding:10px 30px;
     color:#666;   
 }
+
+.user-tag 
+{
+    margin:10px 0px;
+}
+
+.user-tag span
+{
+    font-size:40px;
+    border:1px solid rgba(117,197,240,1);
+    padding:10px;
+    border-radius:10px;
+    margin-right:20px;
+    color:rgba(117,197,240,1);
+}

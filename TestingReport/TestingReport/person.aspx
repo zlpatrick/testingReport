@@ -25,21 +25,14 @@
 </head>
 <body style="background-color:#eee">
     <form id="form1" runat="server">
-    <div style="overflow:hidden;padding:50px; background-color:white">
-        <div style="float:left;width:20%"><img src="<%=userImageUrl %>" style="width:100%;border-radius:10px;"/></div>
-        <div style="float:left;padding:50px;color:#555">昵称: <%=userNickName %></div>
+    <div style="background-color:rgba(117,197,240,1);height:300px;position:relative;">
+        <img src="<%=userImageUrl %>" style="width:200px;border-radius:100px;border-radius:100px;position:absolute;bottom:-100px;left:calc((100% - 200px)/2)"/>
     </div>
 
-    <hr style="margin:0;border-bottom:1px solid #AAA"/>
-
-    <!--<div style="overflow:hidden;">
-        <div style="width:50%;float:left;padding-top:30px;padding-bottom:30px;">
-            <img src="img/corner.png" style="width:100px;margin-left:50px;"/> <a href="person-self.aspx" style="color:#555">认识自我</a>
-        </div>
-        <div style="width:50%;float:left;padding-top:30px;padding-bottom:30px;background-color:lightgray;color:white">
-            <img src="img/corner.png" style="width:100px;margin-left:50px;"/> 个人设置
-        </div>
-    </div>-->
+    
+    <div style="text-align:center;color:#555;padding-top:120px;padding-bottom:30px;background-color:white"><%=userNickName %></div>
+    
+    <hr style="margin:0;border-color:#AAA;"/>
     <div style="padding-top:30px;padding-bottom:30px;padding-left:50px;font-size:45px;">
         个人设置
     </div>

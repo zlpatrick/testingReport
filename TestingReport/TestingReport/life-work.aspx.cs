@@ -20,6 +20,12 @@ namespace TestingReport
         public List<string> dimName = new List<string>();
         public Dictionary<string, string> scoreLabels = new Dictionary<string, string>();
         public int totalStars = 0;
+        public string age = "年龄未设置";
+        public string industry = "行业未设置";
+        public string region = "地区未设置";
+        public int selfPercent = 0;
+        public int testTimes = 0;
+        public int toolTimes = 0;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -33,10 +39,17 @@ namespace TestingReport
                 JObject obj = WeixinUtil.getUserInfo(userid);
                 userImageUrl = obj.GetValue("headimgurl").ToString();
                 userNickName = obj.GetValue("nickname").ToString();
-
-                string sql = "select * from measures where TopicId=2";
                 DBUtil db = new DBUtil();
-                DataSet ds = db.executeSqlQuery(sql);
+                DataSet ds = db.executeSqlQuery("select * from Users where userName='" + userid + "'");
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    age = ds.Tables[0].Rows[0]["age"].ToString();
+                    industry = ds.Tables[0].Rows[0]["industry"].ToString();
+                    region = ds.Tables[0].Rows[0]["region"].ToString();
+                }
+                string sql = "select * from measures where TopicId=2";
+                
+                ds = db.executeSqlQuery(sql);
 
                 Dictionary<int, string> mNames = new Dictionary<int,string>();
                 for(int i = 0;i<ds.Tables[0].Rows.Count;i++)

@@ -15,16 +15,26 @@
 </head>
 <body style="background-color:#eee">
     <form id="form1" runat="server">
-    <div>
-        <a href="person.aspx">
-            <div style="overflow:hidden;padding:50px;background-color:white">
-                <div style="float:left;width:20%"><img src="<%=userImageUrl %>" style="width:100%;border-radius:10px;"/></div>
-                <div style="float:left;padding:50px;color:#555">昵称: <%=userNickName %></div>
-                <div style="float:right;padding:50px 20px;color:#555"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></div>
-            </div>
-        </a>
-        <hr style="margin:0;border-bottom:1px solid #AAA"/>
+         <a href="person.aspx?userid=<%=Request["userid"] %>">
+    <div style="background-color:rgba(117,197,240,1);height:300px;position:relative;">
+        <img src="<%=userImageUrl %>" style="width:200px;border-radius:100px;border-radius:100px;position:absolute;bottom:-100px;left:calc((100% - 200px)/2)"/>
     </div>
+    </a>
+    
+    <div style="text-align:center;color:#555;padding-top:120px;padding-bottom:30px;background-color:white">
+        <div><%=userNickName %></div>
+        <div class="user-tag">
+            <span><%=age %></span><span><%=industry %></span><span><%=region %></span>
+        </div>
+        <div style="font-size:40px;margin-top:30px;color:grey">
+            <ul style="padding:0">
+                <li style="display:inline-block;width:32%;border-right: 1px solid lightgrey"><span style="color:rgba(117,197,240,1)"><%=testTimes %>次</span><br />测试次数</li>
+                <li style="display:inline-block;width:32%;border-right: 1px solid lightgrey"><span style="color:rgba(117,197,240,1)"><%=toolTimes %>天</span><br />使用工具</li>
+                <li style="display:inline-block;width:32%"><span style="color:rgba(117,197,240,1)"><%=selfPercent %>%</span><br />认识自我</li>
+            </ul>
+        </div>
+    </div>
+        <hr style="margin:0;border-color:#AAA;"/>
     <div style="padding-top:40px;padding-bottom:40px;">
         <div style="text-align:center">工作状态 &nbsp;&nbsp;|&nbsp;&nbsp; <a href="life-work.aspx?userid=<%=Request["userid"] %>">生活状态</a></div>
     </div>
