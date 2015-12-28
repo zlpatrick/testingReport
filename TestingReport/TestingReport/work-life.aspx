@@ -12,6 +12,12 @@
     
     <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
+    <style>
+    a:hover
+    {
+        text-decoration:none;
+    }
+    </style>
 </head>
 <body style="background-color:#eee">
     <form id="form1" runat="server">
@@ -35,43 +41,42 @@
         </div>
     </div>
         <hr style="margin:0;border-color:#AAA;"/>
-    <div style="padding-top:40px;padding-bottom:40px;">
-        <div style="text-align:center">工作状态 &nbsp;&nbsp;|&nbsp;&nbsp; <a href="life-work.aspx?userid=<%=Request["userid"] %>">生活状态</a></div>
+
+    <div style="padding-top:60px;padding-bottom:150px;background-color:White">
+        <div style="color:orangered;text-align:center;margin-bottom:50px;margin-top:20px;">你的幸福指数为90，加油<br /><span style="font-size:40px">击败全国70%网友</span></div>
+        <div style="text-align:center"><span style="border:3px solid rgba(117,197,240,1);color:rgba(117,197,240,1);padding:20px;border-radius:40px;">工作状态</span> &nbsp;&nbsp;&nbsp;&nbsp; 
+        <a href="life-work.aspx?userid=<%=Request["userid"] %>"><span  style="border:3px solid lightgrey;color:lightgrey;padding:20px;border-radius:40px;">生活状态</span></a></div>
     </div>
-    <div style="background-color:White;border-top:1px solid #AAA;border-bottom:1px solid #AAA">
-        <div style="padding-top:30px;padding-bottom:30px;text-align:center;color:orangered">关爱指数：
-            <% for (int index = 1; index <= totalStars; index++)
-               {%>
-            <span class="glyphicon glyphicon-star"></span>
-            <% }
-                for (int index = 1; index <= 5-totalStars; index++){
-                 %>
-           
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <%} %>
-        </div>
+
+   
+    <div style="background-color:rgba(117,197,240,1)">
+       
         <div>
-            <div style="padding-left:50px">
-                <span class="glyphicon glyphicon-user"></span> 工作健康大数据
+            <div style="position:relative;border:none">
+                <div style="width: 0;height: 0;border-top: 200px solid white;border-right: 0 solid transparent;z-index:-1" id="triangle"  class="triangle"></div>
+                <div style="position:absolute;left:50px;bottom:-5px;width:300px;border-radius:150px;background-color:white;z-index:20;height:300px">&nbsp;</div>
+                <div style="position:absolute;left:60px;bottom:5px;width:280px;border-radius:140px;background-color:rgba(117,197,240,1);z-index:50;height:280px;color:white;padding:70px 40px;text-align:center">工作状态大数据</div>
             </div>
+
+
             <a href="profile.aspx?id=5&userid=<%=Request["userid"] %>">
-            <div style="overflow:hidden;padding:50px;color:#bbb">
+            <div style="overflow:hidden;padding:50px;color:white">
                 <div style="width:50%;float:left">
-                    <div style="background-color:#efefef;font-size:40px;border:3px dashed lightblue;border-radius:20px;text-align:center;margin:80px 50px 50px 50px;padding:30px;">
+                    <div style="background-color:rgba(175,204,216,1);font-size:40px;border:1px solid white;border-radius:40px;text-align:center;margin:60px 20px 20px 20px;padding:50px 30px;border-bottom-right-radius:0">
                         <% =measureNames[0]%><br /><%=measureScores[0] %>分<br />击败<%=measureBeats[0] %>%网友
                         
                     </div>
-                    <div style="background-color:#efefef;font-size:40px;border:3px dashed lightblue;border-radius:20px;text-align:center;margin:50px;padding:30px;">
+                    <div style="background-color:rgba(175,204,216,1);font-size:40px;border:1px solid white;border-radius:40px;text-align:center;margin:50px 20px 20px 20px;padding:50px 30px;border-top-right-radius:0">
                         <% =measureNames[1]%><br /><%=measureScores[1] %>分<br />击败<%=measureBeats[1] %>%网友
                         
                     </div>
                 </div>
                 <div style="width:50%;float:left">
-                    <div style="background-color:#efefef;font-size:40px;border:3px dashed lightblue;border-radius:20px;text-align:center;margin:30px 50px 50px 50px;padding:30px;">
+                    <div style="background-color:rgba(175,204,216,1);font-size:40px;border:1px solid white;border-radius:40px;text-align:center;margin:0px 20px 20px 20px;padding:50px 30px;border-bottom-left-radius:0">
                         <% =measureNames[2]%><br /><%=measureScores[2] %>分<br />击败<%=measureBeats[2] %>%网友
                         
                     </div>
-                    <div style="background-color:#efefef;font-size:40px;border:3px dashed lightblue;border-radius:20px;text-align:center;margin:50px;padding:30px;">
+                    <div style="background-color:rgba(175,204,216,1);font-size:40px;border:1px solid white;border-radius:40px;text-align:center;margin:50px 20px 20px 20px;padding:50px 30px;border-top-left-radius:0">
                         <% =measureNames[3]%><br /><%=measureScores[3] %>分<br />击败<%=measureBeats[3] %>%网友
                         
                     </div>
@@ -79,6 +84,11 @@
             </div>
             </a>
         </div>
+        <div style="position:relative;border:none">
+            <div style="width: 0;height: 0;border-bottom: 200px solid white;border-right: 0 solid transparent;z-index:-1" id="triangle2" class="triangle2"></div>
+            
+        </div>
+        <!--
         <div>
             <div style="padding-left:50px">
                 <span class="glyphicon glyphicon-user"></span> 历史记录
@@ -97,7 +107,7 @@
                     } %>
 			    </div>
             </div>
-        </div>
+        </div>-->
     </div>
     </form>
 </body>
@@ -160,7 +170,10 @@
                 responsive: true
             });
         }
-
+         $(document).ready(function () {
+        $(".triangle").css("border-right", window.innerWidth + "px solid transparent");
+        $(".triangle2").css("border-left", window.innerWidth + "px solid transparent");
+    });
 
 	</script>
 <% 
