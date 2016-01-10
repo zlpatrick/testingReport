@@ -84,14 +84,42 @@
             </div>
             </a>
         </div>
-        <div style="position:relative;border:none">
+       <div style="position:relative;border:none">
             <div style="width: 0;height: 0;border-bottom: 200px solid white;border-right: 0 solid transparent;z-index:-1" id="triangle2" class="triangle2"></div>
-            
+             <div style="position:absolute;right:50px;top:-5px;width:300px;border-radius:150px;background-color:white;z-index:20;height:300px">&nbsp;</div>
+            <div style="position:absolute;right:60px;top:5px;width:280px;border-radius:140px;background-color:rgba(117,197,240,1);z-index:50;height:280px;color:white;padding:100px 40px;text-align:center">对比数据</div>
+
         </div>
-        <!--
-        <div>
+
+        <div style="padding-top:120px;background:white;padding-bottom:60px;">
+            <div style="overflow:hidden">
+                <div style="width:40%;float:left;border-right:2px solid rgba(117,197,240,1)">
+                    <div class="story"><span class="storytitle">按照年龄</span></div>
+
+                    <div class="story"><span class="storytitle">按照地区</span></div>
+                    <div class="story"><span class="storytitle">按照行业</span></div>
+                </div>
+                <div style="width:60%;float:right">
+                    <div class="storyright"><span class="storytitle">击败了66%的同龄人</span></div>
+                    <div class="storyright"><span class="storytitle">击败了66%的老乡</span></div>
+                    <div class="storyright"><span class="storytitle">击败了66%的同行</span></div>
+                </div>
+            </div>
+        </div>
+
+          <div style="position:relative;border:none;">
+            
+             <div style="position:absolute;left:50px;top:-5px;width:300px;border-radius:150px;background-color:white;z-index:20;height:300px">&nbsp;</div>
+            <div style="position:absolute;left:60px;top:5px;width:280px;border-radius:140px;background-color:rgba(117,197,240,1);z-index:50;height:280px;color:white;padding:100px 40px;text-align:center">历史数据</div>
+
+        </div>
+
+
+
+   
+        <div style="padding-top:300px;background-color:White">
             <div style="padding-left:50px">
-                <span class="glyphicon glyphicon-user"></span> 历史记录
+               
                 <div>
 				<canvas id="canvas" height="450" width="600" style="margin-bottom:40px;margin-top:30px;"></canvas>
                <% if (toolBar != null && (!toolBar.Equals("")))
@@ -107,7 +135,7 @@
                     } %>
 			    </div>
             </div>
-        </div>-->
+        </div>
     </div>
     </form>
 </body>

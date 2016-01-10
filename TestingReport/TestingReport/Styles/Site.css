@@ -386,3 +386,35 @@ button
     margin-right:20px;
     color:rgba(117,197,240,1);
 }
+
+.story
+{
+    padding-top:30px;
+    padding-bottom:30px;
+    padding-right:10px;
+    text-align:center;
+    
+}
+
+.story .storytitle
+{
+    color:rgba(117,197,240,1);
+    border:2px solid rgba(117,197,240,1);
+    padding:15px 30px;
+    font-size:50px;
+}
+
+.storyright
+{
+    padding-top:30px;
+    padding-bottom:30px;
+    padding-left:40px;
+    text-align:left;   
+}
+
+.storyright .storytitle
+{
+    color:rgba(117,197,240,1);
+    padding:15px 30px;
+    font-size:50px;
+}
