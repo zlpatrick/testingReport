@@ -137,6 +137,7 @@
     <Content Include="result.aspx" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Chart.js" />
+    <Content Include="Scripts\echarts.min.js" />
     <Content Include="Scripts\jquery.1.11.js" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\Site.css" />
