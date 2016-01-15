@@ -17,6 +17,17 @@
     {
         text-decoration:none;
     }
+
+    #main div
+    {
+        font-size:40px !important;
+        line-height:initial !important;   
+    }
+    #main1 div
+    {
+        font-size:40px !important;
+        line-height:initial !important;   
+    }
     </style>
 </head>
 <body>
@@ -89,7 +100,7 @@
 
 
         <div>
-            <div id="main" style="height:400px"></div>
+            <div id="main" style="height:800px;background-color:white;border:none;padding:80px;font-size:40px !important;line-height:initial !important"></div>
         </div>
 
         <div style="position:relative;border:none">
@@ -122,7 +133,12 @@
 
         </div>
 
-     
+        <div style="background-color:white;padding-top:300px;padding-bottom:100px;">
+            <div id="main1" style="height:600px;background-color:white;border:none;font-size:40px !important;line-height:initial !important"></div>
+        </div>
+
+
+        <!--
         <div style="padding-top:300px;background-color:White">
             <div style="padding-left:50px">
                 
@@ -142,6 +158,8 @@
 			</div>
             </div>
         </div>
+
+            -->
      
     </div>
     </form>
@@ -156,55 +174,34 @@
 
 	    var
 option = {
-    title: {
-        text: '预算 vs 开销（Budget vs spending）',
-        subtext: '纯属虚构'
-    },
+   
     tooltip: {
         trigger: 'axis'
-    },
-    legend: {
-        orient: 'vertical',
-        x: 'right',
-        y: 'bottom',
-        data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
-    },
-    toolbox: {
-        show: true,
-        feature: {
-            mark: { show: true },
-            dataView: { show: true, readOnly: false },
-            restore: { show: true },
-            saveAsImage: { show: true }
-        }
-    },
+    }, 
     polar: [
        {
            indicator: [
-               { text: '销售（sales）', max: 6000 },
-               { text: '管理（Administration）', max: 16000 },
-               { text: '信息技术（Information Techology）', max: 30000 },
-               { text: '客服（Customer Support）', max: 38000 },
-               { text: '研发（Development）', max: 52000 },
-               { text: '市场（Marketing）', max: 25000 }
-           ]
+               { text: '销售', axisLabel: { show: true, textStyle: { fontSize: 45, color: 'white' } }, max: 10 },
+               { text: '管理', axisLabel: { show: true, textStyle: { fontSize: 45, color: 'white' } }, max: 10 },
+               { text: '信息技术', axisLabel: { show: true, textStyle: { fontSize: 45, color: 'white' } }, max: 10 },
+               { text: '客服', axisLabel: { show: true, textStyle: { fontSize: 45, color: 'white' } }, max: 10 },
+               { text: '研发', axisLabel: { show: true, textStyle: { fontSize: 45, color: 'white' } }, max: 10 }
+           ],
        }
     ],
     calculable: true,
     series: [
         {
-            name: '预算 vs 开销（Budget vs spending）',
             type: 'radar',
             data: [
                 {
-                    value: [4300, 10000, 28000, 35000, 50000, 19000],
-                    name: '预算分配（Allocated Budget）'
-                },
-                 {
-                     value: [5000, 14000, 28000, 31000, 42000, 21000],
-                     name: '实际开销（Actual Spending）'
-                 }
-            ]
+
+                    value: [6.6, 7.2, 8.3, 8.9, 8.5],
+                    name: '预算分配',
+                    itemStyle: { fontSize: 40, color: 'white' },
+                }
+            ],
+            itemStyle: { fontSize: 40, color: 'white' },
         }
     ]
 };
@@ -215,6 +212,62 @@ option = {
 	    // 为echarts对象加载数据 
 	    myChart.setOption(option);
     </script>
+
+
+<script>
+
+    var myChart1 = echarts.init(document.getElementById('main1'));
+
+    var option1 = {
+      
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data: ['最高气温', '最低气温'],
+            textStyle: { fontSize: 40 }
+        },
+       
+        calculable: true,
+        xAxis: [
+            {
+                type: 'category',
+                boundaryGap: false,
+                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                axisLabel: { show: true, textStyle: { fontSize: 40} }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value}',
+                    textStyle: { fontSize: 40 }
+                }
+            }
+        ],
+        series: [
+            {
+                name: '最高气温',
+                type: 'line',
+                data: [11, 11, 15, 13, 12, 13, 10]
+            },
+            {
+                name: '最低气温',
+                type: 'line',
+                data: [1, 1, 2, 5, 3, 2, 0]
+            },
+             {
+                 name: '最低气温',
+                 type: 'line',
+                 data: [6, 7, 8, 6, 5, 4,3]
+             }
+
+        ]
+    };
+    myChart1.setOption(option1);
+</script>
+
 
 
 <% if(toolBar != null && (!toolBar.Equals("")))
@@ -267,13 +320,13 @@ option = {
         ]
 
     }
-
+    /*
     window.onload = function () {
         var ctx = document.getElementById("canvas").getContext("2d");
         window.myLine = new Chart(ctx).Line(lineChartData, {
             responsive: true
         });
-    }
+    }*/
 
     $(document).ready(function () {
         $(".triangle").css("border-right", window.innerWidth + "px solid transparent");
