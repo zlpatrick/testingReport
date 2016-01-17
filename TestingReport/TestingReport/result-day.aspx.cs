@@ -149,7 +149,6 @@ namespace TestingReport
                                         dimensionScore += scores[choosePositionMap[optionIDInt[j]]];
                                     }
                                 }
-
                              
                                 dimensionScores.Add(dimensionId, dimensionScore);
                                 dimensionNames.Add(dimensionId, dimensionName);
@@ -212,14 +211,6 @@ namespace TestingReport
                                 Panel dimensionScorePanel = new Panel();
                                 dimensionScorePanel.CssClass = "dimension-score-panel";
 
-                                /*Panel dimensionImagePanel = new Panel();
-                                Image tempImg = new Image();
-                                tempImg.ImageUrl = "assets/totalScore.jpg";
-                                dimensionImagePanel.CssClass = "dimension-Image-panel";
-                                dimensionImagePanel.Controls.Add(tempImg);
-                                dimensionScorePanel.Controls.Add(dimensionImagePanel);*/
-
-
                                 DataSet p = db.executeSqlQuery("select * from Users where userName='"+userId+"'");
                                 string industry = "--";
                                 string age = "--";
@@ -241,20 +232,7 @@ namespace TestingReport
                                 personalInfoPanel.Controls.Add(personalInfo);
                                 dimensionScorePanel.Controls.Add(personalInfoPanel);
 
-                                /*Panel totalScorePanel = new Panel();
-                                totalScorePanel.CssClass = "dimension-score-panel-score";
-                                Label weightTitle = new Label();
-                                weightTitle.Text = "得分：";
-                                weightTitle.CssClass = "bold-text";
-                                Label label = new Label();
-                                label.Text = totalScore + "分";
-                                totalScorePanel.Controls.Add(weightTitle);
-                                totalScorePanel.Controls.Add(label);
-                                if (topicId.Equals("2") || topicId.Equals("5")) 
-                                {
-                                    dimensionScorePanel.Controls.Add(totalScorePanel);
-                                }
-                                /*总分板块*/
+                              
 
                                 ds = db.executeSqlQuery("select * from UserTopicScore where userId='" + userId + "' and topicId=" + topicId);
                                 if (ds.Tables[0].Rows.Count > 0)

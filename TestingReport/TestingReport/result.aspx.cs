@@ -100,26 +100,10 @@ namespace TestingReport
                         ds = db.executeSqlQuery("select * from Dimensions where TopicId=" + topicId);
                         if (ds.Tables[0].Rows.Count > 1)
                         {
-                            /*Panel chartPanel = new Panel();
-                            chartPanel.CssClass = "result-img-panel";
-                            Chart chart = new Chart();
-                            chart.CssClass = "result-img";
-                            chart.Width = 300;
-                            Title chartTitle = new Title("维度分析");
-                            chartTitle.ForeColor = System.Drawing.Color.Gray;
-                            
-
-                            chart.Titles.Add(chartTitle);
-                            Series series = new Series();
-                            series.Name = "dimensions";
-                            series["PointWidth"] = "0.5";
-                            series["DrawingStyle"] = "Cylinder";*/
+                           
 
                             int dimensionCount = ds.Tables[0].Rows.Count;
-                            /*if (dimensionCount >= 5)
-                            {
-                                series.ChartType = SeriesChartType.Radar;
-                            }*/
+                       
 
                             Dictionary<int, int> dimensionScores = new Dictionary<int, int>();
                             Dictionary<int, string> dimensionNames = new Dictionary<int, string>();

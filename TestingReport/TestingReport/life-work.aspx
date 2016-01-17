@@ -8,7 +8,7 @@
 
     <script src="Scripts/jquery.1.11.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Scripts/Chart.js"></script>
+    
     
     <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
@@ -100,7 +100,7 @@
 
 
         <div>
-            <div id="main" style="height:800px;background-color:white;border:none;padding:80px;font-size:40px !important;line-height:initial !important"></div>
+            <div id="main" style="height:680px;background-color:white;border:none;padding:80px;font-size:36px !important;line-height:initial !important"></div>
         </div>
 
         <div style="position:relative;border:none">
@@ -128,7 +128,7 @@
 
         <div style="position:relative;border:none;">
             
-             <div style="position:absolute;left:50px;top:-5px;width:300px;border-radius:150px;background-color:white;z-index:20;height:300px">&nbsp;</div>
+            <div style="position:absolute;left:50px;top:-5px;width:300px;border-radius:150px;background-color:white;z-index:20;height:300px">&nbsp;</div>
             <div style="position:absolute;left:60px;top:5px;width:280px;border-radius:140px;background-color:rgba(117,197,240,1);z-index:50;height:280px;color:white;padding:100px 40px;text-align:center">历史数据</div>
 
         </div>
@@ -138,28 +138,6 @@
         </div>
 
 
-        <!--
-        <div style="padding-top:300px;background-color:White">
-            <div style="padding-left:50px">
-                
-                <div>
-				<canvas id="canvas" height="450" width="600" style="margin-bottom:40px;margin-top:30px;"></canvas>
-                <% if (toolBar != null && (!toolBar.Equals("")))
-                   { %>
-                   <div style="font-size:40px;margin-bottom:40px;">
-                        <span style="color:orangered">— <%=dimName[0]%></span>
-                        <span style="color:lightblue">— <%=dimName[1]%></span>
-                        <span style="color:green">— <%=dimName[2]%></span>
-                        <span style="color:purple">— <%=dimName[3]%></span>
-
-                   </div>
-   <%
-                    } %>
-			</div>
-            </div>
-        </div>
-
-            -->
      
     </div>
     </form>
@@ -167,7 +145,55 @@
 </body>
 </html>
 
+<% if (radarDimNames.Count == 0)
+   { %>
+   <script type="text/javascript">
+	    // 基于准备好的dom，初始化echarts图表
+	    var myChart = echarts.init(document.getElementById('main'));
 
+	    var
+option = {
+   
+    tooltip: {
+        trigger: 'axis'
+    }, 
+    polar: [
+       {
+           indicator: [
+               { text: '积极情绪', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '生活成就', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '身心投入', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '人生意义', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '人际关系', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 }
+           ],
+       }
+    ],
+    calculable: true,
+    series: [
+        {
+            type: 'radar',
+            data: [
+                {
+                    value: [0,0,0,0,0],
+                    name: '生活状态',
+                    itemStyle: { fontSize: 40, color: 'white' }
+                }
+            ],
+            itemStyle: { fontSize: 40, color: 'white' }
+        }
+    ]
+};
+
+
+
+
+	    // 为echarts对象加载数据 
+	    myChart.setOption(option);
+    </script>
+<% }
+   else
+   {
+ %>
 	<script type="text/javascript">
 	    // 基于准备好的dom，初始化echarts图表
 	    var myChart = echarts.init(document.getElementById('main'));
@@ -181,11 +207,11 @@ option = {
     polar: [
        {
            indicator: [
-               { text: '销售', axisLabel: { show: true, textStyle: { fontSize: 45, color: 'white' } }, max: 10 },
-               { text: '管理', axisLabel: { show: true, textStyle: { fontSize: 45, color: 'white' } }, max: 10 },
-               { text: '信息技术', axisLabel: { show: true, textStyle: { fontSize: 45, color: 'white' } }, max: 10 },
-               { text: '客服', axisLabel: { show: true, textStyle: { fontSize: 45, color: 'white' } }, max: 10 },
-               { text: '研发', axisLabel: { show: true, textStyle: { fontSize: 45, color: 'white' } }, max: 10 }
+               { text: '<%=radarDimNames[0] %>', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '<%=radarDimNames[1] %>', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '<%=radarDimNames[2] %>', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '<%=radarDimNames[3] %>', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '<%=radarDimNames[4] %>', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 }
            ],
        }
     ],
@@ -195,46 +221,35 @@ option = {
             type: 'radar',
             data: [
                 {
-
-                    value: [6.6, 7.2, 8.3, 8.9, 8.5],
+                    value: [<%=radarDimScores[0] %>, <%=radarDimScores[1] %>, <%=radarDimScores[2] %>, <%=radarDimScores[3] %>, <%=radarDimScores[4] %>],
                     name: '预算分配',
-                    itemStyle: { fontSize: 40, color: 'white' },
+                    itemStyle: { fontSize: 40, color: 'white' }
                 }
             ],
-            itemStyle: { fontSize: 40, color: 'white' },
+            itemStyle: { fontSize: 40, color: 'white' }
         }
     ]
 };
-
-
-
-
 	    // 为echarts对象加载数据 
 	    myChart.setOption(option);
     </script>
-
+<%} %>
 
 <script>
 
     var myChart1 = echarts.init(document.getElementById('main1'));
 
     var option1 = {
-      
         tooltip: {
             trigger: 'axis'
-        },
-        legend: {
-            data: ['最高气温', '最低气温'],
-            textStyle: { fontSize: 40 }
-        },
-       
+        },  
         calculable: true,
         xAxis: [
             {
                 type: 'category',
                 boundaryGap: false,
-                data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-                axisLabel: { show: true, textStyle: { fontSize: 40} }
+                data: [<%=toolBar%>],
+                axisLabel: { show: true, textStyle: { fontSize: 40, color: "grey"} }
             }
         ],
         yAxis: [
@@ -242,25 +257,30 @@ option = {
                 type: 'value',
                 axisLabel: {
                     formatter: '{value}',
-                    textStyle: { fontSize: 40 }
+                    textStyle: { fontSize: 40, color: "rgba(117,197,240,1)" }
                 }
             }
         ],
         series: [
             {
-                name: '最高气温',
+                name: '<%=dimName[0]%>',
                 type: 'line',
-                data: [11, 11, 15, 13, 12, 13, 10]
+                data: [<%=scoreLabels[dimName[0]].Substring(0,scoreLabels[dimName[0]].Length-1)%>]
             },
             {
-                name: '最低气温',
+                name: '<%=dimName[1]%>',
                 type: 'line',
-                data: [1, 1, 2, 5, 3, 2, 0]
+                data: [<%=scoreLabels[dimName[1]].Substring(0,scoreLabels[dimName[1]].Length-1)%>]
             },
              {
-                 name: '最低气温',
-                 type: 'line',
-                 data: [6, 7, 8, 6, 5, 4,3]
+                 name: '<%=dimName[2]%>',
+                type: 'line',
+                data: [<%=scoreLabels[dimName[2]].Substring(0,scoreLabels[dimName[2]].Length-1)%>]
+             },
+             {
+                 name: '<%=dimName[3]%>',
+                type: 'line',
+                data: [<%=scoreLabels[dimName[3]].Substring(0,scoreLabels[dimName[3]].Length-1)%>]
              }
 
         ]
@@ -270,70 +290,9 @@ option = {
 
 
 
-<% if(toolBar != null && (!toolBar.Equals("")))
-   { %>
 <script>
-    
-    var lineChartData = {
-        labels: [<%=toolBar%>],
-        datasets: [
-            {
-                label: "<%=dimName[0]%>",
-                fillColor: "transparent",
-                strokeColor: "orangered",
-                pointColor: "orangered",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "orangered",
-                data: [<%=scoreLabels[dimName[0]]%>]
-            },
-            {
-                label: "<%=dimName[1]%>",
-                fillColor: "transparent",
-                strokeColor: "lightblue",
-                pointColor: "lightblue",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "lightblue",
-                data: [<%=scoreLabels[dimName[1]].Substring(0,scoreLabels[dimName[1]].Length-1)%>]
-            },
-            {
-                label: "<%=dimName[2]%>",
-                fillColor: "transparent",
-                strokeColor: "green",
-                pointColor: "green",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "green",
-                data: [<%=scoreLabels[dimName[2]].Substring(0,scoreLabels[dimName[2]].Length-1)%>]
-            },
-            {
-                label: "<%=dimName[3]%>",
-                fillColor: "transparent",
-                strokeColor: "purple",
-                pointColor: "purple",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "purple",
-                data: [<%=scoreLabels[dimName[3]].Substring(0,scoreLabels[dimName[3]].Length-1)%>]
-            }
-        ]
-
-    }
-    /*
-    window.onload = function () {
-        var ctx = document.getElementById("canvas").getContext("2d");
-        window.myLine = new Chart(ctx).Line(lineChartData, {
-            responsive: true
-        });
-    }*/
-
     $(document).ready(function () {
         $(".triangle").css("border-right", window.innerWidth + "px solid transparent");
         $(".triangle2").css("border-left", window.innerWidth + "px solid transparent");
     });
-
-	</script>
-<% 
-}
-%>
+</script>

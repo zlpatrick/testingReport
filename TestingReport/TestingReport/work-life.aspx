@@ -8,7 +8,7 @@
 
     <script src="Scripts/jquery.1.11.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-    <script src="Scripts/Chart.js"></script>
+    
     
     <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
@@ -16,6 +16,17 @@
     a:hover
     {
         text-decoration:none;
+    }
+    
+    #main div
+    {
+        font-size:40px !important;
+        line-height:initial !important;   
+    }
+    #main1 div
+    {
+        font-size:40px !important;
+        line-height:initial !important;   
     }
     </style>
 </head>
@@ -84,6 +95,13 @@
             </div>
             </a>
         </div>
+
+
+        <div>
+            <div id="main" style="height:680px;background-color:white;border:none;padding:80px;font-size:36px !important;line-height:initial !important"></div>
+        </div>
+
+
        <div style="position:relative;border:none">
             <div style="width: 0;height: 0;border-bottom: 200px solid white;border-right: 0 solid transparent;z-index:-1" id="triangle2" class="triangle2"></div>
              <div style="position:absolute;right:50px;top:-5px;width:300px;border-radius:150px;background-color:white;z-index:20;height:300px">&nbsp;</div>
@@ -115,95 +133,164 @@
         </div>
 
 
-
-   
-        <div style="padding-top:300px;background-color:White">
-            <div style="padding-left:50px">
-               
-                <div>
-				<canvas id="canvas" height="450" width="600" style="margin-bottom:40px;margin-top:30px;"></canvas>
-               <% if (toolBar != null && (!toolBar.Equals("")))
-                   { %>
-                   <div style="font-size:40px;margin-bottom:40px;">
-                        <span style="color:orangered">— <%=dimName[0]%></span>
-                        <span style="color:lightblue">— <%=dimName[1]%></span>
-                        <span style="color:green">— <%=dimName[2]%></span>
-                        <span style="color:purple">— <%=dimName[3]%></span>
-
-                   </div>
-   <%
-                    } %>
-			    </div>
-            </div>
+         <div style="background-color:white;padding-top:300px;padding-bottom:100px;">
+            <div id="main1" style="height:600px;background-color:white;border:none;font-size:40px !important;line-height:initial !important"></div>
         </div>
     </div>
     </form>
 </body>
+<script src="Scripts/echarts.min.js"></script>
 </html>
 
-<% if(toolBar != null && (!toolBar.Equals("")))
+<% if (radarDimNames.Count == 0)
    { %>
+   <script type="text/javascript">
+	    // 基于准备好的dom，初始化echarts图表
+	    var myChart = echarts.init(document.getElementById('main'));
+
+	    var
+option = {
+   
+    tooltip: {
+        trigger: 'axis'
+    }, 
+    polar: [
+       {
+           indicator: [
+               { text: '环境&氛围', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '工作量&压力', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '内容&自由度', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '收入&成就感', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '发展&提升', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 }
+           ],
+       }
+    ],
+    calculable: true,
+    series: [
+        {
+            type: 'radar',
+            data: [
+                {
+                    value: [0,0,0,0,0],
+                    name: '工作状态',
+                    itemStyle: { fontSize: 40, color: 'white' }
+                }
+            ],
+            itemStyle: { fontSize: 40, color: 'white' }
+        }
+    ]
+};
+
+
+
+
+	    // 为echarts对象加载数据 
+	    myChart.setOption(option);
+    </script>
+<% }
+   else
+   {
+ %>
+	<script type="text/javascript">
+	    // 基于准备好的dom，初始化echarts图表
+	    var myChart = echarts.init(document.getElementById('main'));
+
+	    var
+option = {
+   
+    tooltip: {
+        trigger: 'axis'
+    }, 
+    polar: [
+       {
+           indicator: [
+               { text: '<%=radarDimNames[0] %>', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '<%=radarDimNames[1] %>', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '<%=radarDimNames[2] %>', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '<%=radarDimNames[3] %>', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 },
+               { text: '<%=radarDimNames[4] %>', axisLabel: { show: true, textStyle: { fontSize: 36, color: 'white' } }, max: 10 }
+           ],
+       }
+    ],
+    calculable: true,
+    series: [
+        {
+            type: 'radar',
+            data: [
+                {
+                    value: [<%=radarDimScores[0] %>, <%=radarDimScores[1] %>, <%=radarDimScores[2] %>, <%=radarDimScores[3] %>, <%=radarDimScores[4] %>],
+                    name: '预算分配',
+                    itemStyle: { fontSize: 40, color: 'white' }
+                }
+            ],
+            itemStyle: { fontSize: 40, color: 'white' }
+        }
+    ]
+};
+	    // 为echarts对象加载数据 
+	    myChart.setOption(option);
+    </script>
+<%} %>
+
 <script>
 
-    var lineChartData = {
-        labels: [<%=toolBar%>],
-        datasets: [
+    var myChart1 = echarts.init(document.getElementById('main1'));
+
+    var option1 = {
+        tooltip: {
+            trigger: 'axis'
+        },  
+        calculable: true,
+        xAxis: [
             {
-                label: "<%=dimName[0]%>",
-                fillColor: "transparent",
-                strokeColor: "red",
-                pointColor: "red",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "red",
-                data: [<%=scoreLabels[dimName[0]]%>]
+                type: 'category',
+                boundaryGap: false,
+                data: [<%=toolBar%>],
+                axisLabel: { show: true, textStyle: { fontSize: 40, color: "grey"} }
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value}',
+                    textStyle: { fontSize: 40, color: "rgba(117,197,240,1)" }
+                }
+            }
+        ],
+        series: [
+            {
+                name: '<%=dimName[0]%>',
+                type: 'line',
+                data: [<%=scoreLabels[dimName[0]].Substring(0,scoreLabels[dimName[0]].Length-1)%>]
             },
             {
-                label: "<%=dimName[1]%>",
-                fillColor: "transparent",
-                strokeColor: "lightblue",
-                pointColor: "lightblue",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "lightblue",
+                name: '<%=dimName[1]%>',
+                type: 'line',
                 data: [<%=scoreLabels[dimName[1]].Substring(0,scoreLabels[dimName[1]].Length-1)%>]
             },
-            {
-                label: "<%=dimName[2]%>",
-                fillColor: "transparent",
-                strokeColor: "green",
-                pointColor: "green",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "green",
+             {
+                 name: '<%=dimName[2]%>',
+                type: 'line',
                 data: [<%=scoreLabels[dimName[2]].Substring(0,scoreLabels[dimName[2]].Length-1)%>]
-            },
-            {
-                label: "<%=dimName[3]%>",
-                fillColor: "transparent",
-                strokeColor: "purple",
-                pointColor: "purple",
-                pointStrokeColor: "#fff",
-                pointHighlightFill: "#fff",
-                pointHighlightStroke: "purple",
+             },
+             {
+                 name: '<%=dimName[3]%>',
+                type: 'line',
                 data: [<%=scoreLabels[dimName[3]].Substring(0,scoreLabels[dimName[3]].Length-1)%>]
-            }
+             }
+
         ]
+    };
+    myChart1.setOption(option1);
+</script>
 
-    }
 
-        window.onload = function () {
-            var ctx = document.getElementById("canvas").getContext("2d");
-            window.myLine = new Chart(ctx).Line(lineChartData, {
-                responsive: true
-            });
-        }
+    <script>
          $(document).ready(function () {
         $(".triangle").css("border-right", window.innerWidth + "px solid transparent");
         $(".triangle2").css("border-left", window.innerWidth + "px solid transparent");
     });
 
 	</script>
-<% 
-}
-%>
+
