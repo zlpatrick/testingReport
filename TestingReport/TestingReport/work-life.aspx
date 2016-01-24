@@ -133,7 +133,7 @@
         </div>
 
 
-         <div style="background-color:white;padding-top:300px;padding-bottom:100px;">
+         <div style="background-color:white;padding-top:350px;padding-bottom:100px;">
             <div id="main1" style="height:600px;background-color:white;border:none;font-size:40px !important;line-height:initial !important"></div>
         </div>
     </div>
@@ -212,6 +212,15 @@ option = {
            ],
        }
     ],
+     legend: {
+            data:['我的状态','平均状态'],
+            textStyle:{fontSize:30,color:"white"},
+            orient : 'vertical',
+        x : 'left',
+        y : 'top',
+
+           
+        },
     calculable: true,
     series: [
         {
@@ -219,7 +228,14 @@ option = {
             data: [
                 {
                     value: [<%=radarDimScores[0] %>, <%=radarDimScores[1] %>, <%=radarDimScores[2] %>, <%=radarDimScores[3] %>, <%=radarDimScores[4] %>],
-                    name: '预算分配',
+                    name: '我的状态',
+                    itemStyle: { fontSize: 40, color: 'white' }
+                }
+                ,
+                
+                {
+                    value: [<%=radarAveScores[0] %>, <%=radarAveScores[1] %>, <%=radarAveScores[2] %>, <%=radarAveScores[3] %>, <%=radarDimScores[4] %>],
+                    name: '平均状态',
                     itemStyle: { fontSize: 40, color: 'white' }
                 }
             ],
@@ -258,7 +274,12 @@ option = {
                 }
             }
         ],
-        series: [
+        legend: {
+            data:['<%=dimName[0]%>','<%=dimName[1]%>','<%=dimName[2]%>','<%=dimName[3]%>'],
+            textStyle:{fontSize:34,color:"grey"}
+           
+        },
+        series:[
             {
                 name: '<%=dimName[0]%>',
                 type: 'line',

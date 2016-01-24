@@ -60,13 +60,21 @@
   
     <div style="background-color:White;padding:100px 200px">
         <div style="overflow:hidden">
-                <div style="width:50%;float:left;border-right:2px solid rgba(117,197,240,1)">
+                <div style="width:60%;float:left;border-right:2px solid rgba(117,197,240,1)">
                     <div class="story"><span class="storytitle">性格测试</span></div>
                     <div class="story"><span class="storytitle">职业取向</span></div>
+                    <div class="story"><span class="storytitle">个性测试</span></div>
+                    <div class="story"><span class="storytitle">急性慢性</span></div>
+                    <div class="story"><span class="storytitle">真实指数</span></div>
+                    <div class="story"><span class="storytitle">心里成熟度</span></div>
                 </div>
-                <div style="width:50%;float:right">
+                <div style="width:40%;float:right">
                     <div class="storyright"><span class="storytitle">已完成</span></div>
                     <div class="storyright"><span class="storytitle">已完成</span></div>
+                    <div class="storyright"><span class="storytitle">未完成</span></div>
+                    <div class="storyright"><span class="storytitle">未完成</span></div>
+                    <div class="storyright"><span class="storytitle">未完成</span></div>
+                    <div class="storyright"><span class="storytitle">未完成</span></div>
                 </div>
             </div>
     </div>
@@ -79,30 +87,26 @@
         </div>
 
         <div>
+            <div style="padding-left:80px;padding-top:50px;color:white">大五人格分析</div>
             <a href="profile.aspx?id=1&userid=<%=Request["userid"] %>">
-            <div id="main" style="height:800px;background-color:white;border:none;padding:80px;font-size:40px !important;line-height:initial !important"></div>
+                <div id="main" style="height:800px;background-color:white;border:none;padding:80px;font-size:40px !important;line-height:initial !important"></div>
             </a>
         </div>
-
-       
 
         <div style="position:relative;border:none">
             <div style="width: 0;height: 0;border-bottom: 200px solid white;border-right: 0 solid transparent;z-index:-1" id="triangle2" class="triangle2"></div>
              <div style="position:absolute;right:50px;top:-5px;width:300px;border-radius:150px;background-color:white;z-index:20;height:300px">&nbsp;</div>
             <div style="position:absolute;right:60px;top:5px;width:280px;border-radius:140px;background-color:rgba(117,197,240,1);z-index:50;height:280px;color:white;padding:100px 40px;text-align:center">职业取向</div>
 
-        </div>
-
-    
+        </div>  
 
         <div style="background-color:white;padding-top:100px;padding-bottom:100px;">
+            <div style="padding-left:80px;padding-top:50px;color:rgba(117,197,240,1)">MBTI职业取向分析</div>
             <a href="profile.aspx?id=8&userid=<%=Request["userid"] %>">
                 <div id="main1" style="height:600px;background-color:white;border:none;font-size:40px !important;line-height:initial !important"></div>
             </a>
         </div>
     </div>
-
-   
 
     </div>
     </form>
@@ -130,22 +134,36 @@ option = {
     polar: [
        {
            indicator: [
-               { text: '神经质', axisLabel: { show: true, textStyle: { fontSize: 40, color: 'white' } }, max: 10 },
-               { text: '外向性', axisLabel: { show: true, textStyle: { fontSize: 40, color: 'white' } }, max: 10 },
-               { text: '开放性', axisLabel: { show: true, textStyle: { fontSize: 40, color: 'white' } }, max: 10 },
-               { text: '顺同性', axisLabel: { show: true, textStyle: { fontSize: 40, color: 'white' } }, max: 10 },
-               { text: '严谨性', axisLabel: { show: true, textStyle: { fontSize: 40, color: 'white' } }, max: 10 }
+               { text: '<%=radarDimNames[0] %>', axisLabel: { show: true, textStyle: { fontSize: 40, color: 'white' } }, max: 10 },
+               { text: '<%=radarDimNames[1] %>', axisLabel: { show: true, textStyle: { fontSize: 40, color: 'white' } }, max: 10 },
+               { text: '<%=radarDimNames[2] %>', axisLabel: { show: true, textStyle: { fontSize: 40, color: 'white' } }, max: 10 },
+               { text: '<%=radarDimNames[3] %>', axisLabel: { show: true, textStyle: { fontSize: 40, color: 'white' } }, max: 10 },
+               { text: '<%=radarDimNames[4] %>', axisLabel: { show: true, textStyle: { fontSize: 40, color: 'white' } }, max: 10 }
            ],
        }
     ],
+     legend: {
+            data:['我的得分','平均得分'],
+            textStyle:{fontSize:30,color:"white"},
+            orient : 'vertical',
+        x : 'right',
+        y : 'top',
+
+           
+        },
     calculable: true,
     series: [
         {
             type: 'radar',
             data: [
                 {
-                    value: [5,6,7,9,8],
-                    name: '大五人格',
+                    value: [<%=radarDimScores[0] %>, <%=radarDimScores[1] %>, <%=radarDimScores[2] %>, <%=radarDimScores[3] %>, <%=radarDimScores[4] %>],
+                    name: '我的得分',
+                    itemStyle: { fontSize: 40, color: 'white' }
+                },
+                {
+                    value: [<%=radarAveScores[0] %>, <%=radarAveScores[1] %>, <%=radarAveScores[2] %>, <%=radarAveScores[3] %>, <%=radarDimScores[4] %>],                   
+                    name: '平均得分',
                     itemStyle: { fontSize: 40, color: 'white' }
                 }
             ],

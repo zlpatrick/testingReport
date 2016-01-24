@@ -12,10 +12,14 @@
     <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
     <style>
+        a:hover
+    {
+        text-decoration:none;
+    }
     .mylist
     {
         overflow:hidden;
-        border-top:2px dashed lightgrey;
+        border-bottom:2px dashed lightgrey;
     }
     .mylist-img
     {
@@ -54,40 +58,86 @@
     }
     </style>
 </head>
-<body style="background-color:#eee">
+<body>
     <form id="form1" runat="server">
     <div>
-        <a href="person.aspx">
-            <div style="overflow:hidden;padding:50px;background-color:white">
-                <div style="float:left;width:20%"><img src="<%=userImageUrl %>" style="width:100%;border-radius:10px;"/></div>
-                <div style="float:left;padding:50px;color:#555">昵称: <%=userNickName %></div>
-                <div style="float:right;padding:50px 20px;color:#555"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></div>
-            </div>
-        </a>
-        <hr style="margin:0;border-bottom:1px solid #AAA"/>
+         <a href="person.aspx?userid=<%=Request["userid"] %>">
+    <div style="background-color:rgba(117,197,240,1);height:300px;position:relative;">
+        <img src="<%=userImageUrl %>" style="width:200px;border-radius:100px;border-radius:100px;position:absolute;bottom:-100px;left:calc((100% - 200px)/2)"/>
+    </div>
+    </a>
     
-        <div style="padding-top:25px;padding-bottom:25px;text-align:center;color:orangered">
-            努力程度：<span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
-            <span class="glyphicon glyphicon-star-empty"></span>
+    <div style="text-align:center;color:#555;padding-top:120px;padding-bottom:30px;background-color:white">
+        <div><%=userNickName %></div>
+        <div class="user-tag">
+            <span><%=age %></span><span><%=industry %></span><span><%=region %></span>
         </div>
+        <div style="font-size:40px;margin-top:30px;color:grey">
+            <ul style="padding:0">
+                <li style="display:inline-block;width:32%;border-right: 1px solid lightgrey"><span style="color:rgba(117,197,240,1)"><%=testTimes %>次</span><br />测试次数</li>
+                <li style="display:inline-block;width:32%;border-right: 1px solid lightgrey"><span style="color:rgba(117,197,240,1)"><%=toolTimes %>天</span><br />使用工具</li>
+                <li style="display:inline-block;width:32%"><span style="color:rgba(117,197,240,1)"><%=selfPercent %>%</span><br />认识自我</li>
+            </ul>
+        </div>
+    </div>
+        <hr style="margin:0;border-bottom:1px solid #AAA"/>
 
-        <div style="border-top:1px solid #AAA;border-bottom:1px solid #AAA;background-color:white;padding:50px;">
-            <div ><span class="glyphicon glyphicon-user"></span> 我的工具</div>
-            <div style="overflow:hidden;padding-top:50px;padding-bottom:50px">
-                <div style="width:5%;float:left">&nbsp;</div>
-                <div style="width:40%;float:left;border:2px dashed lightblue;padding:40px 20px;text-align:center;font-size:40px">本周完成度<br />20分</div>
-                <div style="width:10%;float:left">&nbsp;</div>
-                <div style="width:40%;float:left;border:2px dashed lightblue;padding:40px 20px;text-align:center;font-size:40px">本周完成度<br />30分</div>
-                <div style="width:5%;float:left">&nbsp;</div>
+        <div style="background-color:rgba(117,197,240,1)">
+            
+            <div style="margin-top:150px">
+
+                <div style="position:relative;border:none">
+                    <div style="width: 0;height: 0;border-top: 200px solid white;border-right: 0 solid transparent;z-index:-1" id="triangle"  class="triangle"></div>
+                    <div style="position:absolute;left:50px;bottom:-5px;width:300px;border-radius:150px;background-color:white;z-index:20;height:300px">&nbsp;</div>
+                    <div style="position:absolute;left:60px;bottom:5px;width:280px;border-radius:140px;background-color:rgba(117,197,240,1);z-index:50;height:280px;color:white;padding:100px 40px;text-align:center">我的工具</div>
+                </div>
+
+
+                <div style="margin-top:80px;margin-bottom:80px"> 
+                    <table style="width:95%;text-align:center;margin:auto">
+                        <tr class="my-tool-title">
+                            <td><span>方法名称</span></td>
+                            <td><span>本次打卡</span></td>
+                            <td><span>近5次完成度</span></td>
+                            <td><span>近20次完成度</span></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><hr style="border-color:White;margin-top:40px;" /></td>
+                        </tr>
+
+                        <tr class="my-tool-content">
+                            <td>方法1</td>
+                            <td><span style="padding:10px;border:1px solid white;border-radius:10px">打卡</span></td>
+                            <td>5%</td>
+                            <td>10%</td>
+                        </tr>
+
+                        <tr class="my-tool-content">
+                            <td>方法2</td>
+                            <td><span style="padding:10px;border:1px solid white;border-radius:10px">打卡</span></td>
+                            <td>5%</td>
+                            <td>10%</td>
+                        </tr>
+                       
+                    </table>
+                    <div style="text-align:center;margin-top:50px;">
+                        <a href="tool-add.aspx?userid=<%=Request["userid"] %>">
+                        <span style="padding:20px;font-size:40px;background-color:White;color:rgba(117,197,240,1);border-radius:10px">创建新项目</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div style="position:relative;border:none">
+                    <div style="width: 0;height: 0;border-bottom: 200px solid white;border-right: 0 solid transparent;z-index:-1" id="triangle2" class="triangle2"></div>
+                     <div style="position:absolute;right:50px;top:-5px;width:300px;border-radius:150px;background-color:white;z-index:20;height:300px">&nbsp;</div>
+                    <div style="position:absolute;right:60px;top:5px;width:280px;border-radius:140px;background-color:rgba(117,197,240,1);z-index:50;height:280px;color:white;padding:100px 40px;text-align:center">方法推荐</div>
+
+                </div>
             </div>
-
         </div>
 
-        <div style="border-top:1px solid #AAA;border-bottom:1px solid #AAA;background-color:white;padding:50px;margin-top:50px;margin-bottom:50px">
-            <div ><span class="glyphicon glyphicon-user"></span> 方法 List</div>
+        <div style="background-color:white;padding:50px;margin-top:50px;margin-bottom:50px">
+            
             <div style="margin-top:30px;">
                 <div class="mylist">
                     <div class="mylist-img"><img src="assets/way-1.jpg" /></div>
@@ -112,3 +162,11 @@
     </form>
 </body>
 </html>
+
+<script>
+    $(document).ready(function () {
+        $(".triangle").css("border-right", window.innerWidth + "px solid transparent");
+        $(".triangle2").css("border-left", window.innerWidth + "px solid transparent");
+    });
+
+	</script>

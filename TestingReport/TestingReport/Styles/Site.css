@@ -389,10 +389,10 @@ button
 
 .story
 {
-    padding-top:30px;
-    padding-bottom:30px;
-    padding-right:10px;
-    text-align:center;
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-right:60px;
+    text-align:right;
     
 }
 
@@ -406,9 +406,9 @@ button
 
 .storyright
 {
-    padding-top:30px;
-    padding-bottom:30px;
-    padding-left:40px;
+    padding-top:15px;
+    padding-bottom:15px;
+    padding-left:20px;
     text-align:left;   
 }
 
@@ -417,4 +417,30 @@ button
     color:rgba(117,197,240,1);
     padding:15px 30px;
     font-size:40px;
+}
+
+.my-tool-title
+{
+    font-size:36px;
+}
+
+.my-tool-title span
+{
+    color:White;
+    /*padding:10px;
+    border:2px solid white;
+    border-radius:10px;*/
+}
+
+.my-tool-content
+{
+    color:White;
+    font-size:40px;
+  
+}
+
+.my-tool-content td
+{
+    padding-top:20px;
+    padding-bottom:20px;
 }

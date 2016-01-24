@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Newtonsoft.Json.Linq;
 using System.Data;
+using Newtonsoft.Json.Linq;
 
 namespace TestingReport
 {
-    public partial class way_tool : System.Web.UI.Page
+    public partial class tool_edit : System.Web.UI.Page
     {
         public string userImageUrl = "";
         public string userNickName = "";
@@ -20,7 +20,6 @@ namespace TestingReport
         public int selfPercent = 0;
         public int testTimes = 0;
         public int toolTimes = 0;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             string userid = Request["userid"];
@@ -63,7 +62,7 @@ namespace TestingReport
             }
 
             selfPercent = personalTimes * 100 / 6;
-           
+
         }
     }
 }

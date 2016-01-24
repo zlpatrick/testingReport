@@ -26,9 +26,11 @@ namespace TestingReport
         public int selfPercent = 0;
         public int testTimes = 0;
         public int toolTimes = 0;
+        
 
         public List<string> radarDimNames = new List<string>();
         public List<float> radarDimScores = new List<float>();
+        public List<float> radarAveScores = new List<float>();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -50,7 +52,32 @@ namespace TestingReport
                     industry = ds.Tables[0].Rows[0]["industry"].ToString();
                     region = ds.Tables[0].Rows[0]["region"].ToString();
                 }
-                string sql = "select * from measures where TopicId=5";
+
+                string sql = "select count(Id) as total from measureScores where userId='" + userid + "' and topicId in (2,5)";
+                ds = db.executeSqlQuery(sql);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    testTimes = Convert.ToInt32(ds.Tables[0].Rows[0][0])/4;
+                }
+
+                int personalTimes = 0;
+                sql = "select * from Votes where userId='" + userid + "' and topicId=1";
+                ds = db.executeSqlQuery(sql);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    personalTimes++;
+                }
+
+                sql = "select * from Votes where userId='" + userid + "' and topicId=8";
+                ds = db.executeSqlQuery(sql);
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    personalTimes++;
+                }
+
+                selfPercent = personalTimes * 100 / 6;
+
+                sql = "select * from measures where TopicId=5";
                 
                 ds = db.executeSqlQuery(sql);
                 int minYear = 0;
@@ -252,11 +279,23 @@ namespace TestingReport
                                 dimensionOptionCount.Add(dimensionId, options.Length);
                             }
 
+                            sql = "select * from TotalAverage where topicId = 5";
+                            ds = db.executeSqlQuery(sql);
+                            Dictionary<int, float> dimensionCompare = new Dictionary<int, float>();
+                            for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                            {
+                                int dimId = Convert.ToInt32(ds.Tables[0].Rows[i]["dimensionId"]);
+                                int totalScoreCompare = Convert.ToInt32(ds.Tables[0].Rows[i]["totalScore"]);
+                                int totalPersonCompare = Convert.ToInt32(ds.Tables[0].Rows[i]["totalPerson"]);
+                                dimensionCompare.Add(dimId, ((float)totalScoreCompare) / totalPersonCompare);
+                            }
 
                             foreach (KeyValuePair<int, int> pair in dimensionScores)
                             {
                                 radarDimNames.Add(dimensionNames[pair.Key]);
                                 radarDimScores.Add((float)(pair.Value / 2.0));
+                                radarAveScores.Add(dimensionCompare[pair.Key] / 10);
+
                             }
                         }
                     }
