@@ -52,6 +52,17 @@
         text-align:left;
         font-size:40px;
     }
+
+    .frequency
+    {
+        cursor:pointer;
+    }
+
+    .frequency.selected
+    {
+        color:rgba(117,197,240,1) !important;
+        background-color:white;
+    }
     </style>
 </head>
 <body>
@@ -102,26 +113,16 @@
             <div style="padding:0px 80px">
                 <div>
                     <span style="color:White;border:1px solid white;padding:15px;border-radius:10px">打卡频率</span>
-                    <span style="margin-left:80px;color:White;border:2px dashed white;padding:15px;border-radius:10px">每天</span>
-                    <span style="margin-left:40px;color:White;border:2px dashed white;padding:15px;border-radius:10px">每周</span>
+                    <span style="margin-left:80px;color:White;border:2px dashed white;padding:15px;border-radius:10px" id="daily" class="frequency">每天</span>
+                    <span style="margin-left:40px;color:White;border:2px dashed white;padding:15px;border-radius:10px" id="weekly" class="frequency">每周</span>
                 </div> 
                 
             </div>
-             <div style="padding:0px 80px;margin-top:50px;color:White">
-                <div>
-                    <span style="color:White;border:1px solid white;padding:15px;border-radius:10px">使用说明</span>
-                </div> 
-                <div style="font-size:36px">
-                <p style="margin-top:30px">* 最多同时用三个工具</p>
-                <p>* 每天(周)打卡一次，点击以后打卡成功，未完成改为完成</p>
-                <p>* 每天(周)为新开始的一个周期</p>
-                <p>* 如果要编辑或删除项目，点击项目名称可以进入</p>
-                </div>
-            </div>
+             
 
             <div style="text-align:center;margin-top:50px;padding-bottom:50px;">
-                        
-                        <span style="padding:20px;font-size:50px;background-color:White;color:rgba(117,197,240,1);border-radius:10px">创建项目</span>
+                        <asp:Button runat="server" ID="deleteToolButton" style="width:250px;height:100px;border:none;padding:20px;font-size:50px;background-color:White;color:rgba(117,197,240,1);border-radius:10px" Text="删除项目" OnClick="deleteToolButton_Click" />
+                        <asp:Button runat="server" ID="editToolButton" style="width:250px;height:100px;border:none;padding:20px;font-size:50px;background-color:White;color:rgba(117,197,240,1);border-radius:10px" Text="修改项目" OnClick="editToolButton_Click" />
                         
                     </div>
         </div>
@@ -129,7 +130,7 @@
        
         
     </div>
- 
+ <asp:HiddenField runat="server" ID="frequencyField" />
     </form>
 </body>
 </html>
@@ -138,6 +139,24 @@
     $(document).ready(function () {
         $(".triangle").css("border-right", window.innerWidth + "px solid transparent");
         $(".triangle2").css("border-left", window.innerWidth + "px solid transparent");
+
+        var frequencyVal = $("#frequencyField").val();
+        if (frequencyVal === "0"){
+            $("#daily").addClass("selected");
+        }
+        else if (frequencyVal === "1"){
+            $("#weekly").addClass("selected");
+        }
     });
 
+    $("#daily").on("click", function () {
+        $(".frequency").removeClass("selected");
+        $("#daily").addClass("selected");
+        $("#frequencyField").val("0");
+    });
+    $("#weekly").on("click", function () {
+        $(".frequency").removeClass("selected");
+        $("#weekly").addClass("selected");
+        $("#frequencyField").val("1");
+    });
 	</script>

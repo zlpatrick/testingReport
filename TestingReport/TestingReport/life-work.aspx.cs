@@ -38,7 +38,7 @@ namespace TestingReport
                 string userid = Request["userid"];
                 if (userid == null)
                 {
-                    userid = "om8uZt7fajggMH8vqjFb1afiE8y4";
+                    userid = "om8uZtxRsAdtuJrB_5HZWx6VJ2s8";
                 }
                 JObject obj = WeixinUtil.getUserInfo(userid);
                 userImageUrl = obj.GetValue("headimgurl").ToString();
@@ -159,6 +159,11 @@ namespace TestingReport
                 {
                     
                     int calTimes = 6 - measureAllScores.Keys.Count;
+                    if( minYear == 0 )
+                    {
+                        minYear = DateTime.Now.Year;
+                        minMonth = DateTime.Now.Month;
+                    }
                     for (int i = calTimes; i > 0; i--)
                     {
                         DateTime dt = new DateTime(minYear, minMonth, 1);

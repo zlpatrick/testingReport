@@ -64,5 +64,26 @@ namespace TestingReport
             selfPercent = personalTimes * 100 / 6;
            
         }
+
+        protected void createToolButton_Click(object sender, EventArgs e)
+        {
+            string toolTitle = this.itemName.Text.Trim();
+            string frequency = this.frequencyField.Value;
+            string userid = Request["userid"];
+            if (userid == null)
+            {
+                userid = "om8uZt7fajggMH8vqjFb1afiE8y4";
+            }
+            string sql = "select * from MyTool where userId='" + userid + "'";
+            DBUtil db = new DBUtil();
+            DataSet ds = db.executeSqlQuery(sql);
+            if (ds.Tables[0].Rows.Count >=0 && ds.Tables[0].Rows.Count<3 ) 
+            {
+                sql = string.Format("insert into MyTool(userId,toolName,frequency,postDateTime) values('{0}','{1}',{2},'{3}')", userid, toolTitle, frequency, DateTime.Now.ToString());
+                db.executeSqlNonQuery(sql);
+
+                Response.Redirect("way-tool.aspx?userid=" + userid);
+            }
+        }
     }
 }

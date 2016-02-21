@@ -52,6 +52,17 @@
         text-align:left;
         font-size:40px;
     }
+
+    .frequency
+    {
+        cursor:pointer;
+    }
+
+    .frequency.selected
+    {
+        color:rgba(117,197,240,1) !important;
+        background-color:white;
+    }
     </style>
 </head>
 <body>
@@ -87,10 +98,6 @@
                     <div style="position:absolute;left:50px;bottom:-5px;width:300px;border-radius:150px;background-color:white;z-index:20;height:300px">&nbsp;</div>
                     <div style="position:absolute;left:60px;bottom:5px;width:280px;border-radius:140px;background-color:rgba(117,197,240,1);z-index:50;height:280px;color:white;padding:100px 40px;text-align:center">创建项目</div>
                 </div>
-
-                
-            
-
            
             </div>
             <div style="padding:80px 80px 40px 80px">
@@ -102,8 +109,8 @@
             <div style="padding:0px 80px">
                 <div>
                     <span style="color:White;border:1px solid white;padding:15px;border-radius:10px">打卡频率</span>
-                    <span style="margin-left:80px;color:White;border:2px dashed white;padding:15px;border-radius:10px">每天</span>
-                    <span style="margin-left:40px;color:White;border:2px dashed white;padding:15px;border-radius:10px">每周</span>
+                    <span style="margin-left:80px;color:White;border:2px dashed white;padding:15px;border-radius:10px" id="daily" class="frequency">每天</span>
+                    <span style="margin-left:40px;color:White;border:2px dashed white;padding:15px;border-radius:10px" id="weekly" class="frequency">每周</span>
                 </div> 
                 
             </div>
@@ -121,7 +128,7 @@
 
             <div style="text-align:center;margin-top:50px;padding-bottom:50px;">
                         
-                        <span style="padding:20px;font-size:50px;background-color:White;color:rgba(117,197,240,1);border-radius:10px">创建项目</span>
+                        <asp:Button runat="server" ID="createToolButton" style="width:300px;height:120px;border:none;padding:20px;font-size:50px;background-color:White;color:rgba(117,197,240,1);border-radius:10px" Text="创建项目" OnClick="createToolButton_Click" /> 
                         
                     </div>
         </div>
@@ -129,7 +136,7 @@
        
         
     </div>
- 
+ <asp:HiddenField runat="server" ID="frequencyField" />
     </form>
 </body>
 </html>
@@ -138,6 +145,17 @@
     $(document).ready(function () {
         $(".triangle").css("border-right", window.innerWidth + "px solid transparent");
         $(".triangle2").css("border-left", window.innerWidth + "px solid transparent");
+
+        $("#daily").on("click", function () {
+            $(".frequency").removeClass("selected");
+            $("#daily").addClass("selected");
+            $("#frequencyField").val("0");
+        });
+        $("#weekly").on("click", function () {
+            $(".frequency").removeClass("selected");
+            $("#weekly").addClass("selected");
+            $("#frequencyField").val("1");
+        });
     });
 
 	</script>

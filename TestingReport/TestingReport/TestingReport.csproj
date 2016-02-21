@@ -150,6 +150,7 @@
     <Content Include="tip.aspx" />
     <Content Include="tool-add.aspx" />
     <Content Include="tool-edit.aspx" />
+    <Content Include="tool-record.aspx" />
     <Content Include="vote.aspx" />
     <Content Include="way-tool.aspx" />
     <Content Include="Web.config" />
@@ -287,6 +288,13 @@
     </Compile>
     <Compile Include="tool-edit.aspx.designer.cs">
       <DependentUpon>tool-edit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tool-record.aspx.cs">
+      <DependentUpon>tool-record.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="tool-record.aspx.designer.cs">
+      <DependentUpon>tool-record.aspx</DependentUpon>
     </Compile>
     <Compile Include="vote.aspx.cs">
       <DependentUpon>vote.aspx</DependentUpon>

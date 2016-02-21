@@ -97,31 +97,28 @@
                     <table style="width:95%;text-align:center;margin:auto">
                         <tr class="my-tool-title">
                             <td><span>方法名称</span></td>
-                            <td><span>本次打卡</span></td>
-                            <td><span>近5次完成度</span></td>
-                            <td><span>近20次完成度</span></td>
+                            <td><span>近5次打卡</span></td>
+                            <td><span>操作</span></td>
                         </tr>
                         <tr>
                             <td colspan="4"><hr style="border-color:White;margin-top:40px;" /></td>
                         </tr>
 
+                        <%
+                            for (int i = 0; i < toolNames.Count;i++ )
+                            { 
+                             %>
                         <tr class="my-tool-content">
-                            <td>方法1</td>
-                            <td><span style="padding:10px;border:1px solid white;border-radius:10px">打卡</span></td>
-                            <td>5%</td>
-                            <td>10%</td>
+                            <td><a href="tool-edit.aspx?id=<%= toolIds[i]%>&userid=<%=Request["userid"] %>" style="color:white"><%= toolNames[i]%></a></td>
+                            <td></td>
+                            <td><a href="tool-record.aspx?id=<%= toolIds[i]%>&userid=<%=Request["userid"] %>" style="color:white"><span style="padding:10px;border:1px solid white;border-radius:10px">打卡</span></a></td>
                         </tr>
 
-                        <tr class="my-tool-content">
-                            <td>方法2</td>
-                            <td><span style="padding:10px;border:1px solid white;border-radius:10px">打卡</span></td>
-                            <td>5%</td>
-                            <td>10%</td>
-                        </tr>
+                        <%} %>
                        
                     </table>
                     <div style="text-align:center;margin-top:50px;">
-                        <a href="tool-add.aspx?userid=<%=Request["userid"] %>">
+                        <a href="tool-add.aspx?userid=<%=Request["userid"]%>">
                         <span style="padding:20px;font-size:40px;background-color:White;color:rgba(117,197,240,1);border-radius:10px">创建新项目</span>
                         </a>
                     </div>

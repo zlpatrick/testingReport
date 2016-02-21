@@ -20,7 +20,8 @@ namespace TestingReport
         public int selfPercent = 0;
         public int testTimes = 0;
         public int toolTimes = 0;
-
+        public List<string> toolNames = new List<string>();
+        public List<string> toolIds = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
             string userid = Request["userid"];
@@ -63,7 +64,15 @@ namespace TestingReport
             }
 
             selfPercent = personalTimes * 100 / 6;
-           
+
+            sql = "select * from MyTool where userId='" + userid + "'";
+            ds = db.executeSqlQuery(sql);
+
+            for( int i = 0 ;i<ds.Tables[0].Rows.Count;i++)
+            {
+                toolNames.Add(ds.Tables[0].Rows[i]["toolName"].ToString());
+                toolIds.Add(ds.Tables[0].Rows[i]["Id"].ToString());
+            }
         }
     }
 }

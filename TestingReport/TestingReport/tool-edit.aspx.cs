@@ -63,6 +63,36 @@ namespace TestingReport
 
             selfPercent = personalTimes * 100 / 6;
 
+            if (!IsPostBack)
+            {
+                sql = "select * from MyTool where Id=" + Request["id"];
+                ds = db.executeSqlQuery(sql);
+
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    this.itemName.Text = ds.Tables[0].Rows[0]["toolName"].ToString();
+                    this.frequencyField.Value = ds.Tables[0].Rows[0]["frequency"].ToString();
+                }
+            }
+        }
+
+        protected void deleteToolButton_Click(object sender, EventArgs e)
+        {
+            string sql = "delete from MyTool where Id=" + Request["id"];
+            DBUtil db = new DBUtil();
+            db.executeSqlQuery(sql);
+            Response.Redirect("way-tool.aspx?userid=" + Request["userid"]);
+        }
+
+        protected void editToolButton_Click(object sender, EventArgs e)
+        {
+            string title = this.itemName.Text.Trim();
+            string frequency = this.frequencyField.Value;
+            string sql = string.Format("update MyTool set toolName='{0}',frequency={1} where Id={2}", title, frequency, Request["id"]);
+            DBUtil db = new DBUtil();
+            db.executeSqlNonQuery(sql);
+            Response.Redirect("way-tool.aspx?userid=" + Request["userid"]);
+
         }
     }
 }

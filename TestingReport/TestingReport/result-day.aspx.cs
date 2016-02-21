@@ -5,8 +5,6 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
-using System.Web.UI.DataVisualization.Charting;
-using System.Web.UI.DataVisualization;
 using System.Text;
 using Newtonsoft.Json.Linq;
 
