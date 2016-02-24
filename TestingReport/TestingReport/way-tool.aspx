@@ -97,7 +97,7 @@
                     <table style="width:95%;text-align:center;margin:auto">
                         <tr class="my-tool-title">
                             <td><span>方法名称</span></td>
-                            <td><span>近5次打卡</span></td>
+                            <td><span>近7次打卡</span></td>
                             <td><span>操作</span></td>
                         </tr>
                         <tr>
@@ -110,18 +110,20 @@
                              %>
                         <tr class="my-tool-content">
                             <td><a href="tool-edit.aspx?id=<%= toolIds[i]%>&userid=<%=Request["userid"] %>" style="color:white"><%= toolNames[i]%></a></td>
-                            <td></td>
+                            <td><%=toolSigns[i] %></td>
                             <td><a href="tool-record.aspx?id=<%= toolIds[i]%>&userid=<%=Request["userid"] %>" style="color:white"><span style="padding:10px;border:1px solid white;border-radius:10px">打卡</span></a></td>
                         </tr>
 
                         <%} %>
                        
                     </table>
+                    <% if(toolNames.Count<3){ %>
                     <div style="text-align:center;margin-top:50px;">
                         <a href="tool-add.aspx?userid=<%=Request["userid"]%>">
                         <span style="padding:20px;font-size:40px;background-color:White;color:rgba(117,197,240,1);border-radius:10px">创建新项目</span>
                         </a>
                     </div>
+                    <%} %>
                 </div>
 
                 <div style="position:relative;border:none">

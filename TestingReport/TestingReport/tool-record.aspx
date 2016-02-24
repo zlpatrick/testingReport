@@ -11,6 +11,18 @@
     
     <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
+    <style>
+        .popUpButton
+        {
+            height:100px;
+            width:230px;
+            border:none;
+            
+            color:white;
+            border-radius:5px;
+        }
+
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -71,14 +83,14 @@
                 </div>
            
                 <div style="background:white;color:rgba(117,197,240,1);text-align:center;padding-top:100px;">
-                    <table style="width:600px;margin:30px auto">
+                    <table style="width:750px;margin:30px auto;font-size:46px">
                         <%
                             for( int i = 0 ;i<listDays.Count;i++)
                             { 
                              %>
-                        <tr>
+                        <tr style="height:120px">
                             <Td><%=listDays[i] %></Td>
-                            <td><%=listStatus[i] %></td>
+                            <td><a href="#" data-toggle="modal" data-target="#checkRecord" onclick="checkRecordClick('<%=listDays[i] %>')" style="color:<%=listColors[i]%>"><span style="padding:15px 25px;border:1px solid <%=listColors[i]%>;border-radius:10px;color:<%=listColors[i]%>"><%=listStatus[i] %> ></span></a> </td>
 
                         </tr>
                         <%
@@ -93,7 +105,27 @@
        
         
     </div>
- 
+
+        <asp:HiddenField ID="checkRecordIndex" runat="server" />
+   <div id="checkRecord" class="modal fade in" tabindex="-1" aria-labelledby="seekFeedbackTitle" role="dialog" aria-hidden="false" >
+		<table height="100%" width="100%">
+        <tbody><tr><td valign="middle">
+		<div class="modal-dialog feedbackDialogWidth">
+			<div class="modal-content" style="padding:50px;">
+                <div style="margin-bottom:80px">
+                    请选择该项完成状态
+                </div>
+                <div style="overflow:hidden">
+				  <asp:Button ID="finishButton" Text="已完成" runat="server" class="popUpButton" style="float:left;background-color:#5cb85c" OnClick="finishButton_Click"/>
+                <asp:Button ID="noneFinishButton" Text="未完成" runat="server" class="popUpButton" style="float:right;background-color:#c9302c" OnClick="noneFinishButton_Click"/>
+			    </div>
+            </div>
+		</div>
+		</td></tr>
+		</tbody></table>
+	</div>
+
+      
     </form>
 </body>
 </html>
@@ -104,5 +136,7 @@
         $(".triangle2").css("border-left", window.innerWidth + "px solid transparent");
     });
 
-  
+    function checkRecordClick(index) {
+        $("#checkRecordIndex").val(index);
+    }
 	</script>
