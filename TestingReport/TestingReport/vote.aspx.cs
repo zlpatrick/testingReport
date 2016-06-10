@@ -29,24 +29,29 @@ namespace TestingReport
                 Panel panel = new Panel();
                 panel.CssClass = "content";
 
+                
                 Panel titlePanel = new Panel();
                 Image titleImage = new Image();
                 titleImage.ImageUrl = "assets/" + introductionTitle;
                 titlePanel.CssClass = "test-option-page-title-img";
                 titlePanel.Controls.Add(titleImage);
 
+                /*
                 Panel introductionPanel = new Panel();
                 Image introduction = new Image();
                 introduction.ImageUrl = "assets/" + introductionContent;
                 introductionPanel.CssClass = "test-option-page-title-img";
                 introductionPanel.Controls.Add(introduction);
-
+                
 
                 Panel imgPanel = new Panel();
                 Image image = new Image();
                 image.ImageUrl = "assets/" + introductionImg;
                 imgPanel.CssClass = "test-img";
-                imgPanel.Controls.Add(image);
+                imgPanel.Controls.Add(image);*/
+
+                Panel tempPanel = new Panel();
+                tempPanel.ID = "custom-panel";
 
                 Panel buttonPanel = new Panel();
                 DateTime now = DateTime.Now;
@@ -71,8 +76,9 @@ namespace TestingReport
 
 
                 panel.Controls.Add(titlePanel);
-                panel.Controls.Add(imgPanel);
-                panel.Controls.Add(introductionPanel);
+                panel.Controls.Add(tempPanel);
+               // panel.Controls.Add(imgPanel);
+               // panel.Controls.Add(introductionPanel);
                 panel.Controls.Add(buttonPanel);
                 
                 this.topicId.Text = id;

@@ -8,10 +8,19 @@
     幸福ABC
 
     </title>
-  
+   <script src="Scripts/jquery.1.11.js"></script>
     <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
+    <style>
+        .vote-area{
+            margin:50px;
+            background-color:#cf6649;
+            color:white;
+            text-align:center;
+            border-radius:10px;
+        }
+    </style>
 </head>
-<body>
+<body style="background-color:#3facad">
     <form id="form1" runat="server">
     <div>
     
@@ -40,5 +49,12 @@
             onBridgeReady();
         }
 </script>-->
+
+    <script>
+        $(document).ready(function () {
+            $("#custom-panel").html("<div class='vote-area'><div style='padding-top:40px;padding-bottom:40px'>Big Five 大五</div><div style='padding-bottom:40px'>最权威最准确的性格测试</div></div>");
+        });
+
+    </script>
 </body>
 </html>

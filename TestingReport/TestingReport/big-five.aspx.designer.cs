@@ -10,7 +10,7 @@
 namespace TestingReport {
     
     
-    public partial class test {
+    public partial class big_five {
         
         /// <summary>
         /// form1 控件。

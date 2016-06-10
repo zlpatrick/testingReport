@@ -66,6 +66,7 @@
   <ItemGroup>
     <Content Include="admin-index.aspx" />
     <Content Include="admin-login.aspx" />
+    <Content Include="assets\big-five-title.png" />
     <Content Include="assets\dimension-10.png" />
     <Content Include="assets\dimension-15.jpg" />
     <Content Include="assets\dimension-4.jpg" />
@@ -112,8 +113,20 @@
     <Content Include="assets\trymore.jpg" />
     <Content Include="assets\way-1.jpg" />
     <Content Include="background.aspx" />
+    <Content Include="big-five.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="header.htm" />
+    <Content Include="img\1-left.png" />
+    <Content Include="img\1-right.png" />
+    <Content Include="img\2-left.png" />
+    <Content Include="img\2-right.png" />
+    <Content Include="img\3-left.png" />
+    <Content Include="img\3-right.png" />
+    <Content Include="img\4-left.png" />
+    <Content Include="img\4-right.png" />
+    <Content Include="img\5-left.png" />
+    <Content Include="img\5-right.png" />
+    <Content Include="img\big-five-title.png" />
     <Content Include="img\big5.png" />
     <Content Include="img\button.png" />
     <Content Include="img\corner.png" />
@@ -184,6 +197,13 @@
     </Compile>
     <Compile Include="background.aspx.designer.cs">
       <DependentUpon>background.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="big-five.aspx.cs">
+      <DependentUpon>big-five.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="big-five.aspx.designer.cs">
+      <DependentUpon>big-five.aspx</DependentUpon>
     </Compile>
     <Compile Include="DBUtil.cs" />
     <Compile Include="Entity.cs" />

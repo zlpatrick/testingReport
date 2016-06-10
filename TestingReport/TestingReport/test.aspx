@@ -14,7 +14,7 @@
         }
     </script>
 </head>
-<body>
+<body style="background-color:#3facad">
     <form id="form1" runat="server">
     <div>
     

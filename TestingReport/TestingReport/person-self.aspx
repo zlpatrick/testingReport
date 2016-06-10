@@ -87,7 +87,7 @@
         </div>
 
         <div>
-            <div style="padding-left:80px;padding-top:50px;color:white">大五人格分析</div>
+            <div style="padding-left:80px;padding-top:50px;color:white"><a href="big-five.aspx?userid=<%=Request["userid"] %>">大五人格分析</a></div>
             <a href="profile.aspx?id=1&userid=<%=Request["userid"] %>">
                 <div id="main" style="height:800px;background-color:white;border:none;padding:80px;font-size:40px !important;line-height:initial !important"></div>
             </a>

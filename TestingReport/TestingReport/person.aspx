@@ -21,6 +21,38 @@
             font-size:40px !important;
         }
 
+        .modal-content{
+            background-color:#3facad;
+        }
+
+        .modal-content ul
+        {
+            list-style:none;
+            height:100%;
+            overflow:hidden;
+        }
+
+         .modal-content ul li{
+             float:left;
+             width:46%;
+             margin:20px 2%;
+             background-color:#cf6649;
+
+         }
+
+         .modal-content.singleline ul li{
+             float:left;
+             width:96%;
+             margin:15px 2%;
+             background-color:#cf6649;
+
+         }
+
+         .modal-content ul li a{
+             color:white;
+             text-decoration:none;
+         }
+
     </style>
 </head>
 <body style="background-color:#eee">
@@ -45,124 +77,40 @@
             </p>
         </div>
         <div class="dropdown" style="padding:0px 0px 0px 0px;width:100%">
-            <button class="btn btn-default dropdown-toggle" type="button" id="genderDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;border-bottom:none">
+            <button class="btn btn-default dropdown-toggle" type="button" id="genderDropDown" data-toggle="modal" data-target="#regionModelDialog" aria-haspopup="true" aria-expanded="true" style="width:100%;border-bottom:none">
                 请选择地区:
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="font-size:50px;width:100%">
-                <li><a href="#" onclick="setGender(this)">北京</a></li>
-                <li><a href="#" onclick="setGender(this)">上海</a></li>
-                <li><a href="#" onclick="setGender(this)">天津</a></li>
-                <li><a href="#" onclick="setGender(this)">重庆</a></li>
-                <li><a href="#" onclick="setGender(this)">河北</a></li>
-                <li><a href="#" onclick="setGender(this)">山西</a></li>
-                <li><a href="#" onclick="setGender(this)">辽宁</a></li>
-                <li><a href="#" onclick="setGender(this)">吉林</a></li>
-                <li><a href="#" onclick="setGender(this)">黑龙江</a></li>
-                <li><a href="#" onclick="setGender(this)">江苏</a></li>
-                <li><a href="#" onclick="setGender(this)">浙江</a></li>
-                <li><a href="#" onclick="setGender(this)">安徽</a></li>
-                <li><a href="#" onclick="setGender(this)">福建</a></li>
-                <li><a href="#" onclick="setGender(this)">江西</a></li>
-                <li><a href="#" onclick="setGender(this)">山东</a></li>
-                <li><a href="#" onclick="setGender(this)">河南</a></li>
-                <li><a href="#" onclick="setGender(this)">湖北</a></li>
-                <li><a href="#" onclick="setGender(this)">湖南</a></li>
-                <li><a href="#" onclick="setGender(this)">广东</a></li>
-                <li><a href="#" onclick="setGender(this)">海南</a></li>
-                <li><a href="#" onclick="setGender(this)">四川</a></li>
-                <li><a href="#" onclick="setGender(this)">贵州</a></li>
-                <li><a href="#" onclick="setGender(this)">云南</a></li>
-                <li><a href="#" onclick="setGender(this)">陕西</a></li>
-                <li><a href="#" onclick="setGender(this)">甘肃</a></li>
-                <li><a href="#" onclick="setGender(this)">青海</a></li>
-                <li><a href="#" onclick="setGender(this)">台湾</a></li>
-                <li><a href="#" onclick="setGender(this)">内蒙古</a></li>
-                <li><a href="#" onclick="setGender(this)">广西</a></li>
-                <li><a href="#" onclick="setGender(this)">宁夏</a></li>
-                <li><a href="#" onclick="setGender(this)">新疆</a></li>
-                <li><a href="#" onclick="setGender(this)">西藏</a></li>
-                <li><a href="#" onclick="setGender(this)">香港</a></li>
-                <li><a href="#" onclick="setGender(this)">澳门</a></li>
-                <li style="border-bottom:none"><a href="#" onclick="setGender(this)">海外</a></li>
-            </ul>
         </div>
 
         <div class="dropdown" style="padding:0px 0px 0px 0px;width:100%;">
-            <button class="btn btn-default dropdown-toggle" type="button" id="ageDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;border-bottom:none">
-                请选择出生年代:
-          
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="font-size:50px;width:100%">
-                <li><a href="#" onclick="setAge(this)">1950年之前</a></li>
-                <li><a href="#" onclick="setAge(this)">50-59年</a></li>
-                <li><a href="#" onclick="setAge(this)">60-69年</a></li>
-                <li><a href="#" onclick="setAge(this)">70-79年</a></li>
-                <li><a href="#" onclick="setAge(this)">80-89年</a></li>
-                <li><a href="#" onclick="setAge(this)">90-00年</a></li>
-                <li style="border-bottom:none"><a href="#" onclick="setAge(this)">2000年以后</a></li>
-            </ul>
+            <button class="btn btn-default dropdown-toggle" type="button" id="ageDropDown" data-toggle="modal" data-target="#ageModelDialog" aria-haspopup="true" aria-expanded="true" style="width:100%;border-bottom:none">
+                请选择出生年代:  
+            </button>       
         </div>
 
-
         <div class="dropdown" style="padding:0px 0px 0px 0px;width:100%">
-            <button class="btn btn-default dropdown-toggle" type="button" id="industryDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;border-bottom:none">
+            <button class="btn btn-default dropdown-toggle" type="button" id="industryDropDown" data-toggle="modal"  data-target="#industryModelDialog" aria-haspopup="true" aria-expanded="true" style="width:100%;border-bottom:none">
                 请选择行业:
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="font-size:50px;width:100%">
-                <li><a href="#" onclick="setIndustry(this)">互联网-游戏-软件</a></li>
-                <li><a href="#" onclick="setIndustry(this)">电子-通信-硬件</a></li>
-                <li><a href="#" onclick="setIndustry(this)">房地产-建筑-物业</a></li>
-                <li><a href="#" onclick="setIndustry(this)">金融</a></li>
-                <li><a href="#" onclick="setIndustry(this)">消费品</a></li>
-                <li><a href="#" onclick="setIndustry(this)">汽车-机械-制造</a></li>
-                <li><a href="#" onclick="setIndustry(this)">服务-外包-中介</a></li>
-                <li><a href="#" onclick="setIndustry(this)">广告-传媒-教育-文化</a></li>
-                <li><a href="#" onclick="setIndustry(this)">交通-贸易-物流</a></li>
-                <li><a href="#" onclick="setIndustry(this)">医疗-制药</a></li>
-                <li><a href="#" onclick="setIndustry(this)">能源-化工-环保</a></li>
-                <li><a href="#" onclick="setIndustry(this)">政府</a></li>
-                <li><a href="#" onclick="setIndustry(this)">农林牧渔</a></li>
-                <li style="border-bottom:none"><a href="#" onclick="setIndustry(this)">其他</a></li>
-            </ul>
         </div>
 
         <div class="dropdown" style="padding:0px 0px 0px 0px;width:100%">
-            <button class="btn btn-default dropdown-toggle" type="button" id="marriageDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;border-bottom:none">
+            <button class="btn btn-default dropdown-toggle" type="button" id="marriageDropDown" data-toggle="modal"  data-target="#marriageModelDialog" aria-haspopup="true" aria-expanded="true" style="width:100%;border-bottom:none">
                 请选择婚姻状况:
-          
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="font-size:50px;width:100%">
-                <li><a href="#" onclick="setMarriage(this)">已婚</a></li>
-                <li><a href="#" onclick="setMarriage(this)">未婚有固定伴侣</a></li>
-                <li style="border-bottom:none"><a href="#" onclick="setMarriage(this)">单身</a></li>
-            </ul>
         </div>
 
         <div class="dropdown" style="padding:0px 0px 0px 0px;width:100%">
-            <button class="btn btn-default dropdown-toggle" type="button" id="incomeDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%;border-bottom:none">
+            <button class="btn btn-default dropdown-toggle" type="button" id="incomeDropDown" data-toggle="modal" data-target="#incomeModelDialog" aria-haspopup="true" aria-expanded="true" style="width:100%;border-bottom:none">
                 请选择年收入:
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="font-size:50px;width:100%">
-                <li><a href="#" onclick="setIncome(this)">5万以下</a></li>
-                <li><a href="#" onclick="setIncome(this)">5到10万</a></li>
-                <li><a href="#" onclick="setIncome(this)">10到20万</a></li>
-                <li><a href="#" onclick="setIncome(this)">20到40万</a></li>
-                <li><a href="#" onclick="setIncome(this)">40到100万</a></li>
-                <li style="border-bottom:none"><a href="#" onclick="setIncome(this)">100万以上</a></li>
-            </ul>
         </div>
 
         <div class="dropdown" style="padding:0px 0px 0px 0px;width:100%">
-            <button class="btn btn-default dropdown-toggle" type="button" id="degreeDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="width:100%">
+            <button class="btn btn-default dropdown-toggle" type="button" id="degreeDropDown" data-toggle="modal"  data-target="#degreeModelDialog" aria-haspopup="true" aria-expanded="true" style="width:100%">
                 请选择学历:
             </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="font-size:50px;width:100%">
-                <li><a href="#" onclick="setDegree(this)">中学</a></li>
-                <li><a href="#" onclick="setDegree(this)">大专</a></li>
-                <li><a href="#" onclick="setDegree(this)">本科</a></li>
-                <li><a href="#" onclick="setDegree(this)">硕士研究生</a></li>
-                <li style="border-bottom:none"><a href="#" onclick="setDegree(this)">博士/博士后</a></li>
-            </ul>
+      
         </div>
     
        
@@ -185,7 +133,172 @@
             
        
     </div>
+
+
+
+        <div id="regionModelDialog" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="false" >
+		<table height="100%" width="100%">
+        <tbody><tr><td valign="middle">
+		<div class="modal-dialog" style="width:90%">
+			<div class="modal-content" style="padding:50px;">
+               <div style="color:white">所在地区</div>
+               <ul style="font-size:50px;width:100%;text-align:center;padding:0">
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">北京</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">上海</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">天津</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">重庆</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">河北</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">山西</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">辽宁</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">吉林</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">黑龙江</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">江苏</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">浙江</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">安徽</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">福建</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">江西</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">山东</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">河南</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">湖北</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">湖南</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">广东</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">海南</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">四川</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">贵州</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">云南</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">陕西</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">甘肃</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">青海</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">台湾</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">内蒙古</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">广西</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">宁夏</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">新疆</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">西藏</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">香港</a></li>
+                <li><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">澳门</a></li>
+                <li style="border-bottom:none"><a href="#" onclick="setGender(this);$('#regionModelDialog').modal('hide');">海外</a></li>
+            </ul>
+            </div>
+		</div>
+		</td></tr>
+		</tbody></table>
+	</div>
+
+
+
+         <div id="ageModelDialog" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="false" >
+		<table height="100%" width="100%">
+        <tbody><tr><td valign="middle">
+		<div class="modal-dialog" style="width:90%">
+			<div class="modal-content" style="padding:50px;">
+               <div style="color:white">出生年代</div>
+               <ul style="font-size:50px;width:100%;text-align:center;padding:0">
+               <li><a href="#" onclick="setAge(this);$('#ageModelDialog').modal('hide');">1950年之前</a></li>
+                <li><a href="#" onclick="setAge(this);$('#ageModelDialog').modal('hide');">50-59年</a></li>
+                <li><a href="#" onclick="setAge(this);$('#ageModelDialog').modal('hide');">60-69年</a></li>
+                <li><a href="#" onclick="setAge(this);$('#ageModelDialog').modal('hide');">70-79年</a></li>
+                <li><a href="#" onclick="setAge(this);$('#ageModelDialog').modal('hide');">80-89年</a></li>
+                <li><a href="#" onclick="setAge(this);$('#ageModelDialog').modal('hide');">90-00年</a></li>
+                <li style="border-bottom:none"><a href="#" onclick="setAge(this;$('#ageModelDialog').modal('hide');)">2000年以后</a></li>
+            </ul>
+            </div>
+		</div>
+		</td></tr>
+		</tbody></table>
+	</div>
+
+
+         <div id="marriageModelDialog" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="false" >
+		<table height="100%" width="100%">
+        <tbody><tr><td valign="middle">
+		<div class="modal-dialog" style="width:90%">
+			<div class="modal-content singleline" style="padding:50px;">
+               <div style="color:white">婚姻状况</div>
+               <ul style="font-size:50px;width:100%;text-align:center;padding:0">
+               <li><a href="#" onclick="setMarriage(this);$('#marriageModelDialog').modal('hide');">已婚</a></li>
+                <li><a href="#" onclick="setMarriage(this);$('#marriageModelDialog').modal('hide');">未婚有固定伴侣</a></li>
+                <li style="border-bottom:none"><a href="#" onclick="setMarriage(this);$('#marriageModelDialog').modal('hide');">单身</a></li>
+            </ul>
+            </div>
+		</div>
+		</td></tr>
+		</tbody></table>
+	</div>
+
+
+          <div id="industryModelDialog" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="false" >
+		<table height="100%" width="100%">
+        <tbody><tr><td valign="middle">
+		<div class="modal-dialog" style="width:90%">
+			<div class="modal-content singleline" style="padding:50px;">
+               <div style="color:white">所在行业</div>
+               <ul style="font-size:50px;width:100%;text-align:center;padding:0">
+               <li><a href="#" onclick="setIndustry(this);$('#industryModelDialog').modal('hide');">互联网-游戏-软件</a></li>
+                <li><a href="#" onclick="setIndustry(this);$('#industryModelDialog').modal('hide');">电子-通信-硬件</a></li>
+                <li><a href="#" onclick="setIndustry(this);$('#industryModelDialog').modal('hide');">房地产-建筑-物业</a></li>
+                <li><a href="#" onclick="setIndustry(this);$('#industryModelDialog').modal('hide');">金融</a></li>
+                <li><a href="#" onclick="setIndustry(this);$('#industryModelDialog').modal('hide');">消费品</a></li>
+                <li><a href="#" onclick="setIndustry(this);$('#industryModelDialog').modal('hide');">汽车-机械-制造</a></li>
+                <li><a href="#" onclick="setIndustry(this);$('#industryModelDialog').modal('hide');">服务-外包-中介</a></li>
+                <li><a href="#" onclick="setIndustry(this);$('#industryModelDialog').modal('hide');">广告-传媒-教育-文化</a></li>
+                <li><a href="#" onclick="setIndustry(this);$('#industryModelDialog').modal('hide');">交通-贸易-物流</a></li>
+                <li><a href="#" onclick="setIndustry(this);$('#industryModelDialog').modal('hide');">医疗-制药</a></li>
+                <li><a href="#" onclick="setIndustry(this);$('#industryModelDialog').modal('hide');">能源-化工-环保</a></li>
+                <li><a href="#" onclick="setIndustry(this);$('#industryModelDialog').modal('hide');">政府</a></li>
+                <li><a href="#" onclick="setIndustry(this);$('#industryModelDialog').modal('hide');">农林牧渔</a></li>
+                <li style="border-bottom:none"><a href="#" onclick="setIndustry(this);$('#industryModelDialog').modal('hide');">其他</a></li>
+            </ul>
+            </div>
+		</div>
+		</td></tr>
+		</tbody></table>
+	</div>
+
+
+        <div id="incomeModelDialog" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="false" >
+		<table height="100%" width="100%">
+        <tbody><tr><td valign="middle">
+		<div class="modal-dialog" style="width:90%">
+			<div class="modal-content" style="padding:50px;">
+               <div style="color:white">收入状况</div>
+               <ul style="font-size:50px;width:100%;text-align:center;padding:0">
+               <li><a href="#" onclick="setIncome(this);$('#incomeModelDialog').modal('hide');">5万以下</a></li>
+                <li><a href="#" onclick="setIncome(this);$('#incomeModelDialog').modal('hide');">5到10万</a></li>
+                <li><a href="#" onclick="setIncome(this);$('#incomeModelDialog').modal('hide');">10到20万</a></li>
+                <li><a href="#" onclick="setIncome(this);$('#incomeModelDialog').modal('hide');">20到40万</a></li>
+                <li><a href="#" onclick="setIncome(this);$('#incomeModelDialog').modal('hide');">40到100万</a></li>
+                <li style="border-bottom:none"><a href="#" onclick="setIncome(this);$('#incomeModelDialog').modal('hide');">100万以上</a></li>
+            </ul>
+            </div>
+		</div>
+		</td></tr>
+		</tbody></table>
+	</div>
+
+        <div id="degreeModelDialog" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="false" >
+		<table height="100%" width="100%">
+        <tbody><tr><td valign="middle">
+		<div class="modal-dialog" style="width:90%">
+			<div class="modal-content" style="padding:50px;">
+               <div style="color:white">学历状况</div>
+               <ul style="font-size:50px;width:100%;text-align:center;padding:0">
+               <li><a href="#" onclick="setDegree(this);$('#degreeModelDialog').modal('hide');">中学</a></li>
+                <li><a href="#" onclick="setDegree(this);$('#degreeModelDialog').modal('hide');">大专</a></li>
+                <li><a href="#" onclick="setDegree(this);$('#degreeModelDialog').modal('hide');">本科</a></li>
+                <li><a href="#" onclick="setDegree(this);$('#degreeModelDialog').modal('hide');">硕士研究生</a></li>
+                <li style="border-bottom:none"><a href="#" onclick="setDegree(this);$('#degreeModelDialog').modal('hide');">博士/博士后</a></li>
+            </ul>
+            </div>
+		</div>
+		</td></tr>
+		</tbody></table>
+	</div>
+
+
     </form>
+
+    
 </body>
 
 
