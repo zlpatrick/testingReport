@@ -30,12 +30,20 @@ namespace TestingReport
                 if (ds.Tables[0].Rows.Count > 0)
                 {
                     string introductionTitle = ds.Tables[0].Rows[0]["introductionTitleImage"].ToString();
+                    string title = ds.Tables[0].Rows[0]["title"].ToString();
                     Panel titlePanel = new Panel();
-                    Image titleImage = new Image();
+                    /*Image titleImage = new Image();
                     titleImage.ImageUrl = "assets/" + introductionTitle;
                     titlePanel.CssClass = "test-option-page-title-img";
                     titlePanel.Controls.Add(titleImage);
+                    this.form1.Controls.Add(titlePanel);*/
+
+                    Label titleLabel = new Label();
+                    titleLabel.Text = title;
+                    titlePanel.CssClass = "test-option-page-title-text";
+                    titlePanel.Controls.Add(titleLabel);
                     this.form1.Controls.Add(titlePanel);
+
                 }
 
                 TopicSql = "select * from Dimensions where TopicId=" + id;
@@ -97,7 +105,7 @@ namespace TestingReport
                         Label titleTotalLabel = new Label();
                         titleTotalLabel.Text = "本测试共 ";
                         Label temp1 = new Label();
-                        temp1.Text = "10";// ds.Tables[0].Rows.Count.ToString();
+                        temp1.Text = ds.Tables[0].Rows.Count.ToString();
                         temp1.CssClass = "test-title-total-span";
                         Label temp2 = new Label();
                         temp2.Text = " 题";

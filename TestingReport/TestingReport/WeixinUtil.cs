@@ -14,6 +14,7 @@ namespace TestingReport
     {
         public static DateTime lastUpdate;
         public static string access_token = null;
+        public static string authorize_access_token = null;
 
         private static string GET_USER_INFO = "https://api.weixin.qq.com/cgi-bin/user/info?access_token={0}&openid={1}&lang=zh_CN";
         public static string getAccessToken()
@@ -45,6 +46,31 @@ namespace TestingReport
             }
 
             return access_token;
+        }
+
+        public static string getUserAuthorizedId(string code)
+        {
+            try
+            {
+                string api = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxe29e41d979d25872&secret=8fbe158f0cf0a33acfe2b57e49e12593&code=" + code + "&grant_type=authorization_code";
+                HttpWebRequest request = (HttpWebRequest)HttpWebRequest.Create(api);
+                System.IO.StreamReader reader = new System.IO.StreamReader(request.GetResponse().GetResponseStream(), Encoding.UTF8);
+                string token = reader.ReadToEnd();
+
+                JObject obj = (JObject)JsonConvert.DeserializeObject<JObject>(token);
+                JToken temp = null;
+                obj.TryGetValue("errorcode", out temp);
+                if (temp == null)
+                {
+                    return obj.GetValue("openid").ToString();
+                }
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+
+            return null;
         }
 
         public static JObject getUserInfo(string openid)

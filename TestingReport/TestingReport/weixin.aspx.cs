@@ -43,21 +43,21 @@ namespace TestingReport
 
                 if (key.Equals("worklife"))
                 {
-                    title = "幸福ABC - 工作 & 生活";
-                    desc = "工作 & 生活";
-                    page = "work-life.aspx";
+                    title = "幸福ABC - 认识自我";
+                    desc = "认识自我";
+                    page = "learn-self.aspx";
                 }
                 else if (key.Equals("waytool"))
                 {
-                    title = "幸福ABC - 方法 & 工具";
-                    desc = "方法 & 工具";
-                    page = "way-tool.aspx";
+                    title = "幸福ABC - 发现生活";
+                    desc = "发现生活";
+                    page = "find-life.aspx";
                 }
                 else if (key.Equals("personal"))
                 {
                     title = "幸福ABC - 个人中心";
                     desc = "个人中心";
-                    page = "person-self.aspx";
+                    page = "person.aspx";
                 }
 
                 string reply = "<xml><ToUserName><![CDATA[" + fromUser + "]]></ToUserName>" +

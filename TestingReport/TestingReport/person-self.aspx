@@ -4,6 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <meta content="user-scalable=no" id="viewport" name="viewport">
      <title>幸福ABC - 认识自我</title>
 
     <script src="Scripts/jquery.1.11.js"></script>

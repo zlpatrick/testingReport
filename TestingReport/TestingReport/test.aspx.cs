@@ -24,10 +24,18 @@ namespace TestingReport
             {
                 string introductionTitle = ds.Tables[0].Rows[0]["introductionTitleImage"].ToString();
                 Panel titlePanel = new Panel();
-                Image titleImage = new Image();
+                /*Image titleImage = new Image();
                 titleImage.ImageUrl = "assets/" + introductionTitle;
                 titlePanel.CssClass = "test-option-page-title-img";
                 titlePanel.Controls.Add(titleImage);
+                this.form1.Controls.Add(titlePanel);*/
+
+                string title = ds.Tables[0].Rows[0]["title"].ToString();
+
+                Label titleLabel = new Label();
+                titleLabel.Text = title;
+                titlePanel.CssClass = "test-option-page-title-text";
+                titlePanel.Controls.Add(titleLabel);
                 this.form1.Controls.Add(titlePanel);
             }
             ds = db.executeSqlQuery(sql);
@@ -175,7 +183,33 @@ namespace TestingReport
                     db.executeSqlNonQuery("insert into Votes(userId,TopicId,OptionId,ChooseItemPosition) values('" + userid +
                         "'," + Request["id"].ToString() + "," + i+","+chooseItem+")");
                 }
-                Response.Redirect("result.aspx?id=" + Request["id"].ToString() + "&userid=" + userid+"&type="+Request["type"].ToString());
+                if ("9".Equals(Request["id"].ToString()))
+                {
+                    Response.Redirect("world-result.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString());
+                }
+                else if("10".Equals(Request["id"].ToString()))
+                {
+                    Response.Redirect("perfect-result.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString());
+                }
+                else if( "2".Equals(Request["id"].ToString()))
+                {
+                    Response.Redirect("happy-feeling-result.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString());
+
+                }
+                else if ("5".Equals(Request["id"].ToString()))
+                {
+                    Response.Redirect("work-result.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString());
+
+                }
+                else if ("3".Equals(Request["id"].ToString()))
+                {
+                    Response.Redirect("life-result.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString());
+
+                }
+                else
+                {
+                    Response.Redirect("result.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString());
+                }
             }            
         }
     }

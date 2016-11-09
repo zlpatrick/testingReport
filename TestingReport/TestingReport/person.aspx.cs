@@ -16,17 +16,27 @@ namespace TestingReport
     {
         public string userImageUrl = "";
         public string userNickName = "";
-        
+        public string openid = "";
         
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                string code = Request["code"];
                 string userid = Request["userid"];
                 if (userid == null)
                 {
-                    userid = "om8uZt7fajggMH8vqjFb1afiE8y4";
+                    if (code == null)
+                    {
+                        Response.Redirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe29e41d979d25872&redirect_uri=http%3A%2F%2Fwww.ihappyabc.com%2Fperson.aspx&response_type=code&scope=snsapi_base#wechat_redirect");
+                    }
+                    else
+                    {
+
+                        userid = WeixinUtil.getUserAuthorizedId(code);
+                    }
                 }
+                openid = userid;
                 JObject obj = WeixinUtil.getUserInfo(userid);
                 userImageUrl = obj.GetValue("headimgurl").ToString();
                 userNickName = obj.GetValue("nickname").ToString();
@@ -86,7 +96,7 @@ namespace TestingReport
                     age, region, industry,income,degree,marriage);
                 db.executeSqlNonQuery(sql);
             }
-            Response.Redirect("person-self.aspx?userid=" + userid);
+            Response.Redirect("person.aspx?userid=" + userid);
         }
     }
 }

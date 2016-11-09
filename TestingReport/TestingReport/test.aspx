@@ -4,6 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <meta content="user-scalable=no" id="viewport" name="viewport">
     <title>幸福ABC</title>
     <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
     
@@ -13,8 +14,14 @@
             $('#'+id+'\'').addClass("test-option-button-click");
         }
     </script>
+    <style>
+        .test-choose-item
+        {
+            width:initial;
+        }
+    </style>
 </head>
-<body style="background-color:#3facad">
+<body>
     <form id="form1" runat="server">
     <div>
     

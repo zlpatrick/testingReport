@@ -38,7 +38,7 @@ namespace TestingReport
                 string userid = Request["userid"];
                 if (userid == null)
                 {
-                    userid = "om8uZtxRsAdtuJrB_5HZWx6VJ2s8";
+                    userid = "om8uZt7fajggMH8vqjFb1afiE8y4";
                 }
                 JObject obj = WeixinUtil.getUserInfo(userid);
                 userImageUrl = obj.GetValue("headimgurl").ToString();

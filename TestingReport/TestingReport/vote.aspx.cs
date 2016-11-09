@@ -5,16 +5,57 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using Newtonsoft.Json.Linq;
 
 namespace TestingReport
 {
     public partial class vote : System.Web.UI.Page
     {
+        public string userImageUrl = "";
+        public string userNickName = "";
+        public List<string> measureNames = new List<string>();
+        public List<string> measureScores = new List<string>();
+        public List<string> measureBeats = new List<string>();
+        public string toolBar = "";
+        public List<string> dimName = new List<string>();
+        public Dictionary<string, string> scoreLabels = new Dictionary<string, string>();
+        public int totalStars = 0;
+        public string age = "年龄未设置";
+        public string industry = "行业未设置";
+        public string region = "地区未设置";
+        public int selfPercent = 0;
+        public int testTimes = 0;
+        public int toolTimes = 0;
+
+        public List<string> radarDimNames = new List<string>();
+        public List<float> radarDimScores = new List<float>();
+        public List<float> radarAveScores = new List<float>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            this.userId.Text = Request["userid"].ToString();
+            string userid = Request["userid"];
+            if (userid == null)
+            {
+                userid = "om8uZt7fajggMH8vqjFb1afiE8y4";
+            }
+            this.userId.Text = userid;
+
+            
+            JObject obj = WeixinUtil.getUserInfo(userid);
+            userImageUrl = obj.GetValue("headimgurl").ToString();
+            userNickName = obj.GetValue("nickname").ToString();
             DBUtil db = new DBUtil();
-            DataSet ds = db.executeSqlQuery("select * from Topics where Id="+Request["id"]);
+            DataSet ds = db.executeSqlQuery("select * from Users where userName='" + userid + "'");
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                age = ds.Tables[0].Rows[0]["age"].ToString();
+                industry = ds.Tables[0].Rows[0]["industry"].ToString();
+                region = ds.Tables[0].Rows[0]["region"].ToString();
+            }
+
+
+
+          
+            ds = db.executeSqlQuery("select * from Topics where Id="+Request["id"]);
             if (ds.Tables[0].Rows.Count > 0)
             {
                 string id = ds.Tables[0].Rows[0]["Id"].ToString();
@@ -31,10 +72,15 @@ namespace TestingReport
 
                 
                 Panel titlePanel = new Panel();
-                Image titleImage = new Image();
+                /*Image titleImage = new Image();
                 titleImage.ImageUrl = "assets/" + introductionTitle;
                 titlePanel.CssClass = "test-option-page-title-img";
-                titlePanel.Controls.Add(titleImage);
+                titlePanel.Controls.Add(titleImage);*/
+                
+                Label titleLabel = new Label();
+                titleLabel.Text = title;
+                titlePanel.CssClass = "test-option-page-title-text";
+                titlePanel.Controls.Add(titleLabel);
 
                 /*
                 Panel introductionPanel = new Panel();
@@ -92,13 +138,17 @@ namespace TestingReport
         protected void startTest(object sender, EventArgs e)
         {
             string id = this.topicId.Text.ToString();
-            if (id.Equals("1")||id.Equals("8"))
+            if (id.Equals("8"))
             {
                 Response.Redirect("test.aspx?id=" + id + "&type=" + this.topicType.Text.ToString() + "&totalChooseItem=" + this.totalChooseItems.Text + "&totalOptions=" + this.totalOptions.Text + "&userId=" + Request["userid"].ToString());
             }
+            else if(id.Equals("1"))
+            {
+                Response.Redirect("test-big-five.aspx?id=" + id + "&type=" + this.topicType.Text.ToString() + "&totalChooseItem=" + this.totalChooseItems.Text + "&totalOptions=" + this.totalOptions.Text + "&userId=" + Request["userid"].ToString());
+            }
             else
             {
-                Response.Redirect("test-day.aspx?id=" + id + "&type=" + this.topicType.Text.ToString() + "&totalChooseItem=" + this.totalChooseItems.Text + "&totalOptions=" + this.totalOptions.Text + "&userId=" + Request["userid"].ToString());
+                Response.Redirect("test.aspx?id=" + id + "&type=" + this.topicType.Text.ToString() + "&totalChooseItem=" + this.totalChooseItems.Text + "&totalOptions=" + this.totalOptions.Text + "&userId=" + Request["userid"].ToString());
             }
         }
     }

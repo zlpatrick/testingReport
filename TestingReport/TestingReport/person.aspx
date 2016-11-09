@@ -4,6 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <meta content="user-scalable=no" id="viewport" name="viewport">
     <title>幸福ABC - 个人设置</title>
 
     <script src="Scripts/jquery.1.11.js"></script>
@@ -14,15 +15,16 @@
     <style>
         #tab1 .dropdown button
         {
-            height:135px;
-            line-height:135px;
+            height:120px;
+            line-height:120px;
             padding-left:40px;
-            color:#666;
+            color:rgba(34,205,193,1);
             font-size:40px !important;
+            background-color: #f2f2f2
         }
 
         .modal-content{
-            background-color:#3facad;
+            background-color:white;
         }
 
         .modal-content ul
@@ -36,7 +38,7 @@
              float:left;
              width:46%;
              margin:20px 2%;
-             background-color:#cf6649;
+             background-color:rgba(34,205,193,1);
 
          }
 
@@ -44,7 +46,7 @@
              float:left;
              width:96%;
              margin:15px 2%;
-             background-color:#cf6649;
+             background-color:rgba(34,205,193,1);
 
          }
 
@@ -52,25 +54,35 @@
              color:white;
              text-decoration:none;
          }
-
+         
+ 
+         a:hover
+    {
+        text-decoration:none;
+    }
+        
     </style>
 </head>
-<body style="background-color:#eee">
+<body  style="background-color:white">
     <form id="form1" runat="server">
-    <div style="background-color:rgba(117,197,240,1);height:300px;position:relative;">
+   <div style="background-color:rgba(34,205,193,1);height:150px;position:relative;">
+       
         <img src="<%=userImageUrl %>" style="width:200px;border-radius:100px;border-radius:100px;position:absolute;bottom:-100px;left:calc((100% - 200px)/2)"/>
+   
     </div>
-
     
-    <div style="text-align:center;color:#555;padding-top:120px;padding-bottom:30px;background-color:white"><%=userNickName %></div>
+    <div style="text-align:center;color:white;padding-top:120px;padding-bottom:30px;background-color:rgba(34,205,193,1)"><%=userNickName %></div>
     
-    <hr style="margin:0;border-color:#AAA;"/>
-    <div style="padding-top:30px;padding-bottom:30px;padding-left:50px;font-size:45px;">
-        个人设置
-    </div>
+    <hr style="margin:0;border-color:#AAA;"/><!--
+ <div>
+        <div style="width:500px;color:white;background-color:#1d3d4c;opacity:0.6;text-align:center;margin:40px auto;padding-top:10px;padding-bottom:10px;">个人设置
+            <div style="float:left;width:5px;background-color:white;margin-left:15px;">&nbsp;</div>
+             <div style="float:right;width:5px;background-color:white;margin-right:15px;">&nbsp;</div>
+        </div>
+    </div>-->
     
     <hr style="margin:0;border-color:#AAA"/>
-    <div id="tab1" style="background-color:white;">
+    <div id="tab1" style="background-color:#213c4c;margin-top:50px">
         <div ID="errorMsg" style="display:none">
             <p style="color:red;padding:0px 50px">
                 请选择您的个人信息!
@@ -126,10 +138,17 @@
         <asp:HiddenField runat="server" ID="income" />
 
 
-    <div style="margin-top:60px;margin-bottom:30px;font-size:45px;background-color:white;border-top:2px solid #AAA;border-bottom:2px solid #AAA">
-        <asp:Button ID="start" Text="保 存" runat="server"  onclick="start_Click" cssClass="buttonBack" OnClientClick="return onMysubmit();"/>
+    <div style="margin-top:60px;margin-bottom:180px;font-size:45px;background-color:white;border-top:2px solid #AAA;border-bottom:2px solid #AAA">
+        <asp:Button ID="start" Text="保 存" runat="server"  onclick="start_Click" cssClass="buttonBack" OnClientClick="return onMysubmit();" style="background-color:rgba(34,205,193,1);color:white"/>
     </div>
-        
+    <div style="position:fixed;bottom:0;height:120px;border-top-color:grey;font-size:40px;background-color:rgba(34,205,193,1);width:100%;z-index:1000;color:white;text-align:center;line-height:120px;">
+       
+         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="learn-self.aspx?userid=<%=openid %>" style="color:white">认识自我</a></div>
+        <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="find-life.aspx?userid=<%=openid %>" style="color:white">发现生活</a></div>
+        <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="happiness.aspx?userid=<%=openid %>" style="color:white">幸福宝典</a></div>
+        <div style="width:25%;border-top:4px solid #3d585f;height:120px;line-height:120px;float:left"><a href="person.aspx?userid=<%=openid %>" style="color:white">个人中心</a></div>
+       
+    </div>
             
        
     </div>

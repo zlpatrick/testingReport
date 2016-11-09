@@ -74,7 +74,7 @@ input[type="radio"]
     height:90px;
     border:none;
     margin-top:30px;
-    margin-left:40px;
+    margin-left:50px;
 }
 .dimension-Image-panel img 
 {
@@ -128,6 +128,29 @@ select
     
 }
 
+test-option-left{
+
+}
+
+test-option-right
+{
+
+}
+
+.test-option-page-title-text
+{
+    text-align:center;
+    margin-top:40px;
+    color:rgba(34,205,193,1);
+    padding-bottom:40px;
+    margin-left:50px;
+    margin-right:50px;
+    border-bottom: 2px solid rgba(34,205,193,1);
+    
+}
+
+
+
 .test-option-page-title-img img
 {
     width:100%;
@@ -152,13 +175,14 @@ select
     text-align:right;
     padding:20px 50px 40px 50px;
     font-size: 44px;
-    color:white;
+    color:rgba(34,205,193,1);
 }
 
 .test-title-sub
 {
-    color:white;
+    color:#666;
     padding:0px 50px;
+    margin-bottom:40px;
     
 }
 
@@ -209,17 +233,51 @@ select
     
     font-size:50px;
 }
+.test-middle-panel
+{
+    text-align:left !important;
+}
+
+.edge{
+    margin-left:50px;
+    overflow:hidden;
+    color:rgba(34,205,193,1);
+    margin-right:50px;
+    text-align:center;
+}
+
+.edge-middle{
+    text-align:center;
+}
 
 .test-choose-item
 {
     margin-top:40px;
     margin-bottom:15px;
-    
+    width:38%;
     margin-left:50px;
     margin-right:50px;
     line-height:90px;
     color:#444;
     border:none;
+}
+
+
+.edge-left{
+    float:left;
+}
+
+.edge-right{
+    float:right;
+}
+.test-choose-item-left
+{
+    float:left;
+}
+
+.test-choose-item-right
+{
+    float:right;
 }
 
 .test-choose-item-day
@@ -381,17 +439,28 @@ button
 .user-tag span
 {
     font-size:40px;
-    border:1px solid rgba(117,197,240,1);
+    border:1px solid white;
     padding:10px;
     border-radius:10px;
     margin-right:20px;
-    color:rgba(117,197,240,1);
+    color:white;
+}
+
+.user-tag span.user-tag-active
+{
+    font-size:40px;
+    border:1px solid white;
+    padding:10px;
+    border-radius:10px;
+    margin-right:20px;
+    color:rgba(34,205,193,1);
+    background-color:white
 }
 
 .story
 {
-    padding-top:15px;
-    padding-bottom:15px;
+    padding-top:10px;
+    padding-bottom:10px;
     padding-right:60px;
     text-align:right;
     
@@ -407,8 +476,8 @@ button
 
 .storyright
 {
-    padding-top:15px;
-    padding-bottom:15px;
+    padding-top:10px;
+    padding-bottom:10px;
     padding-left:20px;
     text-align:left;   
 }
@@ -444,4 +513,10 @@ button
 {
     padding-top:20px;
     padding-bottom:20px;
+}
+
+.test-option-right .test-option-button
+{
+    padding-right:50px !important;
+    text-align:right !important;
 }

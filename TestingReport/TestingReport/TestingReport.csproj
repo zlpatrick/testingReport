@@ -114,7 +114,14 @@
     <Content Include="assets\way-1.jpg" />
     <Content Include="background.aspx" />
     <Content Include="big-five.aspx" />
+    <Content Include="find-life-happy-hepai.aspx" />
+    <Content Include="find-life-life-hepai.aspx" />
+    <Content Include="find-life-total-hepai.aspx" />
+    <Content Include="find-life-work-hepai.aspx" />
+    <Content Include="find-life.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="happiness.aspx" />
+    <Content Include="happy-feeling-result.aspx" />
     <Content Include="header.htm" />
     <Content Include="img\1-left.png" />
     <Content Include="img\1-right.png" />
@@ -139,6 +146,15 @@
     <Content Include="img\test.png" />
     <Content Include="img\whiteback.png" />
     <Content Include="index.aspx" />
+    <Content Include="big-five-result.aspx" />
+    <Content Include="learn-self-badge.aspx" />
+    <Content Include="learn-self-hepai.aspx" />
+    <Content Include="learn-self-links.aspx" />
+    <Content Include="learn-self-perfect-hepai.aspx" />
+    <Content Include="learn-self-total-hepai.aspx" />
+    <Content Include="learn-self-world-hepai.aspx" />
+    <Content Include="learn-self.aspx" />
+    <Content Include="life-result.aspx" />
     <Content Include="life-work.aspx" />
     <Content Include="more-info.aspx" />
     <Content Include="Newtonsoft.Json.dll" />
@@ -158,6 +174,7 @@
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="test-big-five.aspx" />
     <Content Include="test-day.aspx" />
     <Content Include="test.aspx" />
     <Content Include="tip.aspx" />
@@ -175,6 +192,9 @@
     </Content>
     <Content Include="weixin.aspx" />
     <Content Include="work-life.aspx" />
+    <Content Include="perfect-result.aspx" />
+    <Content Include="work-result.aspx" />
+    <Content Include="world-result.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="admin-index.aspx.cs">
@@ -207,8 +227,57 @@
     </Compile>
     <Compile Include="DBUtil.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="find-life-happy-hepai.aspx.cs">
+      <DependentUpon>find-life-happy-hepai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="find-life-happy-hepai.aspx.designer.cs">
+      <DependentUpon>find-life-happy-hepai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="find-life-life-hepai.aspx.cs">
+      <DependentUpon>find-life-life-hepai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="find-life-life-hepai.aspx.designer.cs">
+      <DependentUpon>find-life-life-hepai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="find-life-total-hepai.aspx.cs">
+      <DependentUpon>find-life-total-hepai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="find-life-total-hepai.aspx.designer.cs">
+      <DependentUpon>find-life-total-hepai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="find-life-work-hepai.aspx.cs">
+      <DependentUpon>find-life-work-hepai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="find-life-work-hepai.aspx.designer.cs">
+      <DependentUpon>find-life-work-hepai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="find-life.aspx.cs">
+      <DependentUpon>find-life.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="find-life.aspx.designer.cs">
+      <DependentUpon>find-life.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="happiness.aspx.cs">
+      <DependentUpon>happiness.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="happiness.aspx.designer.cs">
+      <DependentUpon>happiness.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="happy-feeling-result.aspx.cs">
+      <DependentUpon>happy-feeling-result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="happy-feeling-result.aspx.designer.cs">
+      <DependentUpon>happy-feeling-result.aspx</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -216,6 +285,69 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="big-five-result.aspx.cs">
+      <DependentUpon>big-five-result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="big-five-result.aspx.designer.cs">
+      <DependentUpon>big-five-result.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="learn-self-badge.aspx.cs">
+      <DependentUpon>learn-self-badge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="learn-self-badge.aspx.designer.cs">
+      <DependentUpon>learn-self-badge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="learn-self-hepai.aspx.cs">
+      <DependentUpon>learn-self-hepai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="learn-self-hepai.aspx.designer.cs">
+      <DependentUpon>learn-self-hepai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="learn-self-links.aspx.cs">
+      <DependentUpon>learn-self-links.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="learn-self-links.aspx.designer.cs">
+      <DependentUpon>learn-self-links.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="learn-self-perfect-hepai.aspx.cs">
+      <DependentUpon>learn-self-perfect-hepai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="learn-self-perfect-hepai.aspx.designer.cs">
+      <DependentUpon>learn-self-perfect-hepai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="learn-self-total-hepai.aspx.cs">
+      <DependentUpon>learn-self-total-hepai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="learn-self-total-hepai.aspx.designer.cs">
+      <DependentUpon>learn-self-total-hepai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="learn-self-world-hepai.aspx.cs">
+      <DependentUpon>learn-self-world-hepai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="learn-self-world-hepai.aspx.designer.cs">
+      <DependentUpon>learn-self-world-hepai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="learn-self.aspx.cs">
+      <DependentUpon>learn-self.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="learn-self.aspx.designer.cs">
+      <DependentUpon>learn-self.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="life-result.aspx.cs">
+      <DependentUpon>life-result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="life-result.aspx.designer.cs">
+      <DependentUpon>life-result.aspx</DependentUpon>
     </Compile>
     <Compile Include="life-work.aspx.cs">
       <DependentUpon>life-work.aspx</DependentUpon>
@@ -273,6 +405,13 @@
     </Compile>
     <Compile Include="result.aspx.designer.cs">
       <DependentUpon>result.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test-big-five.aspx.cs">
+      <DependentUpon>test-big-five.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test-big-five.aspx.designer.cs">
+      <DependentUpon>test-big-five.aspx</DependentUpon>
     </Compile>
     <Compile Include="test-day.aspx.cs">
       <DependentUpon>test-day.aspx</DependentUpon>
@@ -344,6 +483,27 @@
     </Compile>
     <Compile Include="work-life.aspx.designer.cs">
       <DependentUpon>work-life.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="perfect-result.aspx.cs">
+      <DependentUpon>perfect-result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="perfect-result.aspx.designer.cs">
+      <DependentUpon>perfect-result.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="work-result.aspx.cs">
+      <DependentUpon>work-result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="work-result.aspx.designer.cs">
+      <DependentUpon>work-result.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="world-result.aspx.cs">
+      <DependentUpon>world-result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="world-result.aspx.designer.cs">
+      <DependentUpon>world-result.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
