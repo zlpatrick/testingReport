@@ -4,6 +4,7 @@
     font-size:50px !important;
     padding:0;
     margin:0;
+    -webkit-text-size-adjust: 100% !important;
 }
 
 label 
@@ -67,6 +68,16 @@ input[type="radio"]
     font-weight:bold;
 }
 
+.first-option-button
+{
+    background-image:url(../img/first-option-button.jpg);
+    width:250px;
+    height:90px;
+    border:none;
+    margin-top:30px;
+    margin-left:50px;
+}
+
 .last-option-button
 {
     background-image:url(../img/last-option-button.jpg);
@@ -76,6 +87,9 @@ input[type="radio"]
     margin-top:30px;
     margin-left:50px;
 }
+
+
+
 .dimension-Image-panel img 
 {
     margin-left:20px;
@@ -434,17 +448,21 @@ button
 .user-tag 
 {
     margin:30px 0px;
+ 
 }
 
 .user-tag span
 {
-    font-size:40px;
+   font-size:40px;
     border:1px solid white;
     padding:10px;
     border-radius:10px;
     margin-right:20px;
     color:white;
 }
+
+
+
 
 .user-tag span.user-tag-active
 {

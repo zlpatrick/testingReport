@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.IO;
 using System.Text;
 using System.Xml;
+using System.Data;
 
 namespace TestingReport
 {
@@ -14,6 +15,9 @@ namespace TestingReport
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            //Response.Write(Request["echostr"]);
+
+            
             if(!File.Exists(Server.MapPath("log.txt")))
             {
                 File.Create(Server.MapPath("log.txt")).Close();
@@ -72,14 +76,29 @@ namespace TestingReport
             }
             else if(eventName.ToLower().Equals("subscribe"))
             {
+                DBUtil db = new DBUtil();
+                DataSet ds = db.executeSqlQuery("select * from Users where userName='" + fromUser + "'");
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    db.executeSqlNonQuery("update Users set isguest=0 where userName='" + fromUser + "'");
+                }
+                else
+                {
+                    db.executeSqlNonQuery("insert into Users(userName,isguest) values('" + fromUser + "',0)");
+                }
+                
                 string reply = "<xml><ToUserName><![CDATA[" + fromUser + "]]></ToUserName>" +
                 "<FromUserName><![CDATA[" + toUser + "]]></FromUserName>" +
-                "<CreateTime>12345678</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[感谢关注!“幸福ABC”专注于研究如何更积极地投入生活、更幸福地享受生活，并提供相关的知识、方法和工具。]]></Content></xml>";
+                "<CreateTime>12345678</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[感谢关注!“生活再发现”专注于研究如何更积极地投入生活、更幸福地享受生活，并提供相关的知识、方法和工具。]]></Content></xml>";
 
                 Response.ContentType = "text/xml";
                 Response.Write(reply);
             }
+            else if (eventName.ToLower().Equals("unsubscribe"))
+            {
+                DBUtil db = new DBUtil();
+                db.executeSqlNonQuery("update Users set isguest=1 where userName='" + fromUser + "'");     
+            }
         }
-
     }
 }

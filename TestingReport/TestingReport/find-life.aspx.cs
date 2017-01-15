@@ -30,6 +30,9 @@ namespace TestingReport
         public bool life = false;
         public bool work = false;
         public bool happyfeeling = false;
+        public bool health = false;
+        public bool profileComplete = false;
+        public bool popBadge = false;
 
         public List<string> badgeNames = new List<string>();
         public List<string> badgeClass = new List<string>();
@@ -54,6 +57,11 @@ namespace TestingReport
         public int life_1 = 0;
         public int life_2 = 0;
         public int life_3 = 0;
+
+        public int health_1 = 0;
+        public int health_2 = 0;
+        public int health_3 = 0;
+        public int health_4 = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
             string code = Request["code"];
@@ -62,7 +70,7 @@ namespace TestingReport
             {
                 if (code == null)
                 {
-                    Response.Redirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe29e41d979d25872&redirect_uri=http%3A%2F%2Fwww.ihappyabc.com%2Ffind-life.aspx&response_type=code&scope=snsapi_base#wechat_redirect");
+                    Response.Redirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4f44b7d364e15070&redirect_uri=http%3A%2F%2Fwww.ihappyabc.com%2Ffind-life.aspx&response_type=code&scope=snsapi_base#wechat_redirect");
                 }
                 else
                 {
@@ -74,59 +82,28 @@ namespace TestingReport
             userImageUrl = obj.GetValue("headimgurl").ToString();
             userNickName = obj.GetValue("nickname").ToString();
             DBUtil db = new DBUtil();
-            DataSet ds = db.executeSqlQuery("select * from Users where userName='" + userid + "'");
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                age = ds.Tables[0].Rows[0]["age"].ToString();
-                industry = ds.Tables[0].Rows[0]["industry"].ToString();
-                region = ds.Tables[0].Rows[0]["region"].ToString();
-            }
+            UserSummary summary = SummaryUtil.getUserSummary(userid);
+            age = summary.age;
+            industry = summary.industry;
+            region = summary.region;
+            selfPercent = summary.selfPercent;
+            testTimes = summary.learnself;
+            toolTimes = summary.findlife;
 
-            string sql = "select count(Id) as total from measureScores where userId='" + userid + "' and topicId in (2,5)";
-            ds = db.executeSqlQuery(sql);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                testTimes = Convert.ToInt32(ds.Tables[0].Rows[0][0]) / 4;
-            }
+            health = summary.health;
+            life = summary.life;
+            happyfeeling = summary.happyfeeling;
+            work = summary.work;
+            profileComplete = summary.profileComplete;
 
-            int personalTimes = 0;
-            sql = "select * from Votes where userId='" + userid + "' and topicId=1";
-            ds = db.executeSqlQuery(sql);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                personalTimes++;
-            }
+      
 
-            sql = "select * from Votes where userId='" + userid + "' and topicId=8";
-            ds = db.executeSqlQuery(sql);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                personalTimes++;
-            }
-
-            selfPercent = personalTimes * 100 / 6;
-
-           
-
-            ds = db.executeSqlQuery("select * from Votes where userid='" + userid + "' and topicId=2");
-            if (ds.Tables[0].Rows.Count > 0)
-                happyfeeling = true;
-
-            ds = db.executeSqlQuery("select * from Votes where userid='" + userid + "' and topicId=5");
-            if (ds.Tables[0].Rows.Count > 0)
-                work = true;
-
-            ds = db.executeSqlQuery("select * from Votes where userid='" + userid + "' and topicId=3");
-            if (ds.Tables[0].Rows.Count > 0)
-                life = true;
-
-
-
-            ds = db.executeSqlQuery("select * from Badges where userId='" + userid + "' and topicId=2");
+            DataSet ds = db.executeSqlQuery("select * from Badges where userId='" + userid + "' and topicId=2");
             if (ds.Tables[0].Rows.Count > 0)
             {
                 badgeNames.Add(ds.Tables[0].Rows[0]["badgeName"].ToString());
                 badgeCategory.Add(1);
+                badgeClass.Add("幸福");
             }
 
             ds = db.executeSqlQuery("select * from Badges where userId='" + userid + "' and topicId=5");
@@ -134,6 +111,7 @@ namespace TestingReport
             {
                 badgeNames.Add(ds.Tables[0].Rows[0]["badgeName"].ToString());
                 badgeCategory.Add(2);
+                badgeClass.Add("工作");
             }
 
             ds = db.executeSqlQuery("select * from Badges where userId='" + userid + "' and topicId=3");
@@ -142,16 +120,27 @@ namespace TestingReport
               
                 badgeNames.Add(ds.Tables[0].Rows[0]["badgeName"].ToString());
                 badgeCategory.Add(3);
+                badgeClass.Add("生活");
+            }
+
+            ds = db.executeSqlQuery("select * from Badges where userId='" + userid + "' and topicId=11");
+            if (ds.Tables[0].Rows.Count > 0 && badgeClass.Count <3)
+            {
+
+                badgeNames.Add(ds.Tables[0].Rows[0]["badgeName"].ToString());
+                badgeCategory.Add(3);
+                badgeClass.Add("健康指数");
             }
 
             badgeColor.Add("orangered");
             badgeColor.Add("skyblue");
             badgeColor.Add("orange");
 
-            badgeClass.Add("glyphicon-inbox");
-            badgeClass.Add("glyphicon-tower");
-            badgeClass.Add("glyphicon-globe");
-
+            if (summary.badgeNotify.Equals("") && badgeClass.Count > 0)
+            {
+                popBadge = true;
+                db.executeSqlNonQuery("update Users set badgeNotify='T' where UserName='" + userid + "'");
+            }
 
             ds = db.executeSqlQuery("select count(userId) from badges where topicId=2");
             int totalPerson = 0;
@@ -199,7 +188,7 @@ namespace TestingReport
                 totalPerson = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
             }
 
-            ds = db.executeSqlQuery("select count(userId) from badges where topicId=5 and badgeName='对工作非常满意'");
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=5 and badgeName='非常满意'");
             person = 0;
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -207,7 +196,7 @@ namespace TestingReport
             }
             work_1 = person * 100 / totalPerson;
 
-            ds = db.executeSqlQuery("select count(userId) from badges where topicId=5 and badgeName='对工作比较满意'");
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=5 and badgeName='比较满意'");
             person = 0;
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -215,7 +204,7 @@ namespace TestingReport
             }
             work_2 = person * 100 / totalPerson;
 
-            ds = db.executeSqlQuery("select count(userId) from badges where topicId=5 and badgeName='对工作不太满意'");
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=5 and badgeName='不太满意'");
             person = 0;
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -223,7 +212,7 @@ namespace TestingReport
             }
             work_3 = person * 100 / totalPerson;
 
-            ds = db.executeSqlQuery("select count(userId) from badges where topicId=5 and badgeName='对工作很不满意'");
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=5 and badgeName='很不满意'");
             person = 0;
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -261,6 +250,45 @@ namespace TestingReport
                 person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
             }
             life_3 = person * 100 / totalPerson;
+
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=11");
+            totalPerson = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                totalPerson = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+            }
+
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=11 and badgeName='非常健康'");
+            person = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+            }
+            health_1 = person * 100 / totalPerson;
+
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=11 and badgeName='比较健康'");
+            person = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+            }
+            health_2 = person * 100 / totalPerson;
+
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=11 and badgeName='不太健康'");
+            person = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+            }
+            health_3 = person * 100 / totalPerson;
+
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=11 and badgeName='很不健康'");
+            person = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+            }
+            health_4 = person * 100 / totalPerson;
         }
     }
 }

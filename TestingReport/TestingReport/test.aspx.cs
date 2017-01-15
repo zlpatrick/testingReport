@@ -76,11 +76,11 @@ namespace TestingReport
                     DataSet itemDs = null;
                     if (type.Equals("1"))
                     {
-                        itemDs = db.executeSqlQuery("select * from ChooseItem where TopicId=" + id + " order by ItemPosition asc");
+                        itemDs = db.executeSqlQuery("select * from ChooseItem where TopicId=" + id + " order by ItemPosition desc");
                     }
                     else
                     {
-                        itemDs = db.executeSqlQuery("select * from ChooseItem where TopicId=" + id + " and OptionId=" + order + " order by ItemPosition asc");
+                        itemDs = db.executeSqlQuery("select * from ChooseItem where TopicId=" + id + " and OptionId=" + order + " order by ItemPosition desc");
                     }
                    
                     
@@ -176,12 +176,16 @@ namespace TestingReport
                 string userid=Request["userId"].ToString();
                 DBUtil db = new DBUtil();
                 db.executeSqlNonQuery("delete from Votes where userId='" + userid + "' and TopicId=" + Request["id"].ToString());
+                DateTime now = DateTime.Now;
                 for (int i = 1; i <= totalOptions; i++)
                 {
                     int chooseItem = Convert.ToInt32(ViewState[i.ToString()]);
 
                     db.executeSqlNonQuery("insert into Votes(userId,TopicId,OptionId,ChooseItemPosition) values('" + userid +
                         "'," + Request["id"].ToString() + "," + i+","+chooseItem+")");
+                    db.executeSqlNonQuery("insert into VotesHistory(userId,TopicId,OptionId,ChooseItemPosition,voteDateTime) values('" + userid +
+                       "'," + Request["id"].ToString() + "," + i + "," + chooseItem + ",'" + now.ToString() + "')");
+
                 }
                 if ("9".Equals(Request["id"].ToString()))
                 {
@@ -204,6 +208,11 @@ namespace TestingReport
                 else if ("3".Equals(Request["id"].ToString()))
                 {
                     Response.Redirect("life-result.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString());
+
+                }
+                else if ("11".Equals(Request["id"].ToString()))
+                {
+                    Response.Redirect("health-result.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString());
 
                 }
                 else

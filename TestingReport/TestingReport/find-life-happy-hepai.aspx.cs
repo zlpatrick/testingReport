@@ -36,38 +36,13 @@ namespace TestingReport
             JObject obj = WeixinUtil.getUserInfo(userid);
             userImageUrl = obj.GetValue("headimgurl").ToString();
             userNickName = obj.GetValue("nickname").ToString();
-            DBUtil db = new DBUtil();
-            DataSet ds = db.executeSqlQuery("select * from Users where userName='" + userid + "'");
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                age = ds.Tables[0].Rows[0]["age"].ToString();
-                industry = ds.Tables[0].Rows[0]["industry"].ToString();
-                region = ds.Tables[0].Rows[0]["region"].ToString();
-            }
-
-            string sql = "select count(Id) as total from measureScores where userId='" + userid + "' and topicId in (2,5)";
-            ds = db.executeSqlQuery(sql);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                testTimes = Convert.ToInt32(ds.Tables[0].Rows[0][0]) / 4;
-            }
-
-            int personalTimes = 0;
-            sql = "select * from Votes where userId='" + userid + "' and topicId=1";
-            ds = db.executeSqlQuery(sql);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                personalTimes++;
-            }
-
-            sql = "select * from Votes where userId='" + userid + "' and topicId=8";
-            ds = db.executeSqlQuery(sql);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                personalTimes++;
-            }
-
-            selfPercent = personalTimes * 100 / 6;
+            UserSummary summary = SummaryUtil.getUserSummary(userid);
+            age = summary.age;
+            industry = summary.industry;
+            region = summary.region;
+            selfPercent = summary.selfPercent;
+            testTimes = summary.learnself;
+            toolTimes = summary.findlife;
 
 
         }

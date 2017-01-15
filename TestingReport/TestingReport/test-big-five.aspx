@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta content="user-scalable=no" id="viewport" name="viewport">
-    <title>幸福ABC</title>
+    <title>生活再发现</title>
     <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
     
     <script src="Scripts/jquery-1.4.1.min.js" ></script>
@@ -14,6 +14,16 @@
             $('#' + id + '\'').addClass("test-option-button-click");
         }
     </script>
+    <style>
+
+        .bottom-choose-item-panel{
+            clear:both;
+            font-size:36px;
+            padding-left:50px;
+            padding-right:60px;
+            color:grey;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">

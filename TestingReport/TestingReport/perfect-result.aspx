@@ -6,7 +6,7 @@
 <head runat="server">
     <meta content="user-scalable=no" id="viewport" name="viewport">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>幸福ABC - 认识自我</title>
+    <title>生活再发现 - 完美主义测试</title>
       <script src="Scripts/jquery.1.11.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
@@ -44,13 +44,13 @@
     .mylist-img
     {
         float:left;
-        width:25%;
+        width:35%;
         padding:20px;
     }
     .mylist-intro
     {
         float:left;
-        width:75%;
+        width:65%;
         padding:30px;
     }
     .mylist-img img
@@ -75,6 +75,11 @@
         color:grey;
         text-align:left;
         font-size:40px;
+    }
+
+    .glyphicon-star
+    {
+        color:rgba(34,205,193,1);
     }
     </style>
     
@@ -107,7 +112,7 @@
    
 
     <div>
-        <div style="width:500px;color:white;background-color:#1d3d4c;opacity:0.6;text-align:center;margin:40px auto;padding-top:10px;padding-bottom:10px;">完美主义测试
+        <div style="width:500px;color:white;background-color:rgba(34,205,193,1);text-align:center;margin:40px auto;padding-top:10px;padding-bottom:10px;">完美主义测试
             <div style="float:left;width:5px;background-color:white;margin-left:15px;">&nbsp;</div>
              <div style="float:right;width:5px;background-color:white;margin-right:15px;">&nbsp;</div>
         </div>
@@ -115,36 +120,87 @@
 
 
     <div style="margin-top:30px">
+        <div style="overflow:hidden;margin-bottom:40px;margin-left:80px;margin-right:80px;">
+            <div style="padding-left:30px;border-left:8px solid rgba(34,205,193,1);float:left;color:rgba(34,205,193,1)">测试结果</div>
+        </div>
             <div id="main" style="height:680px;background-color:white;border:none;padding:80px;font-size:36px !important;line-height:initial !important"></div>
         </div>
+         <div style="overflow:hidden;margin-bottom:40px;margin-left:80px;margin-right:80px;">
+            <div style="padding-left:30px;border-left:8px solid rgba(34,205,193,1);float:left;color:rgba(34,205,193,1);margin-bottom:80px;">用户比例</div>
+            
+            <div id="main1" style="margin-bottom:80px;height:500px;background-color:white;border:none;padding:0px;font-size:36px !important;line-height:initial !important"></div>
+        </div>
+        <div style="overflow:hidden;margin-bottom:40px;margin-left:80px;margin-right:80px;margin-top:80px;">
+            <div style="padding-left:30px;border-left:8px solid rgba(34,205,193,1);float:left;color:rgba(34,205,193,1);margin-bottom:30px;">维度分析</div>
+            <div style="text-align:center;overflow:hidden;clear:both">
+                      <div style="float:left;width:50%">
+                        
+                          <div style="overflow:hidden;padding-left:20px;padding-right:20px;">
+                                <div style="float:left;margin-bottom:30px; color:lightgreen;width:100%;line-height:150px;">
+                                    <div style="margin-left:calc((100% - 150px)/2);float:left;text-align:center;background-color:orangered;color:white;width:150px;border-radius:75px;line-height:30px;height:150px;font-size:32px;font-weight:bold;padding-top:45px;">神经质<Br />完美主义</div>
+                                </div>
+                           </div>
+                          <hr />
+                            <div style="color:rgba(34,205,193,1);font-size:34px;text-align:center;padding-left:50px;padding-right:50px;">过度追求完美直至神经质和强迫症</div>
+                          
+                        </div>
 
+                      <div style="float:left;width:50%">
+                          
+                          <div style="overflow:hidden;padding-left:20px;padding-right:20px;">
+                              <div style="float:left;margin-bottom:30px; color:lightgreen;width:100%;line-height:150px;">
+                                    <div style="margin-left:calc((100% - 150px)/2);float:left;text-align:center;background-color:orange;color:white;width:150px;border-radius:75px;line-height:30px;height:150px;font-size:32px;font-weight:bold;padding-top:45px;">积极<Br />完美主义</div>
+                                </div>
+                              
+                           </div>
+                            <hr />
+                          <div style="color:rgba(34,205,193,1);font-size:34px;text-align:center;padding-left:50px;padding-right:50px;">适度追求完美承认瑕疵的存在</div>
+                        
+                        </div>
+
+                  </div>
+        </div>
+
+       
+
+          <div style="text-align:center;font-size:40px;">
+            <img src="<%=userImageUrl %>" style="width: 60px;border-radius: 30px;border-radius: 30px;border:2px solid #ddd"/>&nbsp;我的得分&nbsp;&nbsp;&nbsp;
+        <span class="glyphicon glyphicon-user" aria-hidden="true" style="opacity:0.6"></span><span  style="opacity:0.6" class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;平均得分
+
+               </div>
         <div style="margin-top:30px;margin-left:80px;margin-right:80px;background-color:rgba(252,251,252,1)">
             <div style="border-top:2px dashed #213c4c;border-bottom:2px dashed #213c4c;padding-top:20px;padding-bottom:40px;padding-left:30px;padding-right:30px;">
                 <div style="text-align:center;color:#213c4c;margin-bottom:20px;font-size:30px;font-weight:bold">神经质完美主义</div>
                 <div style="overflow:hidden;font-size:28px;margin-bottom:15px;color:#213c4c;position:relative;height:60px">
-                    <div style="float:left;padding-left:20px;">低</div>
+                    <div style="float:left;padding-left:20px;"></div>
                     <div style="position:relative;margin-left:100px;margin-right:100px;">
                         <div style="position:absolute;left:calc(<%=radarDimScores[1]*10 %>% - 30px);color:white"><img src="<%=userImageUrl %>" style="width: 60px;border-radius: 30px;border-radius: 30px;border:2px solid #ddd"/></div>
                     </div>
-                    <div style="float:right;padding-right:20px;">高</div>
+
+                    <div style="float:right;padding-right:20px;"></div>
                 </div>
                 <div style="position:relative;clear:both;height:71px;">
-                    <div style="position:absolute;left:0;top:-18px;z-index:1"><img src="img/1-left.png" style="width:100px;"/></div>
+                    <div style="position:absolute;left:-30px;top:-18px;z-index:1"><div style="width:100px;border-radius:50px;height:100px;background-color:rgba(215,249,247,1);line-height:100px;text-align:center;font-size:40px;color:#999">低</div></div>
                     <div style="position:relative;margin-left:100px;margin-right:100px;z-index:1">
                         <div style="width:5px;height:60px;background-color:white;position:absolute;left:<%=radarDimScores[1]*10 %>%">&nbsp;</div>
                     </div>
-                   
+                   <div style="position:relative;margin-left:100px;margin-right:100px;z-index:1">
+                        <div style="width:5px;height:60px;background-color:white;position:absolute;left:<%=radarAveScores[1]*10 %>%;opacity:0.6">&nbsp;</div>
+                    </div>
                     <div style="width:94%;margin:auto;position:relative">
                         
                         <div style="width:100%;background:linear-gradient(to right, rgba(215,249,247,1), rgba(34,205,193,1));float:left;height:60px">&nbsp;</div>
 
                   
                     </div>
-                    <div style="position:absolute;right:0;top:-18px;z-index:1"><img src="img/1-right.png" style="width:100px;" /></div>
+                    <div style="position:absolute;right:-30px;top:-18px;z-index:1"><div style="width:100px;border-radius:50px;height:100px;background-color:rgba(34,205,193,1);line-height:100px;text-align:center;font-size:40px;color:white">高</div></div>
                 </div>
 
                 <div style="font-size:30px;color:#213c4c;margin-top:10px;">
                     <div style="position:relative;margin-left:100px;margin-right:100px;z-index:1">
+                        
+                         <div style="position:absolute;left:calc(<%=radarAveScores[1]*10 %>% - 30px);opacity:0.6"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+                    
                      </div>
                 </div>
             </div>
@@ -154,28 +210,33 @@
                 <div style="text-align:center;color:#213c4c;margin-bottom:20px;font-size:30px;font-weight:bold">积极完美主义</div>
 
                 <div style="overflow:hidden;font-size:28px;margin-bottom:15px;color:#213c4c;position:relative;height:60px">
-                    <div style="float:left;padding-left:20px;">低</div>
+                    <div style="float:left;padding-left:20px;"></div>
                     <div style="position:relative;margin-left:100px;margin-right:100px;">
                         <div style="position:absolute;left:calc(<%=radarDimScores[0]*10 %>% - 30px);color:white"><img src="<%=userImageUrl %>" style="width: 60px;border-radius: 30px;border-radius: 30px;border:2px solid #ddd"/></div>
                     </div>                    
-                    <div style="float:right;padding-right:20px;">高</div>
+                    <div style="float:right;padding-right:20px;"></div>
                 </div>
                 <div style="position:relative;clear:both;height:71px;">
-                    <div style="position:absolute;left:0;top:-18px;z-index:1"><img src="img/2-left.png"  style="width:100px;"/></div>
+                    <div style="position:absolute;left:-30px;top:-18px;z-index:1"><div style="width:100px;border-radius:50px;height:100px;background-color:rgba(215,249,247,1);line-height:100px;text-align:center;font-size:40px;color:#999">低</div></div>
                       <div style="position:relative;margin-left:100px;margin-right:100px;z-index:1">
                         <div style="width:5px;height:60px;background-color:white;position:absolute;left:<%=radarDimScores[0]*10 %>%">&nbsp;</div>
                     </div>
-                  
+                  <div style="position:relative;margin-left:100px;margin-right:100px;z-index:1">
+                        <div style="width:5px;height:60px;background-color:white;position:absolute;left:<%=radarAveScores[0]*10 %>%;opacity:0.6">&nbsp;</div>
+                    </div>
                     <div style="width:94%;margin:auto;position:relative">
                         
                          <div style="width:100%;background:linear-gradient(to right, rgba(215,249,247,1), rgba(34,205,193,1));float:left;height:60px">&nbsp;</div>
 
                     </div>
-                    <div style="position:absolute;right:0;top:-18px;z-index:1"><img src="img/2-right.png" style="width:100px;" /></div>
+                    <div style="position:absolute;right:-30px;top:-18px;z-index:1"><div style="width:100px;border-radius:50px;height:100px;background-color:rgba(34,205,193,1);line-height:100px;text-align:center;font-size:40px;color:white">高</div></div>
                 </div>
 
                 <div style="font-size:30px;color:#213c4c;margin-top:10px;">
                     <div style="position:relative;margin-left:100px;margin-right:100px;z-index:1">
+                    
+                         <div style="position:absolute;left:calc(<%=radarAveScores[0]*10 %>% - 30px);opacity:0.6"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><span class="glyphicon glyphicon-user" aria-hidden="true"></span></div>
+                
                      </div>
                 </div>
             </div>
@@ -219,23 +280,37 @@
         <div style="padding:30px 80px;margin-bottom:100px;">
             <div style="overflow:hidden">
                  <div style="padding-left:30px;border-left:8px solid rgba(34,205,193,1);float:left;color:rgba(34,205,193,1)">好文推荐</div>
-                <div style="float:right;font-size:40px;color:grey;"><a href="learn-self-links.aspx?userid=<%=Request["userid"] %>" style="color:grey">查看更多..</a></div>
+                <div style="float:right;font-size:40px;color:grey;"><a href="knowledge.aspx?userid=<%=Request["userid"] %>" style="color:grey">查看更多..</a></div>
             </div>
 
             <div style="margin-top:30px;">
-                <div class="mylist">
-                    <div class="mylist-img"><img src="assets/way-1.jpg" /></div>
+               <div class="mylist characterList allList">
+                    <div class="mylist-img"><img src="assets/articles/1.png" /></div>
                     <div class="mylist-intro">
-                        <p class="mylist-title"><a href="http://mp.weixin.qq.com/s?__biz=MzA4MDMwOTY1OQ==&mid=210725268&idx=1&sn=f888046adfb765806c819289c8d8fe17#rd">如何养成感恩的习惯？</a></p>
-                        <p class="mylist-subtitle">为什么我们总是抱怨，忘记感恩 ；如何养成感恩的好习惯。</p>
+                        <p class="mylist-title"><a href="https://mp.weixin.qq.com/s?__biz=MzI0MjY1NTQyNQ==&mid=2247483666&idx=5&sn=73667dc4baa1df6592923564b9172f20&chksm=e97848bcde0fc1aa4b1428165d774086e2376bb02340f211c9fb86b3847124a423d6a10f1bfd&mpshare=1&scene=1&srcid=0113qJvFnm3apWrzXRKjAu77&key=ccfc08d959bf1c02691f9ad9104bfe7ef9263c6bd9e05318130de785f935930bd6240738eaa19ca065da0f572ad2f332ac2aa839bd3338ed50510e9d467d99aebb2b70f6e57552752304e83f1e3f322d&ascene=0&uin=MzA3MDE3OTk1&devicetype=iMac+MacBookPro11%2C5+OSX+OSX+10.12.1+build(16B2659)&version=12010110&nettype=WIFI&fontScale=100&pass_ticket=LGP3W%2F6nCtg%2BXDpZzECN08vDJJ0UZ9A%2B959SOMg6j9VdKoxbegYdJp7SHTgkGo00">内向性格的力量</a></p>
+                        <p class="mylist-subtitle"><span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            &nbsp;
+                            <span class="glyphicon glyphicon-user"></span> 859人
+                        </p>
                     </div>
                 </div>
             
-                <div class="mylist">
-                    <div class="mylist-img"><img src="assets/knowledge-4.jpg" /></div>
+                <div class="mylist characterList allList">
+                    <div class="mylist-img"><img src="assets/articles/3.png" /></div>
                     <div class="mylist-intro">
-                        <p class="mylist-title"><a href="http://mp.weixin.qq.com/s?__biz=MzA4MDMwOTY1OQ==&mid=210772157&idx=1&sn=54233f661a7562a4d50a753f9b9a4bcc#rd">幸福“跑步机”</a></p>
-                        <p class="mylist-subtitle">“幸福跑步机”虽然看不见摸不着，但是它却一直在影响着我们的幸福</p>
+                        <p class="mylist-title"><a href="http://mp.weixin.qq.com/s?__biz=MzI0MjY1NTQyNQ==&mid=2247483666&idx=1&sn=08321a17f5bc3ac3287a292e52cf8254&chksm=e97848bcde0fc1aa75a5941daf19f7fa038d6c0ea5ab7840b693f15533d762bdeb416485a108&scene=4#wechat_redirect">可怕的完美主义</a></p>
+                        <p class="mylist-subtitle"><span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            <span class="glyphicon glyphicon-star"></span>
+                            &nbsp;
+                            <span class="glyphicon glyphicon-user"></span> 687人
+                        </p>
                     </div>
                 </div>
             </div>
@@ -247,7 +322,7 @@
        
          <div style="width:25%;border-top:4px solid #3d585f;height:120px;line-height:120px;float:left"><a href="learn-self.aspx?userid=<%=Request["userid"] %>" style="color:white">认识自我</a></div>
         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="find-life.aspx?userid=<%=Request["userid"] %>" style="color:white">发现生活</a></div>
-         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="happiness.aspx?userid=<%=Request["userid"] %>" style="color:white">幸福宝典</a></div>
+         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="knowledge.aspx?userid=<%=Request["userid"] %>" style="color:white">幸福宝典</a></div>
         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="person.aspx?userid=<%=Request["userid"] %>" style="color:white">个人中心</a></div>
        
     </div>
@@ -332,9 +407,9 @@
                     show: true,
                     formatter: function (v) {
                         switch (v + '') {
-                            case '10': return '神经质完美主义';
-                            case '50': return '积极完美主义';
-                            case '90': return '顺其自然主义';
+                            case '10': return '神经质型';
+                            case '50': return '积极型';
+                            case '90': return '顺其自然型';
                      
                             default: return '';
                         }
@@ -393,3 +468,61 @@
 
     </script>
 
+<script>
+    var myChart1 = echarts.init(document.getElementById('main1'));    
+
+    var option1 = {
+       
+        tooltip: {
+            trigger: 'item'
+        },
+      
+        calculable: true,
+        grid: {
+            borderWidth: 0,
+            y: 80,
+            y2: 60
+        },
+        xAxis: [
+            {
+                type: 'category',
+                show: false,
+                data: ['顺其自然型', '神经质型', '积极型'],
+                
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                show: false
+            }
+        ],
+        series: [
+            {              
+                type: 'bar',
+                barWidth: 70,
+                itemStyle: {
+                    normal: {
+                        color: function(params) {
+                            // build a color map as your need.
+                            var colorList = [
+                              'lightgreen','orange','skyblue'
+                            ];
+                            return colorList[params.dataIndex]
+                        },
+                        label: {
+                            show: true,
+                            position: 'top',
+                            formatter: '{b}\n{c}%',
+                            textStyle: {fontSize:32},
+                        }
+                    }
+                },
+                data: [<%=perfect_1%>,<%=perfect_2%>,<%=perfect_3%>],
+              
+            }
+        ]
+    };
+
+        myChart1.setOption(option1);
+</script>

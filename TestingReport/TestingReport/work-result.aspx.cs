@@ -26,57 +26,37 @@ namespace TestingReport
         public int selfPercent = 0;
         public int testTimes = 0;
         public int toolTimes = 0;
-
+        public int totalChartValue = 0;
+        public int work_1, work_2, work_3, work_4;
+        public bool isShared = false;
         public List<string> radarDimNames = new List<string>();
         public List<float> radarDimScores = new List<float>();
         public List<float> radarAveScores = new List<float>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            string userid = Request["userid"];
-            if (userid == null)
+            string from = Request["from"];
+            if (from != null)
             {
-                userid = "om8uZt7fajggMH8vqjFb1afiE8y4";
+                isShared = true;
+                Response.Redirect("work-result-shared.aspx?shareduserid=" + Request["userid"]);
             }
+            string userid = Request["userid"];
+            
             JObject obj = WeixinUtil.getUserInfo(userid);
             userImageUrl = obj.GetValue("headimgurl").ToString();
             userNickName = obj.GetValue("nickname").ToString();
             DBUtil db = new DBUtil();
-            DataSet ds = db.executeSqlQuery("select * from Users where userName='" + userid + "'");
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                age = ds.Tables[0].Rows[0]["age"].ToString();
-                industry = ds.Tables[0].Rows[0]["industry"].ToString();
-                region = ds.Tables[0].Rows[0]["region"].ToString();
-            }
+            UserSummary summary = SummaryUtil.getUserSummary(userid);
+            age = summary.age;
+            industry = summary.industry;
+            region = summary.region;
+            selfPercent = summary.selfPercent;
+            testTimes = summary.learnself;
+            toolTimes = summary.findlife;
 
-            string sql = "select count(Id) as total from measureScores where userId='" + userid + "' and topicId in (2,5)";
-            ds = db.executeSqlQuery(sql);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                testTimes = Convert.ToInt32(ds.Tables[0].Rows[0][0]) / 4;
-            }
-
-            int personalTimes = 0;
-            sql = "select * from Votes where userId='" + userid + "' and topicId=1";
-            ds = db.executeSqlQuery(sql);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                personalTimes++;
-            }
-
-            sql = "select * from Votes where userId='" + userid + "' and topicId=8";
-            ds = db.executeSqlQuery(sql);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                personalTimes++;
-            }
-
-            selfPercent = personalTimes * 100 / 6;
-
-
-
-
-            ds = db.executeSqlQuery("select * from ChooseItem where topicId=5");
+            string sql = null;
+            
+            DataSet ds = db.executeSqlQuery("select * from ChooseItem where topicId=5");
             Dictionary<int, int> scores = new Dictionary<int, int>();
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -158,27 +138,31 @@ namespace TestingReport
                         foreach (KeyValuePair<int, int> pair in dimensionScores)
                         {
                             radarDimNames.Add(dimensionNames[pair.Key]);
-                            radarDimScores.Add((int)(pair.Value / 2.0));
-                            radarAveScores.Add((int)(dimensionCompare[pair.Key] / 10));
+                            radarDimScores.Add((float)(pair.Value / 2.0));
+                            radarAveScores.Add((float)(dimensionCompare[pair.Key] / 10));
 
                         }
 
                         string badges = "";
                         if (totalScore <= 100 && totalScore >= 75)
                         {
-                            badges = "对工作非常满意";
+                            badges = "非常满意";
+                            totalChartValue = 13;
                         }
                         else if (totalScore <= 74 && totalScore >= 50)
                         {
-                            badges = "对工作比较满意";
+                            badges = "比较满意";
+                            totalChartValue = 38;
                         }
                         else if (totalScore <= 49 && totalScore >= 25)
                         {
-                            badges = "对工作不太满意";
+                            badges = "不太满意";
+                            totalChartValue = 63;
                         }
                         else if (totalScore <= 24)
                         {
-                            badges = "对工作很不满意";
+                            badges = "很不满意";
+                            totalChartValue = 88;
                         }
 
                         sql = "delete from Badges where userId='" + userid + "' and topicId=5";
@@ -191,6 +175,45 @@ namespace TestingReport
                     }
                 }
             }
+
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=5");
+            int totalPerson = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                totalPerson = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+            }
+
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=5 and badgeName='非常满意'");
+            int person = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+            }
+            work_1 = person * 100 / totalPerson;
+
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=5 and badgeName='比较满意'");
+            person = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+            }
+            work_2 = person * 100 / totalPerson;
+
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=5 and badgeName='不太满意'");
+            person = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+            }
+            work_3 = person * 100 / totalPerson;
+
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=5 and badgeName='很不满意'");
+            person = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+            }
+            work_4 = person * 100 / totalPerson;
         }
     }
 }

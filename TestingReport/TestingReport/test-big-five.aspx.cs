@@ -151,6 +151,13 @@ namespace TestingReport
 
                     if (i == 0)
                     {
+                        Panel tempPanels = new Panel();
+                        tempPanels.CssClass = "bottom-choose-item-panel";
+                        Label l = new Label();
+                        l.Text = "答案中是两个对立的维度，请先选择符合你的维度，再选择符合的程度。举例：如果你是一个特别健谈的人，在“健谈的”维度下，选择“非常符合”这个选项。";
+                        tempPanels.Controls.Add(l);
+                        panel.Controls.Add(tempPanels); ;
+                        
                         panel.Visible = true;
                     }
                     else
@@ -204,12 +211,15 @@ namespace TestingReport
                 string userid = Request["userId"].ToString();
                 DBUtil db = new DBUtil();
                 db.executeSqlNonQuery("delete from Votes where userId='" + userid + "' and TopicId=" + Request["id"].ToString());
+                DateTime now = DateTime.Now;
                 for (int i = 1; i <= totalOptions; i++)
                 {
                     int chooseItem = Convert.ToInt32(ViewState[i.ToString()]);
 
                     db.executeSqlNonQuery("insert into Votes(userId,TopicId,OptionId,ChooseItemPosition) values('" + userid +
                         "'," + Request["id"].ToString() + "," + i + "," + chooseItem + ")");
+                    db.executeSqlNonQuery("insert into VotesHistory(userId,TopicId,OptionId,ChooseItemPosition,voteDateTime) values('" + userid +
+                     "'," + Request["id"].ToString() + "," + i + "," + chooseItem + ",'" + now.ToString() + "')");
                 }
                 Response.Redirect("big-five-result.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString());
             }

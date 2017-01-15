@@ -10,6 +10,7 @@ namespace TestingReport
     public partial class happiness : System.Web.UI.Page
     {
         public string openid = "";
+        public bool profileComplete = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             string code = Request["code"];
@@ -18,7 +19,7 @@ namespace TestingReport
             {
                 if (code == null)
                 {
-                    Response.Redirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxe29e41d979d25872&redirect_uri=http%3A%2F%2Fwww.ihappyabc.com%2Fhappiness.aspx&response_type=code&scope=snsapi_base#wechat_redirect");
+                    Response.Redirect("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx4f44b7d364e15070&redirect_uri=http%3A%2F%2Fwww.ihappyabc.com%2Fknowledge.aspx&response_type=code&scope=snsapi_base#wechat_redirect");
                 }
                 else
                 {
@@ -26,6 +27,11 @@ namespace TestingReport
                 }
             }
             openid = userid;
+
+          
+            UserSummary summary = SummaryUtil.getUserSummary(userid);
+
+            profileComplete = summary.profileComplete;
         }
     }
 }

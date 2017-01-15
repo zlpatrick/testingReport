@@ -6,7 +6,7 @@
 <head runat="server">
     <meta content="user-scalable=no" id="viewport" name="viewport">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>幸福ABC - 认识自我</title>
+    <title>生活再发现 - 认识自我</title>
       <script src="Scripts/jquery.1.11.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
@@ -106,7 +106,7 @@
 
  
         <div>
-        <div style="width:500px;color:white;background-color:#1d3d4c;opacity:0.6;text-align:center;margin:40px auto;padding-top:10px;padding-bottom:10px;">完美主义测试
+        <div style="width:500px;color:white;background-color:rgba(34,205,193,1);text-align:center;margin:40px auto;padding-top:10px;padding-bottom:10px;">完美主义测试
             <div style="float:left;width:5px;background-color:white;margin-left:15px;">&nbsp;</div>
              <div style="float:right;width:5px;background-color:white;margin-right:15px;">&nbsp;</div>
         </div>
@@ -143,7 +143,7 @@
        
          <div style="width:25%;border-top:4px solid #3d585f;height:120px;line-height:120px;float:left"><a href="learn-self.aspx?userid=<%=Request["userid"] %>" style="color:white">认识自我</a></div>
         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="find-life.aspx?userid=<%=Request["userid"] %>" style="color:white">发现生活</a></div>
-         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="happiness.aspx?userid=<%=Request["userid"] %>" style="color:white">幸福宝典</a></div>
+         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="knowledge.aspx?userid=<%=Request["userid"] %>" style="color:white">幸福宝典</a></div>
         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="person.aspx?userid=<%=Request["userid"] %>" style="color:white">个人中心</a></div>
        
     </div>

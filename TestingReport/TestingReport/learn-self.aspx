@@ -7,7 +7,7 @@
 <head runat="server">
     <meta content="user-scalable=no" id="viewport" name="viewport">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>幸福ABC - 认识自我</title>
+    <title>生活再发现 - 认识自我</title>
       <script src="Scripts/jquery.1.11.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
@@ -86,7 +86,7 @@
          
     <div style="background-color:rgba(34,205,193,1);height:150px;position:relative;">
         <a href="person.aspx?userid=<%=openid %>">
-        <img src="<%=userImageUrl %>" style="width:200px;border-radius:100px;border-radius:100px;position:absolute;bottom:-100px;left:calc((100% - 200px)/2)"/>
+        <img src="<%=userImageUrl %>" style="width:200px;border-radius:100px;position:absolute;bottom:-100px;left:calc((100% - 200px)/2)"/>
     </a>
     </div>
     
@@ -110,16 +110,19 @@
             <div style="padding-left:30px;border-left:8px solid rgba(34,205,193,1);float:left;color:rgba(34,205,193,1)">我的性格标签</div>
             <div style="float:right;font-size:40px;color:grey;"><a href="learn-self-badge.aspx?userid=<%=openid %>" style="color:grey">查看更多..</a></div>
         </div>
-        <div style="font-size:32px;">
+        <div style="font-size:32px;font-weight:bold">
             <% if (badgeNames.Count > 0) { 
                 for(int i=0;i<badgeNames.Count;i++){ %>
             <a href="#" style="color:white" data-toggle="modal" data-target="#badge-dialog-<%=badgeCategory[i] %>">
-                <div style="float:left;margin-right:30px;margin-bottom:30px; color:<%=badgeColor[i]%>;border:2px solid <%=badgeColor[i]%>;padding:10px;border-radius:5px;">
-                    <span class="glyphicon <%=badgeClass[i] %>"></span> <%=badgeNames[i] %>
+                <div style="float:left;margin-bottom:30px; color:<%=badgeColor[i]%>;width:33.3%;line-height:80px;">
+                    <div style="float:left;text-align:center;background-color:<%=badgeColor[i]%>;color:white;width:80px;border-radius:40px;line-height:30px;height:80px;font-size:28px;font-weight:bold;padding-top:10px"><%=badgeClass[i] %></div>&nbsp;<%=badgeNames[i] %>
                 </div></a>
             <% }}
                else{%>
-               <span style="color:rgba(34,205,193,1)">你还没有标签，赶快参加测试获取吧！</span>
+              <div style="color:rgba(34,205,193,1);line-height:80px;">
+                <div style="float:left;text-align:center;background-color:rgba(34,205,193,1);color:white;width:80px;border-radius:40px;line-height:80px;height:80px;font-size:40px;font-weight:bold">?</div>
+               <span style="color:rgba(34,205,193,1)">&nbsp;你还没有标签，赶快参加测试获取吧！</span>
+                </div>
             <%} %>
         </div>
     </div>
@@ -130,6 +133,8 @@
             <div style="float:right;font-size:40px;color:grey;"><a href="learn-self-total-hepai.aspx?userid=<%=openid %>" style="color:grey">查看更多..</a></div>
         </div>
         <div style="font-size:32px;">
+
+             <% if(bigfive || world || perfect){ %>
             <div style="margin-top:40px;overflow:hidden;font-size:40px">
                 <div style="width:33%;float:left;text-align:center">
                     <img src="img/3-left.png"  style="width:70%;"/><br />90%
@@ -141,6 +146,15 @@
                     <img src="img/2-left.png"  style="width:70%;"/><br />65%
                 </div>
             </div>
+
+
+             <%}else{ %>
+            <div style="color:rgba(34,205,193,1);line-height:80px;">
+                <div style="float:left;text-align:center;background-color:rgba(34,205,193,1);color:white;width:80px;border-radius:40px;line-height:80px;height:80px;font-size:40px;font-weight:bold">?</div>
+               <span style="color:rgba(34,205,193,1)">&nbsp;你还没有合拍的好友，赶快邀请好友测试吧！</span>
+            </div>
+
+            <%} %>
         </div>
     </div>
         
@@ -152,20 +166,20 @@
         </div>
         <div style="overflow:hidden;text-align:center;margin-bottom:30px;border:2px solid lightgrey;border-radius:8px;padding:30px">
             <div style="float:left;width:22%">大五<br />人格测试</div>
-            <div style="float:left;width:55%;color:grey;font-size:36px">全球最权威的性格测试<br />共45题 约8分钟</div>
+            <div style="float:left;width:55%;color:grey;font-size:36px">全球最权威的性格测试<br />共20题 约4分钟</div>
             <% if(bigfive){ %>
-            <div style="float:left;width:23%;font-size:36px">已测试<br /><a href="big-five-result.aspx?userid=<%=openid %>"><span style="font-size:36px;padding:5px 10px;color:white;background-color:rgba(34,205,193,1)">查看结果</span></a></div>
+            <div style="float:left;width:23%;font-size:36px;background-color:rgba(34,205,193,1)"><a href="big-five-result.aspx?userid=<%=openid %>"><span style="font-size:36px;padding:5px 10px;color:white;">已测试<br />查看结果</span></a></div>
        <%}else{ %>
-             <div style="float:left;width:23%;font-size:36px">未测试<br /><a href="vote.aspx?id=1&userid=<%=openid %>"><span style="font-size:36px;padding:5px 10px;color:white;background-color:rgba(34,205,193,1)">点击测试</span></a></div>
+             <div style="float:left;width:23%;font-size:36px;background-color:rgba(34,205,193,1)"><a href="vote.aspx?id=1&userid=<%=openid %>"><span style="font-size:36px;padding:5px 10px;color:white">未测试<br />点击测试</span></a></div>
         <%} %>
         </div>
         <div style="overflow:hidden;text-align:center;margin-bottom:30px;border:2px solid lightgrey;border-radius:8px;padding:30px">
             <div style="float:left;width:22%">出世入世<br />测试</div>
             <div style="float:left;width:55%;color:grey;font-size:36px">测试你的人生态度<br />共16题 约3分钟</div>
             <%if(world){ %>
-            <div style="float:left;width:23%;font-size:36px">已测试<br /><a href="world-result.aspx?userid=<%=openid %>"><span style="font-size:36px;padding:5px 10px;color:white;background-color:rgba(34,205,193,1)">查看结果</span></a></div>
+            <div style="float:left;width:23%;font-size:36px;background-color:rgba(34,205,193,1)"><a href="world-result.aspx?userid=<%=openid %>"><span style="font-size:36px;padding:5px 10px;color:white">已测试<br />查看结果</span></a></div>
             <%}else{ %>
-            <div style="float:left;width:23%;font-size:36px">未测试<br /><a href="vote.aspx?id=9&userid=<%=openid %>"><span style="font-size:36px;padding:5px 10px;color:white;background-color:rgba(34,205,193,1)">点击测试</span></a></div>
+            <div style="float:left;width:23%;font-size:36px;background-color:rgba(34,205,193,1)"><a href="vote.aspx?id=9&userid=<%=openid %>"><span style="font-size:36px;padding:5px 10px;color:white">未测试<br />点击测试</span></a></div>
         <%} %>
         </div>
 
@@ -173,17 +187,15 @@
             <div style="float:left;width:22%">完美主义<br />测试</div>
             <div style="float:left;width:55%;color:grey;font-size:36px">测试你的完美主义倾向<br />共20题 约4分钟</div>
             <%if(perfect){ %>
-            <div style="float:left;width:23%;font-size:36px">已测试<br /><a href="perfect-result.aspx?userid=<%=openid %>"><span style="font-size:36px;padding:5px 10px;color:white;background-color:rgba(34,205,193,1)">查看结果</span></a></div>
+            <div style="float:left;width:23%;font-size:36px;background-color:rgba(34,205,193,1)"><a href="perfect-result.aspx?userid=<%=openid %>"><span style="font-size:36px;padding:5px 10px;color:white">已测试<br />查看结果</span></a></div>
             <%}else{ %>
-            <div style="float:left;width:23%;font-size:36px">未测试<br /><a href="vote.aspx?id=10&userid=<%=openid %>"><span style="font-size:36px;padding:5px 10px;color:white;background-color:rgba(34,205,193,1)">点击测试</span></a></div>
+            <div style="float:left;width:23%;font-size:36px;background-color:rgba(34,205,193,1)"><a href="vote.aspx?id=10&userid=<%=openid %>"><span style="font-size:36px;padding:5px 10px;color:white">未测试<br />点击测试</span></a></div>
          <%} %>
         </div>
     </div>
 
       
-       <div style="margin-top:30px">
-            <div id="main" style="height:680px;background-color:white;border:none;padding:80px;font-size:36px !important;line-height:initial !important"></div>
-        </div>
+    
 
    
 
@@ -191,8 +203,14 @@
        
          <div style="width:25%;border-top:4px solid #3d585f;height:120px;line-height:120px;float:left"><a href="learn-self.aspx?userid=<%=openid %>" style="color:white">认识自我</a></div>
         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="find-life.aspx?userid=<%=openid %>" style="color:white">发现生活</a></div>
-         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="happiness.aspx?userid=<%=openid %>" style="color:white">幸福宝典</a></div>
-        <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="person.aspx?userid=<%=openid %>" style="color:white">个人中心</a></div>
+         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="knowledge.aspx?userid=<%=openid %>" style="color:white">幸福宝典</a></div>
+        <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left;position:relative">
+            <% if(!profileComplete){ %>
+            <div style="position:absolute;right:10px;top:10px;width:20px;height:20px;border-radius:10px;background-color:red"></div>
+            <%} %>
+            <a href="person.aspx?userid=<%=openid %>" style="color:white">个人中心</a>
+
+        </div>
        
     </div>
     </form>
@@ -280,7 +298,7 @@
                 <hr style="border:2px solid rgba(34,205,193,1)"/>
                 <div style="overflow:hidden">
                     <div style="float:left;margin-right:30px; margin-bottom:30px; color:rgba(34,205,193,1);border:2px solid rgba(34,205,193,1);padding:10px;border-radius:5px;">
-                        顺其自然主义
+                        顺其自然型
                     </div>
                     <div style="float:right;margin-right:30px; margin-bottom:30px; color:rgba(34,205,193,1);padding:10px;">
                         <%=perfect_1 %>%
@@ -289,7 +307,7 @@
                  </div> 
                 <div style="overflow:hidden">
                     <div style="float:left;margin-right:30px; margin-bottom:30px; color:rgba(34,205,193,1);border:2px solid rgba(34,205,193,1);padding:10px;border-radius:5px;">
-                        积极完美主义
+                        积极型
                     </div>
                     <div style="float:right;margin-right:30px; margin-bottom:30px; color:rgba(34,205,193,1);padding:10px;">
                         <%=perfect_3 %>%
@@ -298,7 +316,7 @@
                  </div> 
                 <div style="overflow:hidden">
                     <div style="float:left;margin-right:30px; margin-bottom:30px; color:rgba(34,205,193,1);border:2px solid rgba(34,205,193,1);padding:10px;border-radius:5px;">
-                        神经质完美主义
+                        神经质型
                     </div>
                     <div style="float:right;margin-right:30px; margin-bottom:30px; color:rgba(34,205,193,1);padding:10px;">
                         <%=perfect_2 %>%
@@ -350,6 +368,37 @@
                     </div>
                     
                  </div> 
+                
+               
+                 <a href="#" style="color:white" onclick="$('#badge-dialog-3').modal('hide');">
+                    <div style="width:100%;text-align:center;border:none;text-align:center !important;font-size:32px !important;height:80px;background-color:rgba(34,205,193,1);cursor:pointer;line-height:80px;color:white">
+                       关闭
+
+                    </div></a>
+                    
+            </div>
+		</div>
+		</td></tr>
+		</tbody></table>
+	</div>
+
+
+     <div id="badge-dialog-4" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="false" >
+		<table height="100%" width="100%">
+        <tbody><tr><td valign="middle">
+		<div class="modal-dialog" style="width:50%">
+			<div class="modal-content" style="padding:50px;font-size:32px;">
+              <div style="overflow:hidden">
+                    <div style="float:left;margin-right:30px;  color:rgba(34,205,193,1);padding:10px;">
+                        分类
+                    </div>
+                    <div style="float:right;margin-right:30px; color:rgba(34,205,193,1);padding:10px;">
+                        用户比例
+                    </div>
+                    
+                 </div> 
+                <hr style="border:2px solid rgba(34,205,193,1)"/>
+               
                 <div style="overflow:hidden">
                     <div style="float:left;margin-right:30px; margin-bottom:30px; color:skyblue;border:2px solid skyblue;padding:10px;border-radius:5px;">
                         内向
@@ -368,6 +417,36 @@
                     </div>
                     
                  </div> 
+               
+               
+                 <a href="#" style="color:white" onclick="$('#badge-dialog-4').modal('hide');">
+                    <div style="width:100%;text-align:center;border:none;text-align:center !important;font-size:32px !important;height:80px;background-color:rgba(34,205,193,1);cursor:pointer;line-height:80px;color:white">
+                       关闭
+
+                    </div></a>
+                    
+            </div>
+		</div>
+		</td></tr>
+		</tbody></table>
+	</div>
+
+     <div id="badge-dialog-5" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="false" >
+		<table height="100%" width="100%">
+        <tbody><tr><td valign="middle">
+		<div class="modal-dialog" style="width:50%">
+			<div class="modal-content" style="padding:50px;font-size:32px;">
+              <div style="overflow:hidden">
+                    <div style="float:left;margin-right:30px;  color:rgba(34,205,193,1);padding:10px;">
+                        分类
+                    </div>
+                    <div style="float:right;margin-right:30px; color:rgba(34,205,193,1);padding:10px;">
+                        用户比例
+                    </div>
+                    
+                 </div> 
+                <hr style="border:2px solid rgba(34,205,193,1)"/>
+                
                 <div style="overflow:hidden">
                     <div style="float:left;margin-right:30px; margin-bottom:30px; color:#398439;border:2px solid #398439;padding:10px;border-radius:5px;">
                         保守
@@ -386,6 +465,36 @@
                     </div>
                     
                  </div> 
+              
+               
+                 <a href="#" style="color:white" onclick="$('#badge-dialog-5').modal('hide');">
+                    <div style="width:100%;text-align:center;border:none;text-align:center !important;font-size:32px !important;height:80px;background-color:rgba(34,205,193,1);cursor:pointer;line-height:80px;color:white">
+                       关闭
+
+                    </div></a>
+                    
+            </div>
+		</div>
+		</td></tr>
+		</tbody></table>
+	</div>
+
+     <div id="badge-dialog-6" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="false" >
+		<table height="100%" width="100%">
+        <tbody><tr><td valign="middle">
+		<div class="modal-dialog" style="width:50%">
+			<div class="modal-content" style="padding:50px;font-size:32px;">
+              <div style="overflow:hidden">
+                    <div style="float:left;margin-right:30px;  color:rgba(34,205,193,1);padding:10px;">
+                        分类
+                    </div>
+                    <div style="float:right;margin-right:30px; color:rgba(34,205,193,1);padding:10px;">
+                        用户比例
+                    </div>
+                    
+                 </div> 
+                <hr style="border:2px solid rgba(34,205,193,1)"/>
+               
                 <div style="overflow:hidden">
                     <div style="float:left;margin-right:30px; margin-bottom:30px; color:orangered;border:2px solid orangered;padding:10px;border-radius:5px;">
                         宜人性低
@@ -404,6 +513,35 @@
                     </div>
                     
                  </div> 
+               
+                 <a href="#" style="color:white" onclick="$('#badge-dialog-6').modal('hide');">
+                    <div style="width:100%;text-align:center;border:none;text-align:center !important;font-size:32px !important;height:80px;background-color:rgba(34,205,193,1);cursor:pointer;line-height:80px;color:white">
+                       关闭
+
+                    </div></a>
+                    
+            </div>
+		</div>
+		</td></tr>
+		</tbody></table>
+	</div>
+
+     <div id="badge-dialog-7" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="false" >
+		<table height="100%" width="100%">
+        <tbody><tr><td valign="middle">
+		<div class="modal-dialog" style="width:50%">
+			<div class="modal-content" style="padding:50px;font-size:32px;">
+              <div style="overflow:hidden">
+                    <div style="float:left;margin-right:30px;  color:rgba(34,205,193,1);padding:10px;">
+                        分类
+                    </div>
+                    <div style="float:right;margin-right:30px; color:rgba(34,205,193,1);padding:10px;">
+                        用户比例
+                    </div>
+                    
+                 </div> 
+                <hr style="border:2px solid rgba(34,205,193,1)"/>
+                
                 <div style="overflow:hidden">
                     <div style="float:left;margin-right:30px; margin-bottom:30px; color:lightgreen;border:2px solid lightgreen;padding:10px;border-radius:5px;">
                         严谨性低
@@ -423,7 +561,7 @@
                     
                  </div> 
                
-                 <a href="#" style="color:white" onclick="$('#badge-dialog-3').modal('hide');">
+                 <a href="#" style="color:white" onclick="$('#badge-dialog-7').modal('hide');">
                     <div style="width:100%;text-align:center;border:none;text-align:center !important;font-size:32px !important;height:80px;background-color:rgba(34,205,193,1);cursor:pointer;line-height:80px;color:white">
                        关闭
 
@@ -434,6 +572,35 @@
 		</td></tr>
 		</tbody></table>
 	</div>
+
+
+    <%if(popBadge){ %>
+    <div id="badgePopup" class="modal fade in" tabindex="-1" role="dialog" aria-hidden="false" >
+		<table height="100%" width="100%">
+        <tbody><tr><td valign="middle">
+		<div class="modal-dialog" style="width:50%">
+			<div class="modal-content" style="padding:50px;font-size:32px;">
+             <p>恭喜你获得标签，点击标签可以看到更多信息。</p>
+<p>快参加未完成的测试获取更多标签吧！</p>
+
+               
+                 <a href="#" style="color:white" onclick="$('#badgePopup').modal('hide');">
+                    <div style="width:100%;text-align:center;border:none;text-align:center !important;font-size:32px !important;height:80px;background-color:rgba(34,205,193,1);cursor:pointer;line-height:80px;color:white">
+                       关闭
+
+                    </div></a>
+                    
+            </div>
+		</div>
+		</td></tr>
+		</tbody></table>
+	</div>
+    <script>
+        $(document).ready(function () {
+            $("#badgePopup").modal('show');
+        });
+    </script>
+    <%} %>
 </body>
     
 </html>

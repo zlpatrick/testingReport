@@ -27,45 +27,35 @@ namespace TestingReport
         public int testTimes = 0;
         public int toolTimes = 0;
         public int totalChartValue = 0;
+        public int life_1, life_2, life_3;
 
         public List<string> radarDimNames = new List<string>();
         public List<float> radarDimScores = new List<float>();
         public List<float> radarAveScores = new List<float>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            string userid = Request["userid"];
-            if (userid == null)
+            string from = Request["from"];
+            if (from != null)
             {
-                userid = "om8uZt7fajggMH8vqjFb1afiE8y4";
+                
+                Response.Redirect("life-result-shared.aspx?shareduserid=" + Request["userid"]);
             }
+            string userid = Request["userid"];
+          
             JObject obj = WeixinUtil.getUserInfo(userid);
             userImageUrl = obj.GetValue("headimgurl").ToString();
             userNickName = obj.GetValue("nickname").ToString();
             DBUtil db = new DBUtil();
-            DataSet ds = db.executeSqlQuery("select * from Users where userName='" + userid + "'");
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                age = ds.Tables[0].Rows[0]["age"].ToString();
-                industry = ds.Tables[0].Rows[0]["industry"].ToString();
-                region = ds.Tables[0].Rows[0]["region"].ToString();
-            }
+            UserSummary summary = SummaryUtil.getUserSummary(userid);
+            age = summary.age;
+            industry = summary.industry;
+            region = summary.region;
+            selfPercent = summary.selfPercent;
+            testTimes = summary.learnself;
+            toolTimes = summary.findlife;
+            string sql = null;
 
-            string sql = "select count(Id) as total from measureScores where userId='" + userid + "' and topicId in (2,5)";
-            ds = db.executeSqlQuery(sql);
-            if (ds.Tables[0].Rows.Count > 0)
-            {
-                testTimes = Convert.ToInt32(ds.Tables[0].Rows[0][0]) / 4;
-            }
-
-            int personalTimes = 0;
-
-
-            selfPercent = personalTimes * 100 / 6;
-
-
-
-
-            ds = db.executeSqlQuery("select * from ChooseItem where topicId=3");
+            DataSet ds = db.executeSqlQuery("select * from ChooseItem where topicId=3");
             Dictionary<int, int> scores = new Dictionary<int, int>();
             if (ds.Tables[0].Rows.Count > 0)
             {
@@ -147,8 +137,8 @@ namespace TestingReport
                         foreach (KeyValuePair<int, int> pair in dimensionScores)
                         {
                             radarDimNames.Add(dimensionNames[pair.Key]);
-                            radarDimScores.Add((int)(pair.Value / 2.0));
-                            radarAveScores.Add((int)(dimensionCompare[pair.Key] / 10));
+                            radarDimScores.Add((float)(pair.Value / 2.0));
+                            radarAveScores.Add((float)(dimensionCompare[pair.Key] / 10));
 
                         }
                         string badge = "";
@@ -176,6 +166,37 @@ namespace TestingReport
                     }
                 }
             }
+
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=3");
+            int totalPerson = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                totalPerson = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+            }
+
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=3 and badgeName='舒适区'");
+            int person = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+            }
+            life_1 = person * 100 / totalPerson;
+
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=3 and badgeName='学习区'");
+            person = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+            }
+            life_2 = person * 100 / totalPerson;
+
+            ds = db.executeSqlQuery("select count(userId) from badges where topicId=3 and badgeName='恐慌区'");
+            person = 0;
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+                person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
+            }
+            life_3 = person * 100 / totalPerson;
         }
     }
 }

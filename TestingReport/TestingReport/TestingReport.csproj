@@ -66,6 +66,9 @@
   <ItemGroup>
     <Content Include="admin-index.aspx" />
     <Content Include="admin-login.aspx" />
+    <Content Include="assets\barcode .png" />
+    <Content Include="assets\barcode.jpg" />
+    <Content Include="assets\barcode.png" />
     <Content Include="assets\big-five-title.png" />
     <Content Include="assets\dimension-10.png" />
     <Content Include="assets\dimension-15.jpg" />
@@ -113,16 +116,26 @@
     <Content Include="assets\trymore.jpg" />
     <Content Include="assets\way-1.jpg" />
     <Content Include="background.aspx" />
+    <Content Include="big-five-result-guest.aspx" />
+    <Content Include="big-five-result-shared.aspx" />
     <Content Include="big-five.aspx" />
+    <Content Include="find-life-badge.aspx" />
     <Content Include="find-life-happy-hepai.aspx" />
+    <Content Include="find-life-health-hepai.aspx" />
     <Content Include="find-life-life-hepai.aspx" />
+    <Content Include="find-life-links.aspx" />
     <Content Include="find-life-total-hepai.aspx" />
     <Content Include="find-life-work-hepai.aspx" />
     <Content Include="find-life.aspx" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="happiness.aspx" />
+    <Content Include="health-result-guest.aspx" />
+    <Content Include="health-result-shared.aspx" />
+    <Content Include="knowledge.aspx" />
+    <Content Include="happy-feeling-result-guest.aspx" />
+    <Content Include="happy-feeling-result-shared.aspx" />
     <Content Include="happy-feeling-result.aspx" />
     <Content Include="header.htm" />
+    <Content Include="health-result.aspx" />
     <Content Include="img\1-left.png" />
     <Content Include="img\1-right.png" />
     <Content Include="img\2-left.png" />
@@ -154,10 +167,15 @@
     <Content Include="learn-self-total-hepai.aspx" />
     <Content Include="learn-self-world-hepai.aspx" />
     <Content Include="learn-self.aspx" />
+    <Content Include="life-result-guest.aspx" />
+    <Content Include="life-result-shared.aspx" />
     <Content Include="life-result.aspx" />
     <Content Include="life-work.aspx" />
+    <Content Include="middle.aspx" />
     <Content Include="more-info.aspx" />
     <Content Include="Newtonsoft.Json.dll" />
+    <Content Include="perfect-result-guest.aspx" />
+    <Content Include="perfect-result-shared.aspx" />
     <Content Include="person-self.aspx" />
     <Content Include="person.aspx" />
     <Content Include="profile.aspx" />
@@ -169,18 +187,22 @@
     <Content Include="Scripts\echarts.min.js" />
     <Content Include="Scripts\jquery.1.11.js" />
     <Content Include="Styles\bootstrap.css" />
+    <Content Include="Styles\SiteAndroid.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.4.1.js" />
     <Content Include="Scripts\jquery-1.4.1.min.js" />
+    <Content Include="test-big-five-guest.aspx" />
     <Content Include="test-big-five.aspx" />
     <Content Include="test-day.aspx" />
+    <Content Include="test-guest.aspx" />
     <Content Include="test.aspx" />
     <Content Include="tip.aspx" />
     <Content Include="tool-add.aspx" />
     <Content Include="tool-edit.aspx" />
     <Content Include="tool-record.aspx" />
+    <Content Include="vote-guest.aspx" />
     <Content Include="vote.aspx" />
     <Content Include="way-tool.aspx" />
     <Content Include="Web.config" />
@@ -193,7 +215,11 @@
     <Content Include="weixin.aspx" />
     <Content Include="work-life.aspx" />
     <Content Include="perfect-result.aspx" />
+    <Content Include="work-result-guest.aspx" />
+    <Content Include="work-result-shared.aspx" />
     <Content Include="work-result.aspx" />
+    <Content Include="world-result-guest.aspx" />
+    <Content Include="world-result-shared.aspx" />
     <Content Include="world-result.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +244,20 @@
     <Compile Include="background.aspx.designer.cs">
       <DependentUpon>background.aspx</DependentUpon>
     </Compile>
+    <Compile Include="big-five-result-guest.aspx.cs">
+      <DependentUpon>big-five-result-guest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="big-five-result-guest.aspx.designer.cs">
+      <DependentUpon>big-five-result-guest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="big-five-result-shared.aspx.cs">
+      <DependentUpon>big-five-result-shared.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="big-five-result-shared.aspx.designer.cs">
+      <DependentUpon>big-five-result-shared.aspx</DependentUpon>
+    </Compile>
     <Compile Include="big-five.aspx.cs">
       <DependentUpon>big-five.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -227,6 +267,13 @@
     </Compile>
     <Compile Include="DBUtil.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="find-life-badge.aspx.cs">
+      <DependentUpon>find-life-badge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="find-life-badge.aspx.designer.cs">
+      <DependentUpon>find-life-badge.aspx</DependentUpon>
+    </Compile>
     <Compile Include="find-life-happy-hepai.aspx.cs">
       <DependentUpon>find-life-happy-hepai.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -234,12 +281,26 @@
     <Compile Include="find-life-happy-hepai.aspx.designer.cs">
       <DependentUpon>find-life-happy-hepai.aspx</DependentUpon>
     </Compile>
+    <Compile Include="find-life-health-hepai.aspx.cs">
+      <DependentUpon>find-life-health-hepai.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="find-life-health-hepai.aspx.designer.cs">
+      <DependentUpon>find-life-health-hepai.aspx</DependentUpon>
+    </Compile>
     <Compile Include="find-life-life-hepai.aspx.cs">
       <DependentUpon>find-life-life-hepai.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="find-life-life-hepai.aspx.designer.cs">
       <DependentUpon>find-life-life-hepai.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="find-life-links.aspx.cs">
+      <DependentUpon>find-life-links.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="find-life-links.aspx.designer.cs">
+      <DependentUpon>find-life-links.aspx</DependentUpon>
     </Compile>
     <Compile Include="find-life-total-hepai.aspx.cs">
       <DependentUpon>find-life-total-hepai.aspx</DependentUpon>
@@ -265,12 +326,40 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="happiness.aspx.cs">
-      <DependentUpon>happiness.aspx</DependentUpon>
+    <Compile Include="health-result-guest.aspx.cs">
+      <DependentUpon>health-result-guest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="happiness.aspx.designer.cs">
-      <DependentUpon>happiness.aspx</DependentUpon>
+    <Compile Include="health-result-guest.aspx.designer.cs">
+      <DependentUpon>health-result-guest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="health-result-shared.aspx.cs">
+      <DependentUpon>health-result-shared.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="health-result-shared.aspx.designer.cs">
+      <DependentUpon>health-result-shared.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="knowledge.aspx.cs">
+      <DependentUpon>knowledge.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="knowledge.aspx.designer.cs">
+      <DependentUpon>knowledge.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="happy-feeling-result-guest.aspx.cs">
+      <DependentUpon>happy-feeling-result-guest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="happy-feeling-result-guest.aspx.designer.cs">
+      <DependentUpon>happy-feeling-result-guest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="happy-feeling-result-shared.aspx.cs">
+      <DependentUpon>happy-feeling-result-shared.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="happy-feeling-result-shared.aspx.designer.cs">
+      <DependentUpon>happy-feeling-result-shared.aspx</DependentUpon>
     </Compile>
     <Compile Include="happy-feeling-result.aspx.cs">
       <DependentUpon>happy-feeling-result.aspx</DependentUpon>
@@ -278,6 +367,13 @@
     </Compile>
     <Compile Include="happy-feeling-result.aspx.designer.cs">
       <DependentUpon>happy-feeling-result.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="health-result.aspx.cs">
+      <DependentUpon>health-result.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="health-result.aspx.designer.cs">
+      <DependentUpon>health-result.aspx</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -342,6 +438,20 @@
     <Compile Include="learn-self.aspx.designer.cs">
       <DependentUpon>learn-self.aspx</DependentUpon>
     </Compile>
+    <Compile Include="life-result-guest.aspx.cs">
+      <DependentUpon>life-result-guest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="life-result-guest.aspx.designer.cs">
+      <DependentUpon>life-result-guest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="life-result-shared.aspx.cs">
+      <DependentUpon>life-result-shared.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="life-result-shared.aspx.designer.cs">
+      <DependentUpon>life-result-shared.aspx</DependentUpon>
+    </Compile>
     <Compile Include="life-result.aspx.cs">
       <DependentUpon>life-result.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -356,12 +466,33 @@
     <Compile Include="life-work.aspx.designer.cs">
       <DependentUpon>life-work.aspx</DependentUpon>
     </Compile>
+    <Compile Include="middle.aspx.cs">
+      <DependentUpon>middle.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="middle.aspx.designer.cs">
+      <DependentUpon>middle.aspx</DependentUpon>
+    </Compile>
     <Compile Include="more-info.aspx.cs">
       <DependentUpon>more-info.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="more-info.aspx.designer.cs">
       <DependentUpon>more-info.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="perfect-result-guest.aspx.cs">
+      <DependentUpon>perfect-result-guest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="perfect-result-guest.aspx.designer.cs">
+      <DependentUpon>perfect-result-guest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="perfect-result-shared.aspx.cs">
+      <DependentUpon>perfect-result-shared.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="perfect-result-shared.aspx.designer.cs">
+      <DependentUpon>perfect-result-shared.aspx</DependentUpon>
     </Compile>
     <Compile Include="person-self.aspx.cs">
       <DependentUpon>person-self.aspx</DependentUpon>
@@ -406,6 +537,14 @@
     <Compile Include="result.aspx.designer.cs">
       <DependentUpon>result.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SummaryUtil.cs" />
+    <Compile Include="test-big-five-guest.aspx.cs">
+      <DependentUpon>test-big-five-guest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test-big-five-guest.aspx.designer.cs">
+      <DependentUpon>test-big-five-guest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="test-big-five.aspx.cs">
       <DependentUpon>test-big-five.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -419,6 +558,13 @@
     </Compile>
     <Compile Include="test-day.aspx.designer.cs">
       <DependentUpon>test-day.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="test-guest.aspx.cs">
+      <DependentUpon>test-guest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="test-guest.aspx.designer.cs">
+      <DependentUpon>test-guest.aspx</DependentUpon>
     </Compile>
     <Compile Include="test.aspx.cs">
       <DependentUpon>test.aspx</DependentUpon>
@@ -454,6 +600,13 @@
     </Compile>
     <Compile Include="tool-record.aspx.designer.cs">
       <DependentUpon>tool-record.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="vote-guest.aspx.cs">
+      <DependentUpon>vote-guest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="vote-guest.aspx.designer.cs">
+      <DependentUpon>vote-guest.aspx</DependentUpon>
     </Compile>
     <Compile Include="vote.aspx.cs">
       <DependentUpon>vote.aspx</DependentUpon>
@@ -491,12 +644,40 @@
     <Compile Include="perfect-result.aspx.designer.cs">
       <DependentUpon>perfect-result.aspx</DependentUpon>
     </Compile>
+    <Compile Include="work-result-guest.aspx.cs">
+      <DependentUpon>work-result-guest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="work-result-guest.aspx.designer.cs">
+      <DependentUpon>work-result-guest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="work-result-shared.aspx.cs">
+      <DependentUpon>work-result-shared.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="work-result-shared.aspx.designer.cs">
+      <DependentUpon>work-result-shared.aspx</DependentUpon>
+    </Compile>
     <Compile Include="work-result.aspx.cs">
       <DependentUpon>work-result.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="work-result.aspx.designer.cs">
       <DependentUpon>work-result.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="world-result-guest.aspx.cs">
+      <DependentUpon>world-result-guest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="world-result-guest.aspx.designer.cs">
+      <DependentUpon>world-result-guest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="world-result-shared.aspx.cs">
+      <DependentUpon>world-result-shared.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="world-result-shared.aspx.designer.cs">
+      <DependentUpon>world-result-shared.aspx</DependentUpon>
     </Compile>
     <Compile Include="world-result.aspx.cs">
       <DependentUpon>world-result.aspx</DependentUpon>
