@@ -168,7 +168,7 @@ namespace TestingReport
                     }
                 }
             }
-
+            /*
             ds = db.executeSqlQuery("select count(userId) from badges where topicId=3");
             int totalPerson = 0;
             if (ds.Tables[0].Rows.Count > 0)
@@ -198,7 +198,7 @@ namespace TestingReport
             {
                 person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
             }
-            life_3 = person * 100 / totalPerson;
+            life_3 = person * 100 / totalPerson;*/
         }
     }
 }

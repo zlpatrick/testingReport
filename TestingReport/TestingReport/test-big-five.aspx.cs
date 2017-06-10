@@ -154,7 +154,7 @@ namespace TestingReport
                         Panel tempPanels = new Panel();
                         tempPanels.CssClass = "bottom-choose-item-panel";
                         Label l = new Label();
-                        l.Text = "答案中是两个对立的维度，请先选择符合你的维度，再选择符合的程度。举例：如果你是一个特别健谈的人，在“健谈的”维度下，选择“非常符合”这个选项。";
+                        l.Text = "答案中是两个对立的维度，请先选择符合你的维度，再选择符合的程度。请从你的自身性格角度来做答，而不是在社会环境中养成的工作习惯。";
                         tempPanels.Controls.Add(l);
                         panel.Controls.Add(tempPanels); ;
                         
@@ -220,6 +220,37 @@ namespace TestingReport
                         "'," + Request["id"].ToString() + "," + i + "," + chooseItem + ")");
                     db.executeSqlNonQuery("insert into VotesHistory(userId,TopicId,OptionId,ChooseItemPosition,voteDateTime) values('" + userid +
                      "'," + Request["id"].ToString() + "," + i + "," + chooseItem + ",'" + now.ToString() + "')");
+                }
+
+                DataSet ds = db.executeSqlQuery("select * from Users where userName='" + userid + "'");
+                int missingType = 0;
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    string age = ds.Tables[0].Rows[0]["age"].ToString();
+                    string industry = ds.Tables[0].Rows[0]["industry"].ToString();
+                    string income = ds.Tables[0].Rows[0]["income"].ToString();
+                    string degree = ds.Tables[0].Rows[0]["degree"].ToString();
+                    string marriage = ds.Tables[0].Rows[0]["marriage"].ToString();
+                    string workString = ds.Tables[0].Rows[0]["work"].ToString();
+
+
+                    if (age.Equals("") || industry.Equals("") || workString.Equals(""))
+                    {
+                        missingType = 1;
+                    }
+                    else if (income.Equals("") || degree.Equals("") || marriage.Equals(""))
+                    {
+                        missingType = 2;
+                    }
+                }
+
+                if (missingType == 1)
+                {
+                    Response.Redirect("person-missing.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString() + "&miss=1");
+                }
+                else if (missingType == 2)
+                {
+                    Response.Redirect("person-missing.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString() + "&miss=2");
                 }
                 Response.Redirect("big-five-result.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString());
             }

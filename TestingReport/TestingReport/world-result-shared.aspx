@@ -309,10 +309,19 @@
 
 
 
-              <div style="width:60%;margin:30px auto 100px auto;border-radius:10px;border:none;text-align:center !important;font-size:36px !important;height:100px;background-color:rgba(34,205,193,1);cursor:pointer;line-height:100px;color:white"><a href="middle.aspx?id=9" style="color:white" >我也要测</a></div>
+              <div style="width:60%;margin:60px auto 100px auto;border-radius:10px;border:none;text-align:center !important;font-size:36px !important;height:100px;background-color:rgba(34,205,193,1);cursor:pointer;line-height:100px;color:white"><a href="middle.aspx?id=9" style="color:white" >我也要测</a></div>
        
+
+        <section  style="width:100%;margin:1em auto;text-align: center;"><section  style="width: 10px; height: 10px; border-radius: 50%; opacity: 0.5; border: 1px solid white; display: inline-block; vertical-align: top; margin-top: 0.56em; background-color: rgb(78, 153, 223);"></section><section class="" style="width: 15px; height: 15px; border-radius: 50%; border: 2px solid white; display: inline-block; vertical-align: top; margin-top: 0.4em; background-color: rgb(78, 153, 223);"></section><p style="display: inline-block;margin-left: 0.5em;"><span style="color: rgb(0, 176, 240);"><strong>END</strong></span></p><section class="" style="margin-left: 0.5em; width: 15px; height: 15px; border-radius: 50%; display: inline-block; border: 2px solid white; vertical-align: top; margin-top: 0.4em; background-color: rgb(78, 153, 223);"></section><section class="" style="width: 10px; height: 10px; border-radius: 50%; vertical-align: top; opacity: 0.5; display: inline-block; border: 1px solid white; margin-top: 0.56em; background-color: rgb(78, 153, 223);"></section></section>
+
+
+        <div style="margin-left:50px;margin-right:50px;">
+        <img data-src="assets/bottom-1.jpg" src="assets/bottom-1.png" title="assets/try.jpg" style="width:100%;"/></div>
+
+        <div style="margin-left:50px;margin-right:50px;text-align:center;margin-top:50px;">
+        <img data-src="assets/bottom-1.jpg" src="assets/bottom-2.png" title="assets/try.jpg" style="width:60%;"/></div>
    <div style="margin-left:80px;margin-right:80px;font-size:36px;margin-top:40px;">
-          <div style="font-size:40px;text-align:center;margin:0px 20px;padding:0px 50px;"><span style="font-size:40px;">进入公众号参与更多测试</span></div>
+          <!--<div style="font-size:40px;text-align:center;margin:0px 20px;padding:0px 50px;"><span style="font-size:40px;">进入公众号参与更多测试</span></div>
        <div style="overflow:hidden;padding:40px;text-align:center;font-size:36px;">
                <div style="float:left;width:33%;padding-left:20px;padding-right:20px;">
                    <span style="font-weight:bold">权威</span><hr style="margin-top:10px;margin-bottom:10px;border-color:grey" />
@@ -342,8 +351,8 @@
               <img data-src="assets/try.jpg" src="assets/try.jpg" title="assets/try.jpg" style="width:100%;margin:auto;"/>
            
           </div>
-
-       <div style="padding-left:50px;padding-right:50px;color:grey;font-size:32px;margin-bottom:100px;">
+       -->
+       <div style="padding-left:50px;padding-right:50px;color:grey;font-size:28px;margin-bottom:100px;">
 
           <p>公众号所有原创内容归“生活再发现”版权所有，
 包括测试量表、内容说明、相关文章等。</p> 
@@ -531,7 +540,7 @@
                         }
                     }
                 },
-                data: [<%=world_1%>,<%=world_2%>,<%=world_3%>,<%=world_4%>],
+                data: [26,38,24,12],
               
             }
         ]

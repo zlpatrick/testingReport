@@ -170,7 +170,7 @@ namespace TestingReport
                     }
                 }
             }
-
+            /*
             ds = db.executeSqlQuery("select count(userId) from badges where topicId=10");
             int totalPerson = 0;
             if (ds.Tables[0].Rows.Count > 0)
@@ -200,7 +200,7 @@ namespace TestingReport
             {
                 person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
             }
-            perfect_3 = person * 100 / totalPerson;
+            perfect_3 = person * 100 / totalPerson;*/
         }
     }
 }

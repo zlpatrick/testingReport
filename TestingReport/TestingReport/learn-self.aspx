@@ -12,6 +12,7 @@
     <script src="Scripts/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
+    <script type="text/javascript" src="Scripts/html2canvas.js"></script>  
     <style>
  
          a:hover
@@ -105,7 +106,7 @@
         </div>
     </div>
 
-    <div style="padding:80px;font-size:40px;">
+    <div style="padding:80px;font-size:40px;clear:both">
         <div style="overflow:hidden;margin-bottom:40px;">
             <div style="padding-left:30px;border-left:8px solid rgba(34,205,193,1);float:left;color:rgba(34,205,193,1)">我的性格标签</div>
             <div style="float:right;font-size:40px;color:grey;"><a href="learn-self-badge.aspx?userid=<%=openid %>" style="color:grey">查看更多..</a></div>
@@ -126,7 +127,7 @@
             <%} %>
         </div>
     </div>
-
+        <!--
         <div style="padding:80px;font-size:40px;">
         <div style="overflow:hidden;margin-bottom:40px;">
             <div style="padding-left:30px;border-left:8px solid rgba(34,205,193,1);float:left;color:rgba(34,205,193,1)">合拍榜</div>
@@ -157,9 +158,9 @@
             <%} %>
         </div>
     </div>
+        -->
         
-        
-    <div style="padding:0px 80px 80px 80px;font-size:40px;margin-bottom:80px;">
+    <div style="padding:30px 80px 80px 80px;font-size:40px;margin-bottom:80px;clear:both">
          <div style="overflow:hidden;margin-bottom:40px;">
             <div style="padding-left:30px;border-left:8px solid rgba(34,205,193,1);float:left;color:rgba(34,205,193,1)">测试列表</div>
            
@@ -195,7 +196,7 @@
     </div>
 
       
-    
+     <input class="example1" type="button" value="生成截图" style="margin-bottom:200px;"> 
 
    
 
@@ -203,19 +204,19 @@
        
          <div style="width:25%;border-top:4px solid #3d585f;height:120px;line-height:120px;float:left"><a href="learn-self.aspx?userid=<%=openid %>" style="color:white">认识自我</a></div>
         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="find-life.aspx?userid=<%=openid %>" style="color:white">发现生活</a></div>
-         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="knowledge.aspx?userid=<%=openid %>" style="color:white">幸福宝典</a></div>
+         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="knowledge.aspx?userid=<%=openid %>" style="color:white">知识点滴</a></div>
         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left;position:relative">
             <% if(!profileComplete){ %>
             <div style="position:absolute;right:10px;top:10px;width:20px;height:20px;border-radius:10px;background-color:red"></div>
             <%} %>
-            <a href="person.aspx?userid=<%=openid %>" style="color:white">个人中心</a>
+            <a href="person.aspx?userid=<%=openid %>" style="color:white">用户中心</a>
 
         </div>
        
     </div>
     </form>
     <div id="mcover" onclick="document.getElementById('mcover').style.display='';" style="display:none;">
-                    <img src="assets/guide.png"/>
+                    <img src="assets/guide.png" crossorigin="Anonymous"/>
     </div>
 
 
@@ -601,6 +602,30 @@
         });
     </script>
     <%} %>
+
+    <script  type="text/javascript" >  
+        $(document).ready( function(){  
+                $(".example1").on("click", function(event) {  
+                        event.preventDefault();  
+                        html2canvas(document.body, {  
+                        allowTaint: true,  
+                        taintTest: false,  
+                        onrendered: function(canvas) {  
+                            canvas.id = "mycanvas";  
+                            //document.body.appendChild(canvas);  
+                            //生成base64图片数据  
+                            var dataUrl = canvas.toDataURL();  
+                            var newImg = document.createElement("img");  
+                            newImg.src = dataUrl;
+                            
+                            document.body.appendChild(newImg);  
+                        }  
+                    });  
+                });   
+               
+        });  
+           
+        </script>  
 </body>
     
 </html>

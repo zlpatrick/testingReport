@@ -6,7 +6,7 @@
 <head runat="server">
     <meta content="user-scalable=no" id="viewport" name="viewport">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>生活再发现 - 健康指数测试</title>
+    <title>健康测试 - 原来打网球的人更健康!</title>
       <script src="Scripts/jquery.1.11.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
@@ -308,48 +308,23 @@
 
 
         </div>
-      <div style="color:white;margin-top:50px;margin-bottom:100px;overflow:hidden">
-            <div style="float:left;width:40%;margin-left:10%;text-align:center">
-                <div onclick="document.getElementById('mcover').style.display='block';" style="width:85%;border-radius:10px;border:none;text-align:center !important;margin:auto;font-size:30px !important;height:100px;background-color:#3d585f;cursor:pointer;line-height:100px">让好友猜猜你的性格</div>
-            </div>
-            <div style="float:left;width:40%;text-align:center">
+       <div style="color:white;margin-top:50px;margin-bottom:100px;">
+         
+            <div style="text-align:center;padding-left:80px;padding-right:80px;">
                 <div onclick="document.getElementById('mcover').style.display='block';" style="width:85%;border-radius:10px;border:none;text-align:center !important;margin:auto;font-size:30px !important;height:100px;background-color:#b84737;cursor:pointer;line-height:100px">分享至朋友圈</div>
             </div>
         </div>
        
-   <div style="margin-left:80px;margin-right:80px;font-size:36px;margin-top:40px;">
-          <div style="font-size:40px;text-align:center;margin:0px 20px;padding:0px 50px;"><span style="font-size:40px;">进入公众号参与更多测试</span></div>
-       <div style="overflow:hidden;padding:40px;text-align:center;font-size:36px;">
-               <div style="float:left;width:33%;padding-left:20px;padding-right:20px;">
-                   <span style="font-weight:bold">权威</span><hr style="margin-top:10px;margin-bottom:10px;border-color:grey" />
-                   <span style="font-size:32px">专业团队制作</span>
-               </div>
-               <div style="float:left;width:33%;padding-left:20px;padding-right:20px;">
-                   <span style="font-weight:bold">准确</span><hr style="margin-top:10px;margin-bottom:10px;border-color:grey" />
-                   <span style="font-size:32px">信度85%以上</span>
-               </div>
-               <div style="float:left;width:33%;padding-left:20px;padding-right:20px;">
-                   <span style="font-weight:bold">客观</span><hr  style="margin-top:10px;margin-bottom:10px;border-color:grey"/>
-                   <span style="font-size:32px">网友好友比较</span>
-               </div>
-           </div>
-          <div style="padding-left:30px;padding-right:30px;color:grey;font-size:32px;margin-bottom:10px;">
-              <ul>
-             <li>依据世界卫生组织的标准，你的生活健康吗？</li>
-                 <li>
-                  测一下你的幸福指数，和好友、网友比一比</li>
-<li>舒适、学习、焦虑，你属于那个区？</li>
-<li>如何科学地鉴别一个人的性格</li>
-             </ul>
-          </div>
-          
-          <div style="margin-top:40px;margin-bottom:60px;text-align:center">
-             
-              <img data-src="assets/try.jpg" src="assets/try.jpg" title="assets/try.jpg" style="width:100%;margin:auto;"/>
-           
-          </div>
+  <section  style="width:100%;margin:1em auto;text-align: center;"><section  style="width: 10px; height: 10px; border-radius: 50%; opacity: 0.5; border: 1px solid white; display: inline-block; vertical-align: top; margin-top: 0.56em; background-color: rgb(78, 153, 223);"></section><section class="" style="width: 15px; height: 15px; border-radius: 50%; border: 2px solid white; display: inline-block; vertical-align: top; margin-top: 0.4em; background-color: rgb(78, 153, 223);"></section><p style="display: inline-block;margin-left: 0.5em;"><span style="color: rgb(0, 176, 240);"><strong>END</strong></span></p><section class="" style="margin-left: 0.5em; width: 15px; height: 15px; border-radius: 50%; display: inline-block; border: 2px solid white; vertical-align: top; margin-top: 0.4em; background-color: rgb(78, 153, 223);"></section><section class="" style="width: 10px; height: 10px; border-radius: 50%; vertical-align: top; opacity: 0.5; display: inline-block; border: 1px solid white; margin-top: 0.56em; background-color: rgb(78, 153, 223);"></section></section>
 
-       <div style="padding-left:50px;padding-right:50px;color:grey;font-size:32px;margin-bottom:100px;">
+        <div style="margin-left:50px;margin-right:50px;">
+        <img data-src="assets/bottom-1.jpg" src="assets/bottom-1.png" title="assets/try.jpg" style="width:100%;"/></div>
+
+        <div style="margin-left:50px;margin-right:50px;text-align:center;margin-top:50px;">
+        <img data-src="assets/bottom-1.jpg" src="assets/bottom-2.png" title="assets/try.jpg" style="width:60%;"/></div>
+   <div style="margin-left:80px;margin-right:80px;font-size:36px;margin-top:40px;">
+         
+       <div style="padding-left:50px;padding-right:50px;color:grey;font-size:28px;margin-bottom:100px;">
 
           <p>公众号所有原创内容归“生活再发现”版权所有，
 包括测试量表、内容说明、相关文章等。</p> 
@@ -555,7 +530,7 @@
                         }
                     }
                 },
-                data: [<%=health_1%>,<%=health_2%>,<%=health_3%>,<%=health_4%>],
+                data: [15,35,31,19],
 
             }
         ]

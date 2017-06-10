@@ -89,7 +89,7 @@ namespace TestingReport
                 
                 string reply = "<xml><ToUserName><![CDATA[" + fromUser + "]]></ToUserName>" +
                 "<FromUserName><![CDATA[" + toUser + "]]></FromUserName>" +
-                "<CreateTime>12345678</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[感谢关注!“生活再发现”专注于研究如何更积极地投入生活、更幸福地享受生活，并提供相关的知识、方法和工具。]]></Content></xml>";
+                "<CreateTime>12345678</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[欢迎关注“生活再发现”！ 我们结合大数据技术和最新心理学理论，聚焦于研究并改善现代人的生活状态和精神健康。让你更好地认识自我、改进生活，是我们整个团队努力的目标。]]></Content></xml>";
 
                 Response.ContentType = "text/xml";
                 Response.Write(reply);

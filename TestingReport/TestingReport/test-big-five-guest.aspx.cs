@@ -222,6 +222,38 @@ namespace TestingReport
                     db.executeSqlNonQuery("insert into VotesHistory(userId,TopicId,OptionId,ChooseItemPosition,voteDateTime) values('" + userid +
                      "'," + Request["id"].ToString() + "," + i + "," + chooseItem + ",'" + now.ToString() + "')");
                 }
+
+                DataSet ds = db.executeSqlQuery("select * from Users where userName='" + userid + "'");
+                int missingType = 0;
+                if (ds.Tables[0].Rows.Count > 0)
+                {
+                    string age = ds.Tables[0].Rows[0]["age"].ToString();
+                    string industry = ds.Tables[0].Rows[0]["industry"].ToString();
+                    string income = ds.Tables[0].Rows[0]["income"].ToString();
+                    string degree = ds.Tables[0].Rows[0]["degree"].ToString();
+                    string marriage = ds.Tables[0].Rows[0]["marriage"].ToString();
+                    string workString = ds.Tables[0].Rows[0]["work"].ToString();
+
+
+                    if (age.Equals("") || industry.Equals("") || workString.Equals(""))
+                    {
+                        missingType = 1;
+                    }
+                    else if (income.Equals("") || degree.Equals("") || marriage.Equals(""))
+                    {
+                        missingType = 2;
+                    }
+                }
+
+                if (missingType == 1)
+                {
+                    Response.Redirect("person-missing-guest.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString() + "&miss=1");
+                }
+                else if (missingType == 2)
+                {
+                    Response.Redirect("person-missing-guest.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString() + "&miss=2");
+                }
+
                 Response.Redirect("big-five-result-guest.aspx?id=" + Request["id"].ToString() + "&userid=" + userid + "&type=" + Request["type"].ToString() + "&token=" + Request["token"]);
             }
         }

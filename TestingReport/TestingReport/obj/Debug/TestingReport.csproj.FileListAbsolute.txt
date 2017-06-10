@@ -10,3 +10,16 @@ C:\Users\Patrick\git\testingReport\TestingReport\TestingReport\bin\Newtonsoft.Js
 C:\Users\Patrick\git\testingReport\TestingReport\TestingReport\obj\Debug\TestingReport.dll
 C:\Users\Patrick\git\testingReport\TestingReport\TestingReport\obj\Debug\TestingReport.pdb
 C:\Users\Patrick\git\testingReport\TestingReport\TestingReport\obj\Debug\TestingReport.csprojResolveAssemblyReference.cache
+C:\Users\Patrick\Desktop\testingReport\TestingReport\TestingReport\bin\TestingReport.dll.config
+C:\Users\Patrick\Desktop\testingReport\TestingReport\TestingReport\bin\TestingReport.dll
+C:\Users\Patrick\Desktop\testingReport\TestingReport\TestingReport\bin\TestingReport.pdb
+C:\Users\Patrick\Desktop\testingReport\TestingReport\TestingReport\bin\Newtonsoft.Json.dll
+C:\Users\Patrick\Desktop\testingReport\TestingReport\TestingReport\obj\Debug\TestingReport.csprojResolveAssemblyReference.cache
+C:\Users\Patrick\Desktop\testingReport\TestingReport\TestingReport\obj\Debug\TestingReport.dll
+C:\Users\Patrick\Desktop\testingReport\TestingReport\TestingReport\obj\Debug\TestingReport.pdb
+C:\Users\Patrick\Desktop\生活再发现\TestingReport\TestingReport\bin\TestingReport.dll.config
+C:\Users\Patrick\Desktop\生活再发现\TestingReport\TestingReport\bin\TestingReport.dll
+C:\Users\Patrick\Desktop\生活再发现\TestingReport\TestingReport\bin\TestingReport.pdb
+C:\Users\Patrick\Desktop\生活再发现\TestingReport\TestingReport\bin\Newtonsoft.Json.dll
+C:\Users\Patrick\Desktop\生活再发现\TestingReport\TestingReport\obj\Debug\TestingReport.dll
+C:\Users\Patrick\Desktop\生活再发现\TestingReport\TestingReport\obj\Debug\TestingReport.pdb

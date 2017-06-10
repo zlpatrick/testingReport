@@ -145,22 +145,22 @@ namespace TestingReport
                         }
 
                         string badges = "";
-                        if (totalScore <=100 && totalScore>=75 )
+                        if (totalScore <=100 && totalScore>=76 )
                         {
                             badges = "非常幸福";
                             totalChartValue = 13;
                         }
-                        else if (totalScore <= 74 && totalScore >= 50)
+                        else if (totalScore <= 75 && totalScore >= 66)
                         {
                             badges = "比较幸福";
                             totalChartValue = 38;
                         }
-                        else if (totalScore <= 49 && totalScore >= 25)
+                        else if (totalScore <= 65 && totalScore >= 56)
                         {
                             badges = "不太幸福";
                             totalChartValue = 63;
                         }
-                        else if (totalScore <= 24)
+                        else if (totalScore <= 55)
                         {
                             badges = "很不幸福";
                             totalChartValue = 88;
@@ -176,7 +176,7 @@ namespace TestingReport
                     }
                 }
             }
-
+            /*
             ds = db.executeSqlQuery("select count(userId) from badges where topicId=2");
             int totalPerson = 0;
             if (ds.Tables[0].Rows.Count > 0)
@@ -214,7 +214,7 @@ namespace TestingReport
             {
                 person = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
             }
-            happy_4 = person * 100 / totalPerson;
+            happy_4 = person * 100 / totalPerson;*/
         }
     }
 }

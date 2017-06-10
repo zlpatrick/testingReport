@@ -6,7 +6,7 @@
 <head runat="server">
     <meta content="user-scalable=no" id="viewport" name="viewport">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>生活再发现 - 健康指数测试</title>
+    <title>健康测试 - 原来打网球的人更健康!</title>
       <script src="Scripts/jquery.1.11.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
@@ -301,17 +301,15 @@
 
 
         </div>
-        <div style="color:white;margin-top:50px;margin-bottom:100px;overflow:hidden">
-            <div style="float:left;width:40%;margin-left:10%;text-align:center">
-                <div onclick="document.getElementById('mcover').style.display='block';" style="width:85%;border-radius:10px;border:none;text-align:center !important;margin:auto;font-size:30px !important;height:100px;background-color:#3d585f;cursor:pointer;line-height:100px">让好友猜猜你的性格</div>
-            </div>
-            <div style="float:left;width:40%;text-align:center">
+          <div style="color:white;margin-top:50px;margin-bottom:100px;">
+         
+            <div style="text-align:center;padding-left:80px;padding-right:80px;">
                 <div onclick="document.getElementById('mcover').style.display='block';" style="width:85%;border-radius:10px;border:none;text-align:center !important;margin:auto;font-size:30px !important;height:100px;background-color:#b84737;cursor:pointer;line-height:100px">分享至朋友圈</div>
             </div>
         </div>
 
         
-     
+     <!--
     <div style="padding:80px">
             <div style="overflow:hidden">
             <div style="padding-left:30px;border-left:8px solid rgba(34,205,193,1);float:left;color:rgba(34,205,193,1)">合拍榜</div>
@@ -331,7 +329,7 @@
             </div>
            
         </div>
-
+        -->
         <div style="padding:30px 80px;margin-bottom:100px;">
             <div style="overflow:hidden">
                  <div style="padding-left:30px;border-left:8px solid rgba(34,205,193,1);float:left;color:rgba(34,205,193,1)">好文推荐</div>
@@ -377,8 +375,8 @@
        
          <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="learn-self.aspx?userid=<%=Request["userid"] %>" style="color:white">认识自我</a></div>
         <div style="width:25%;border-top:4px solid #3d585f;height:120px;line-height:120px;float:left"><a href="find-life.aspx?userid=<%=Request["userid"] %>" style="color:white">发现生活</a></div>
-         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="knowledge.aspx?userid=<%=Request["userid"] %>" style="color:white">幸福宝典</a></div>
-        <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="person.aspx?userid=<%=Request["userid"] %>" style="color:white">个人中心</a></div>
+         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="knowledge.aspx?userid=<%=Request["userid"] %>" style="color:white">知识点滴</a></div>
+        <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="person.aspx?userid=<%=Request["userid"] %>" style="color:white">用户中心</a></div>
        
     </div>
     </form>
@@ -573,7 +571,7 @@
                         }
                     }
                 },
-                data: [<%=health_1%>,<%=health_2%>,<%=health_3%>,<%=health_4%>],
+                data: [15,35,31,19],
               
             }
         ]

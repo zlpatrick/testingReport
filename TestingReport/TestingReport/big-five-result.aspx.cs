@@ -30,6 +30,7 @@ namespace TestingReport
         public List<string> radarDimNames = new List<string>();
         public List<float> radarDimScores = new List<float>();
         public List<float> radarAveScores = new List<float>();
+        public List<string> selectedWords = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
             string from = Request["from"];
@@ -41,6 +42,7 @@ namespace TestingReport
             
             JObject obj = WeixinUtil.getUserInfo(userid);
             userImageUrl = obj.GetValue("headimgurl").ToString();
+            userImageUrl = "/img/0.jpg";
             userNickName = obj.GetValue("nickname").ToString();
             DBUtil db = new DBUtil();
             UserSummary summary = SummaryUtil.getUserSummary(userid);
@@ -52,8 +54,9 @@ namespace TestingReport
             toolTimes = summary.findlife;
 
             string sql = null;
-            DataSet ds = db.executeSqlQuery("select * from ChooseItem where topicId=1");
+            DataSet ds = db.executeSqlQuery("select * from ChooseItem where topicId=1 order by ItemScore desc");
             Dictionary<int, int> scores = new Dictionary<int, int>();
+            List<int> topScores = new List<int>();
             if (ds.Tables[0].Rows.Count > 0)
             {
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
@@ -61,6 +64,7 @@ namespace TestingReport
                     int position = Convert.ToInt32(ds.Tables[0].Rows[i]["itemPosition"].ToString());
                     int score = Convert.ToInt32(ds.Tables[0].Rows[i]["ItemScore"].ToString());
                     scores.Add(position, score);
+                   // topScores.Add(position);
                 }
 
                 ds = db.executeSqlQuery("select * from Votes where userId='" + userid + "' and TopicId=1");
@@ -74,6 +78,7 @@ namespace TestingReport
                         int optionId = Convert.ToInt32(ds.Tables[0].Rows[i]["OptionId"].ToString());
                         int choosePosition = Convert.ToInt32(ds.Tables[0].Rows[i]["ChooseItemPosition"].ToString());
                         totalScore += scores[choosePosition];
+                        topScores.Add(optionId);
                         choosePositionMap.Add(optionId, choosePosition);
                     }
 
@@ -92,6 +97,7 @@ namespace TestingReport
 
 
                         List<string> chartScoreString = new List<string>();
+                        List<int> selectedDetailIds = new List<int>();
 
                         for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
                         {
@@ -103,6 +109,8 @@ namespace TestingReport
                             string[] options = optionIdList.Split(',');
                             int[] optionIDInt = new int[options.Length];
                             int dimensionScore = 0;
+                            int maxDimScore = 0;
+                            int maxDimIndex = -1;
                             for (int j = 0; j < options.Length; j++)
                             {
                                 optionIDInt[j] = Convert.ToInt32(options[j]);
@@ -110,14 +118,51 @@ namespace TestingReport
                                 if (choosePositionMap.ContainsKey(optionIDInt[j]))
                                 {
                                     dimensionScore += scores[choosePositionMap[optionIDInt[j]]];
+                                    if (scores[choosePositionMap[optionIDInt[j]]] > maxDimScore)
+                                    {
+                                        maxDimScore = scores[choosePositionMap[optionIDInt[j]]];
+                                        maxDimIndex = optionIDInt[j];
+                                    }
                                 }
                             }
-
+                            selectedDetailIds.Add(maxDimIndex);
                             dimensionScores.Add(dimensionId, dimensionScore);
                             dimensionNames.Add(dimensionId, dimensionName);
                             dimensionDescs.Add(dimensionId, dimensionDesc);
                             dimensionImages.Add(dimensionId, dimensionImage);
                             dimensionOptionCount.Add(dimensionId, options.Length);
+                        }
+
+                        for(int i =0;i<topScores.Count;i++)
+                        {
+                            if (!selectedDetailIds.Contains(topScores[i]))
+                            {
+                                selectedDetailIds.Add(topScores[i]);
+                                break;
+                            }
+                        }
+                        string selectIdString = "(";
+                        foreach(int i in selectedDetailIds)
+                        {
+                            selectIdString += i.ToString() + ",";
+                        }
+                        selectIdString = selectIdString.Substring(0, selectIdString.Length - 1);
+                        selectIdString += ")";
+
+                        sql = "select * from [Options] where TopicId = 1 and OptionOrder in " + selectIdString;
+                        ds = db.executeSqlQuery(sql);
+                        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                        {
+                            string edgeTop = ds.Tables[0].Rows[i]["EdgeTop"].ToString();
+                            string edgeBottom = ds.Tables[0].Rows[i]["EdgeBottom"].ToString();
+                            if (scores[choosePositionMap[Convert.ToInt32(ds.Tables[0].Rows[i]["OptionOrder"])]] >=4)
+                            {
+                                selectedWords.Add(edgeBottom);
+                            }
+                            else
+                            {
+                                selectedWords.Add(edgeTop);
+                            }
                         }
 
                         sql = "select * from TotalAverage where topicId = 1";
@@ -176,7 +221,7 @@ namespace TestingReport
                             badges.Add("宜人性高");
                         }
 
-                        if (radarDimScores[0] < radarAveScores[0])
+                        if (radarDimScores[4] < radarAveScores[4])
                         {
                             badges.Add("严谨性低");
                         }
@@ -184,6 +229,53 @@ namespace TestingReport
                         {
                             badges.Add("严谨性高");
                         }
+
+                        //List<string> selectedWords = new List<string>();
+                        /*
+                        if (radarDimScores[0] > 5)
+                        {
+                            selectedWords.Add("外向");
+                        }
+                        else
+                        {
+                            selectedWords.Add("内向");
+                        }
+
+                        if (radarDimScores[1] > 5)
+                        {
+                            selectedWords.Add("起伏");
+                        }
+                        else
+                        {
+                            selectedWords.Add("镇定");
+                        }
+
+                        if (radarDimScores[2] > 5)
+                        {
+                            selectedWords.Add("开放");
+                        }
+                        else
+                        {
+                            selectedWords.Add("保守");
+                        }
+
+                        if (radarDimScores[3] > 5)
+                        {
+                            selectedWords.Add("随和");
+                        }
+                        else
+                        {
+                            selectedWords.Add("自我");
+                        }
+
+                        if (radarDimScores[4] > 5)
+                        {
+                            selectedWords.Add("严谨");
+                        }
+                        else
+                        {
+                            selectedWords.Add("随性");
+                        }*/
 
                         sql = "delete from Badges where userId='" + userid + "' and topicId=1";
                         db.executeSqlNonQuery(sql);

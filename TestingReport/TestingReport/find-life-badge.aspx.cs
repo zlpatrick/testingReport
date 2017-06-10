@@ -137,6 +137,9 @@ namespace TestingReport
                 totalPerson = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
             }
 
+            if (totalPerson == 0)
+                totalPerson = 1;
+
             ds = db.executeSqlQuery("select count(userId) from badges where topicId=2 and badgeName='非常幸福'");
             int person = 0;
             if (ds.Tables[0].Rows.Count > 0)
@@ -175,6 +178,8 @@ namespace TestingReport
             {
                 totalPerson = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
             }
+            if (totalPerson == 0)
+                totalPerson = 1;
 
             ds = db.executeSqlQuery("select count(userId) from badges where topicId=5 and badgeName='非常满意'");
             person = 0;
@@ -214,6 +219,8 @@ namespace TestingReport
             {
                 totalPerson = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
             }
+            if (totalPerson == 0)
+                totalPerson = 1;
 
             ds = db.executeSqlQuery("select count(userId) from badges where topicId=3 and badgeName='舒适区'");
             person = 0;
@@ -245,6 +252,9 @@ namespace TestingReport
             {
                 totalPerson = Convert.ToInt32(ds.Tables[0].Rows[0][0]);
             }
+
+            if (totalPerson == 0)
+                totalPerson = 1;
 
             ds = db.executeSqlQuery("select count(userId) from badges where topicId=11 and badgeName='非常健康'");
             person = 0;

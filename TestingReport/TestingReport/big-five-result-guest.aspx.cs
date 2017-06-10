@@ -181,7 +181,7 @@ namespace TestingReport
                             badges.Add("宜人性高");
                         }
 
-                        if (radarDimScores[0] < radarAveScores[0])
+                        if (radarDimScores[4] < radarAveScores[4])
                         {
                             badges.Add("严谨性低");
                         }

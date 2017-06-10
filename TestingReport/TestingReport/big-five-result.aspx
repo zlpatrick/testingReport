@@ -9,6 +9,7 @@
     <title>生活再发现 - 大五性格测试</title>
       <script src="Scripts/jquery.1.11.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript" src="Scripts/html2canvas.js"></script>  
     <link type="text/css" rel="stylesheet" href="Styles/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="Styles/Site.css" />
     <style>
@@ -20,7 +21,9 @@
     {
         text-decoration:none;
     }
-
+         #renderImg{
+             margin-bottom:200px;
+         }
       #mcover {
         position: fixed;
         top: 0;
@@ -337,18 +340,17 @@
                 </div>
             </div>
         </div>
-        <div style="color:white;margin-top:50px;margin-bottom:100px;overflow:hidden">
-            <div style="float:left;width:40%;margin-left:10%;text-align:center">
-                <div onclick="document.getElementById('mcover').style.display='block';" style="width:85%;border-radius:10px;border:none;text-align:center !important;margin:auto;font-size:30px !important;height:100px;background-color:#3d585f;cursor:pointer;line-height:100px">让好友猜猜你的性格</div>
-            </div>
-            <div style="float:left;width:40%;text-align:center">
+        <div style="color:white;margin-top:50px;margin-bottom:100px;">
+         
+            <div style="text-align:center;padding-left:80px;padding-right:80px;">
                 <div onclick="document.getElementById('mcover').style.display='block';" style="width:85%;border-radius:10px;border:none;text-align:center !important;margin:auto;font-size:30px !important;height:100px;background-color:#b84737;cursor:pointer;line-height:100px">分享至朋友圈</div>
             </div>
         </div>
 
         
-     
+     <!--
     <div style="padding:80px">
+        
             <div style="overflow:hidden">
             <div style="padding-left:30px;border-left:8px solid rgba(34,205,193,1);float:left;color:rgba(34,205,193,1)">合拍榜</div>
             <div style="float:right;font-size:40px;color:grey;"><a href="learn-self-hepai.aspx?userid=<%=Request["userid"] %>" style="color:grey">查看更多..</a></div>
@@ -366,8 +368,8 @@
                 </div>
             </div>
            
-        </div>
-
+        </div>-->
+        
         <div style="padding:30px 80px;margin-bottom:100px;">
             <div style="overflow:hidden">
                  <div style="padding-left:30px;border-left:8px solid rgba(34,205,193,1);float:left;color:rgba(34,205,193,1)">好文推荐</div>
@@ -408,13 +410,74 @@
         </div>     
 
    <div style="width:60%;margin:30px auto 200px auto;border-radius:10px;border:none;text-align:center !important;font-size:36px !important;height:100px;background-color:rgba(34,205,193,1);cursor:pointer;line-height:100px;color:white"><a href="#" style="color:white" data-toggle="modal" data-target="#confirmationDialog">觉得结果不准确？再测一次</a></div>
+        
+        <div id="characterCard" style="background-color:white;padding-bottom:30px">
+               
+            <div style="background-color:#18b0d0;">
+                <div style="overflow:hidden;padding-top:50px;">
+                    <div style="float:left;padding-left:50px;"><img src="<%=userImageUrl %>" style="border-radius:100px;width:200px;"/></div>
+                    <div style="float:left;font-size:40px;margin-left:30px;padding-top:40px;color:white"><%=userNickName %><br />性格名片</div>
+                    <div style="float:right;font-size:36px;text-align:center;padding-right:50px;">
+                        <img src="/assets/barcode.jpg" style="width:150px" /><br />
+                        <div style="margin-top:10px;">扫一扫 做名片</div>
+                    </div>
+                </div>
+                <div id="pieChart" style="height:400px;">
+
+                </div>
+                <!--
+                <div style="overflow:hidden;margin-top:80px;padding-top:40px;padding-bottom:20px;width:700px;margin:auto">
+                    <div style="float:left">
+                        <div></div>
+                        <img src="/img/mybg.png" />
+                    </div>
+                    <div style="float:left;font-size:44px;padding-right:50px;margin-left:80px;"><ul>
+                        <li style="color:orangered"><span style="color:orangered;"><%=selectedWords[0] %></span></li>
+                        <li style="color:darkorange"><span style="color:darkorange;"><%=selectedWords[1] %></span></li>
+                        <li style="color:darkgreen"><span style="color:darkgreen;"><%=selectedWords[2] %></span></li>
+                        <li style="color:darksalmon"><span style="color:darksalmon;"><%=selectedWords[3] %></span></li>
+                        <li style="color:blanchedalmond"><span style="color:blanchedalmond;"><%=selectedWords[4] %></span></li></ul>
+                    </div>
+                </div>-->
+                <div style="text-align:center;padding-right:50px;font-size:40px;color:white;padding-bottom:30px;">
+                    我是这样的人，你知道不？
+                </div>
+            </div>
+            <div style="color:white;font-size:42px;background-color:#1cc8ec;text-align:center;padding-top:20px;padding-bottom:20px;"><%=userNickName %>的性格图表</div>
+            <div style="text-align:center;font-size:34px;color:grey;overflow:hidden;margin-top:50px">
+                <div style="float:left;width:20%">外向</div>
+                <div style="float:left;width:20%"">开放</div> 
+                <div style="float:left;width:20%"">严谨</div>
+                <div style="float:left;width:20%"">随和</div> 
+                <div style="float:left;width:20%"">起伏</div>
+            </div>
+            <div id="bottomChart" style="height:400px;">
+
+
+            </div>
+            <div style="text-align:center;font-size:34px;color:grey;overflow:hidden">
+                <div style="float:left;width:20%">内向</div>
+                <div style="float:left;width:20%"">保守</div> 
+                <div style="float:left;width:20%"">随性</div>
+                <div style="float:left;width:20%"">自我</div> 
+                <div style="float:left;width:20%"">镇定</div>
+            </div>
+
+            <div style="text-align:center;font-size:32px;margin-top:60px;">
+               
+                <img src="img/my.png" />&nbsp;<span style="color:rgba(34,205,193,1);font-size:32px;">我</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="img/all.png" />&nbsp;<span style="color:#3167ea;font-size:32px;">人群</span>
+            </div>
+
+            
+        </div>
+        <input class="example1" type="button" value="生成截图" style="margin-bottom:200px;width:300px;height:100px;margin-left:auto;margin-right:auto"/> 
 
     <div style="position:fixed;bottom:0;height:120px;border-top-color:grey;font-size:40px;background-color:rgba(34,205,193,1);width:100%;z-index:1000;color:white;text-align:center;line-height:120px;">
        
          <div style="width:25%;border-top:4px solid #3d585f;height:120px;line-height:120px;float:left"><a href="learn-self.aspx?userid=<%=Request["userid"] %>" style="color:white">认识自我</a></div>
         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="find-life.aspx?userid=<%=Request["userid"] %>" style="color:white">发现生活</a></div>
-         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="knowledge.aspx?userid=<%=Request["userid"] %>" style="color:white">幸福宝典</a></div>
-        <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="person.aspx?userid=<%=Request["userid"] %>" style="color:white">个人中心</a></div>
+         <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="knowledge.aspx?userid=<%=Request["userid"] %>" style="color:white">知识点滴</a></div>
+        <div style="width:25%;border-top:4px solid rgba(34,205,193,1);height:120px;line-height:120px;float:left"><a href="person.aspx?userid=<%=Request["userid"] %>" style="color:white">用户中心</a></div>
        
     </div>
     </form>
@@ -446,8 +509,207 @@
 		</tbody></table>
 	</div>
 </body>
+    <script src="Scripts/macarons.js"></script>
     <script src="Scripts/echarts.min.js"></script>
 </html>
+ <script  type="text/javascript" >  
+        $(document).ready( function(){  
+                $(".example1").on("click", function(event) {  
+                        event.preventDefault();  
+                        html2canvas($("#characterCard"), {
+                        allowTaint: true,  
+                        taintTest: false,  
+                        onrendered: function(canvas) {  
+                            canvas.id = "mycanvas";  
+                            //document.body.appendChild(canvas);  
+                            //生成base64图片数据  
+                            var dataUrl = canvas.toDataURL();  
+                            var newImg = document.createElement("img");  
+                            newImg.src = dataUrl;
+                            newImg.id = "renderImg";
+                            document.body.appendChild(newImg);  
+                        }  
+                    });  
+                });   
+               
+        });  
+           
+        </script>  
+<script>
+    var myChart = echarts.init(document.getElementById('pieChart'));
+    option = {
+        
+        tooltip: {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        
+        
+        calculable: true,
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: '55%',
+                center: ['50%', '60%'],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    },
+                    normal:{
+                        label:{
+                            textStyle:{
+                                fontSize: 30,
+                          
+                            }
+                           
+                        }
+                    },
+                    
+                },
+                data: [
+                    { value: 20, name: '<%=selectedWords[0] %>', color:'blue' },
+                    { value: 20, name: '<%=selectedWords[1] %>' },
+                    { value: 20, name: '<%=selectedWords[2] %>' },
+                    { value: 20, name: '<%=selectedWords[3] %>' },
+                    { value: 20, name: '<%=selectedWords[4] %>' },
+                    { value: 20, name: '<%=selectedWords[5] %>' }
+                ]
+            }
+        ]
+    };
+    myChart.setOption(option);
+</script>
+<script>
+    var myChart = echarts.init(document.getElementById('bottomChart'),e_macarons);
+    option = {
+        
+        xAxis: {
+            boundaryGap: false,
+            axisLine: {
+                onZero: false,
+                lineStyle: {type: 'dashed' },
+            },
+            axisTick: {
+                show: false
+            },
+            show:false,
+            splitLine: { show: false },
+            data: ['', '', '', '', ''],
+           
+        },
+        yAxis: {
+            splitNumber: 5,
+            axisLabel: {
+                formatter: ' '
+            },
+            axisLine: {
+                show: false,
+            },
+            
+            axisTick: {
+                show: false
+            },
+            splitLine: { lineStyle: { color:'#dfdfdf', width:2, type: 'dashed' } },
+        },
+        series: [{
+            type: 'line',
+            lineStyle: { normal: { color: 'rgba(34,205,193,1)' } },
+            
+            data: [<%=radarDimScores[0] %>, <%=radarDimScores[1] %>, <%=radarDimScores[2] %>, <%=radarDimScores[3] %>, <%=radarDimScores[4] %>]
+        }, {
+            type: 'line',
+          
+            lineStyle: { normal: { color: '#3167ea' } },
+            
+            data: [<%=radarAveScores[0] %>, <%=radarAveScores[1] %>, <%=radarAveScores[2] %>, <%=radarAveScores[3] %>, <%=radarAveScores[4] %>]
+        }]
+    };
+
+
+
+
+    /*
+    option = {
+        title : {
+            text: '未来一周气温变化',
+            subtext: '纯属虚构'
+        },
+        tooltip : {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['最高气温','最低气温']
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : ['周一','周二','周三','周四','周五','周六','周日']
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value',
+                axisLabel : {
+                    formatter: '{value} °C'
+                }
+            }
+        ],
+        series : [
+            {
+                name:'最高气温',
+                type:'line',
+                data:[11, 11, 15, 13, 12, 13, 10],
+                markPoint : {
+                    data : [
+                        {type : 'max', name: '最大值'},
+                        {type : 'min', name: '最小值'}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name: '平均值'}
+                    ]
+                }
+            },
+            {
+                name:'最低气温',
+                type:'line',
+                data:[1, -2, 2, 5, 3, 2, 0],
+                markPoint : {
+                    data : [
+                        {name : '周最低', value : -2, xAxis: 1, yAxis: -1.5}
+                    ]
+                },
+                markLine : {
+                    data : [
+                        {type : 'average', name : '平均值'}
+                    ]
+                }
+            }
+        ]
+    };*/
+                    
+
+
+
+
+    myChart.setOption(option);
+</script>
 <script type="text/javascript">
     // 基于准备好的dom，初始化echarts图表
     var myChart = echarts.init(document.getElementById('main'));

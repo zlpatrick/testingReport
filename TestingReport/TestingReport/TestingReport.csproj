@@ -25,6 +25,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -66,6 +67,24 @@
   <ItemGroup>
     <Content Include="admin-index.aspx" />
     <Content Include="admin-login.aspx" />
+    <Content Include="assets\articles\1.png" />
+    <Content Include="assets\articles\10.png" />
+    <Content Include="assets\articles\11.png" />
+    <Content Include="assets\articles\12.png" />
+    <Content Include="assets\articles\13.png" />
+    <Content Include="assets\articles\14.png" />
+    <Content Include="assets\articles\15.png" />
+    <Content Include="assets\articles\16.png" />
+    <Content Include="assets\articles\17.png" />
+    <Content Include="assets\articles\18.png" />
+    <Content Include="assets\articles\2.png" />
+    <Content Include="assets\articles\3.png" />
+    <Content Include="assets\articles\4.png" />
+    <Content Include="assets\articles\5.png" />
+    <Content Include="assets\articles\6.png" />
+    <Content Include="assets\articles\7.png" />
+    <Content Include="assets\articles\8.png" />
+    <Content Include="assets\articles\9.png" />
     <Content Include="assets\barcode .png" />
     <Content Include="assets\barcode.jpg" />
     <Content Include="assets\barcode.png" />
@@ -111,10 +130,12 @@
     <Content Include="assets\share.jpg" />
     <Content Include="assets\test-1.jpg" />
     <Content Include="assets\test-2.jpg" />
+    <Content Include="assets\title.jpg" />
     <Content Include="assets\totalScore.jpg" />
     <Content Include="assets\try.jpg" />
     <Content Include="assets\trymore.jpg" />
     <Content Include="assets\way-1.jpg" />
+    <Content Include="assets\_7DLNAPFXERWB9PM0%24`9~WD.png" />
     <Content Include="background.aspx" />
     <Content Include="big-five-result-guest.aspx" />
     <Content Include="big-five-result-shared.aspx" />
@@ -130,6 +151,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="health-result-guest.aspx" />
     <Content Include="health-result-shared.aspx" />
+    <Content Include="img\0.jpg" />
+    <Content Include="img\all.png" />
+    <Content Include="img\my.png" />
+    <Content Include="img\mybg.PNG" />
     <Content Include="knowledge.aspx" />
     <Content Include="happy-feeling-result-guest.aspx" />
     <Content Include="happy-feeling-result-shared.aspx" />
@@ -173,9 +198,12 @@
     <Content Include="life-work.aspx" />
     <Content Include="middle.aspx" />
     <Content Include="more-info.aspx" />
+    <Content Include="mybg.png" />
     <Content Include="Newtonsoft.Json.dll" />
     <Content Include="perfect-result-guest.aspx" />
     <Content Include="perfect-result-shared.aspx" />
+    <Content Include="person-missing-guest.aspx" />
+    <Content Include="person-missing.aspx" />
     <Content Include="person-self.aspx" />
     <Content Include="person.aspx" />
     <Content Include="profile.aspx" />
@@ -183,9 +211,12 @@
     <Content Include="result-pre.aspx" />
     <Content Include="result.aspx" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\canvas.js" />
     <Content Include="Scripts\Chart.js" />
     <Content Include="Scripts\echarts.min.js" />
+    <Content Include="Scripts\html2canvas.js" />
     <Content Include="Scripts\jquery.1.11.js" />
+    <Content Include="Scripts\macarons.js" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Styles\SiteAndroid.css" />
     <Content Include="Styles\Site.css" />
@@ -198,6 +229,7 @@
     <Content Include="test-day.aspx" />
     <Content Include="test-guest.aspx" />
     <Content Include="test.aspx" />
+    <Content Include="testcu.aspx" />
     <Content Include="tip.aspx" />
     <Content Include="tool-add.aspx" />
     <Content Include="tool-edit.aspx" />
@@ -494,6 +526,20 @@
     <Compile Include="perfect-result-shared.aspx.designer.cs">
       <DependentUpon>perfect-result-shared.aspx</DependentUpon>
     </Compile>
+    <Compile Include="person-missing-guest.aspx.cs">
+      <DependentUpon>person-missing-guest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="person-missing-guest.aspx.designer.cs">
+      <DependentUpon>person-missing-guest.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="person-missing.aspx.cs">
+      <DependentUpon>person-missing.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="person-missing.aspx.designer.cs">
+      <DependentUpon>person-missing.aspx</DependentUpon>
+    </Compile>
     <Compile Include="person-self.aspx.cs">
       <DependentUpon>person-self.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -572,6 +618,13 @@
     </Compile>
     <Compile Include="test.aspx.designer.cs">
       <DependentUpon>test.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="testcu.aspx.cs">
+      <DependentUpon>testcu.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="testcu.aspx.designer.cs">
+      <DependentUpon>testcu.aspx</DependentUpon>
     </Compile>
     <Compile Include="tip.aspx.cs">
       <DependentUpon>tip.aspx</DependentUpon>
